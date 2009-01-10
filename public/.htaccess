@@ -1,0 +1,21 @@
+# Turns the rewriting engine on
+RewriteEngine On 
+
+# Prevents directory listing
+Options All -Indexes
+
+# Prevents access to .htaccess itself
+<Files .htaccess>
+ order allow,deny
+ deny from all
+</Files>
+
+# Last revision when empty
+RewriteRule ^$        0
+
+# Explicit revision
+RewriteRule ^(\d+)$   statics/$1.html
+
+# If the file does'nt exist, its in the future
+RewriteCond %{REQUEST_FILENAME} !-f                          
+RewriteRule ^(.*)$  statics/future.html [L] 

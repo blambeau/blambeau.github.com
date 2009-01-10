@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>www.revision-zero.org</title>
+  <base href="http://www.revision-zero.org/"/>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <link rel="stylesheet" href="statics/images/style.css" type="text/css" />
+</head>
+  <body>
+    <div class="content">
+      <div class="preheader">
+        <div class="padding"> 
+          <a href="1">See next revision</a> &nbsp;
+        </div>
+      </div>
+      <div class="header">
+        <div class="title">About www.revision-zero.org</div>
+      </div>
+      <div id="nav">
+        <ul>
+          <li id="current"><a href="">Home</a></li>
+        </ul>
+      </div>
+      <div class="main_content">
+        <div class="sd_left">
+          <div class="text_padding">
+            <h2>Revision-Zero is born!</h2>
+            
+            <p>Welcome to revision-zero.org ! You are reading the really first revision of this web site.
+            If you read this page you are probably asking yourself what this site is about ? It is 
+            about computer science, and only about that. So if you're not a computer scientist or 
+            somewhat interrested by computers, you probably won't find any useful information here. 
+            Otherwise, read on!</p>
+            
+            <p>I've created this web site to share ideas. I'm a computer scientist, currently attached 
+            (as researcher) to the computing science department of the University of Louvain (Université 
+            catholique de Louvain-la-Neuve, Belgium). As a researcher, my job is to have ideas (nice job 
+            isn't it?) ... sometimes good ones, sometimes not. I've not enough time to implement everything 
+            so I've decided to share it ! However, unless you're reading this page in the future, you'll have 
+            to wait for subsequent revisions ... But I can already precise the topic somewhat: this web site will
+            most certainly provide code tricks in Ruby and Java, will certainly talk about databases, requirements
+            engineering and goal modeling in particular, automata, regular languages and induction, I'm sure web
+            frameworks will have a place, ... But before that, let's talk a bit about the web site itself.</p>
+            
+            <h3>Revision-Zero's revisions</h3>
+            You're currently reading revision 0 of this web site. Each time a new article is posted, the
+            revision number is increased. The web site itself will be under constant development. It's a choice: 
+            I didn't wanted to select and learn an 'all-in-the-box' blog implem or something like that. So I will create it myself,
+            pragmatically, implementing features when need arrive ... Some posts here will certainly talk about  
+            that development. Revision number 0 is an hand-written simple html page. You can read future
+            revisions of this one with a simple URL pattern:</p> 
+            
+            <p style="text-align: center"><a href="32">http://www.revision-zero.org/32</a></p> 
+            <p>for example, will bring you to the revision numbered 32, which (if already available) is about some 
+            computer science topic, maybe about this site development, maybe not.</p>
+            
+            <h3>Revision 0's implementation</h3>
+            
+            <p>This first revision of the web site is pragmatic and simple: it's a simple HTML/CSS file, and
+            something like the following lines in the .htaccess file, providing the first navigation mechanism:</p>
+            
+            <div class="sourcecode"><pre>
+RewriteRule ^$                    0                       # leads to last revision 
+RewriteRule ^(\d+)$               pages/$1.html           # leads to exact one
+
+RewriteCond %{REQUEST_FILENAME}   !-f                     # leads to future (no such file)
+RewriteRule ^(.*)$                pages/future.html [L]</pre></div>
+
+            <p>Simple isn't it?? Everything will certainly change in the implementation in a really short-term future
+            but it makes the job for now and has been implemented in a couple of minutes (I'm lying: I don't masterize 
+            mod_rewrite at all and it took a lot of time to me to write these simple four lines. It should
+            be read as: <em>[...] it makes the job for now and <b>can</b> be implemented in a couple of minutes</em>).</p>
+            
+            <h3>Revision-Zero's material</h3>
+            
+            <p>And now, for something really important. Unless stated explicitely, all ideas written here are the intellectual
+            property of Bernard Lambeau. All text material is under a 
+            <a rel="license" href="http://creativecommons.org/licenses/by/2.0/be/">Creative Commons Licence 2.0</a> contract.
+            Unless stated explicitely, short code excerpts appearing here may be used freely, but are given without ABSOLUTELY 
+            NO WARRANTY. Source code (clearly indicated as being) extracted from a given implementation project of the present
+            author remains under the same licence as the project it is extracted from (often <a href="http://www.gnu.org/licenses/gpl.html">GPL</a>, 
+            <a href="http://www.gnu.org/licenses/lgpl.html">LGPL</a> or <a href="http://www.opensource.org/licenses/mit-license.php">MIT</a>).</p>
+            
+            <p>I'm really grateful to David Herreman (that I don't know) for the CSS template that I've downloaded
+            from <a href="http://www.free-css-templates.com/">www.free-css-templates.com</a> (pragmatic implementation 
+            choice!). This template is under Creative Commons Licence as well.</p>
+            
+            <p>Last but not least, thanks (as well as some rights) go to my employer (the University of Louvain). My brother
+            also deserve special thanks for his help and support!</p>
+            
+            <p>See you at revision 1, enjoy Revision-Zero!</p>
+                
+            <p class="date"><img src="statics/images/timeicon.gif" alt="" /> 2009/01/10 - 18:16</p>
+          </div>
+        </div>
+        <div class="footer">
+          <div class="padding">
+          <a rel="license" href="http://creativecommons.org/licenses/by/2.0/be/">&copy;</a> www.revision-zero.org | author: <a href="author">bernard lambeau</a> | design (free-css): <a href="http://www.free-css-templates.com/" title="Free CSS Templates">david herreman</a> </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
