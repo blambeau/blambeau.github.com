@@ -8,7 +8,7 @@
         *{items}{
           <item>
               <title>${title}</title>
-              <description>${abstract}</description>
+              <description>${contents}</description>
               <pubDate>${date}</pubDate>
               <link>http://www.revision-zero.org/${revnumber}</link>
           </item>
