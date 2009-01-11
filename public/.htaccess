@@ -10,6 +10,7 @@ Options All -Indexes
  deny from all
 </Files>
 
+# My own 404 page
 ErrorDocument 404 /statics/404.html
 
 # Last revision when empty
@@ -17,7 +18,3 @@ RewriteRule ^$        1
 
 # Explicit revision
 RewriteRule ^(\d+)$   statics/$1.html
-
-# If the file does'nt exist, its in the future
-#RewriteCond %{REQUEST_FILENAME} !-f                          
-#RewriteRule ^(.*)$  statics/404.html [L] 
