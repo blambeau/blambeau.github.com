@@ -17,4 +17,4 @@ ErrorDocument 404 /statics/404.html
 RewriteRule ^$        1
 
 # Explicit revision
-RewriteRule ^(\d+)$   statics/$1.html
+RewriteRule ^([a-zA-Z0-9_]+)$   statics/$1.html

@@ -2,6 +2,9 @@
 require 'rubygems'
 require 'rdoc/markup/to_html'
 require 'htmlentities'
+require 'fileutils'
+
+include FileUtils
 
 #
 # Extension of RDoc::Markup::ToHtml generator. This class is not intended to be
@@ -26,10 +29,14 @@ class RevZeroMarkupRecognizer < RDoc::Markup::ToHtml
   # Regular expression for meta tags
   METATAG_REGEX = /([a-z_]+)\{([^\}]*)\}/
 
+  # Regular expression for link tags
+  LINK_REGEX = />\{([^\}]+)\}(\[([^\]]+)\])?/
+
   # Initializes the generator and installs the recognization extensions
   def initialize
     super
     @markup.add_special(METATAG_REGEX, :METATAG)
+    @markup.add_special(LINK_REGEX, :LINKTAG)
     # this is due to something that looks like a but in RDoc::Markup::ToHtml
     instance_eval do
       @from_path = File.dirname(__FILE__)    end
@@ -40,11 +47,18 @@ class RevZeroMarkupRecognizer < RDoc::Markup::ToHtml
   def handle_special_METATAG(special)
     raise "Metatags Hash must be installed using metahash write accessor"\
       unless @metahash
-    special.text =~ METATAG_REGEX
+    METATAG_REGEX =~ special.text
     @metahash[$1] = $2
     ""
   end
   
+  # Handles generation for link ->{...} tags. Raises an RuntimeError if your
+  # metahash has not been previously installed.
+  def handle_special_LINKTAG(special)
+	  LINK_REGEX =~ special.text
+	  "<a href=\"#{$3 ? $3 : $1}\">#{$1}</a>"
+	end
+
   #
   # Parses a source text and fills the _metahash_ argument. Generated contents
   # is installed in the hash under 'contents' key. Meta tag contents is installed 
@@ -322,10 +336,13 @@ else
       raise("Parse error in index on line #{i}: #{line}") \
         unless /(\d+)\s+([a-z_]+)/ =~ line
       if $revision.nil? or $revision==i
-        source = File.join($articles, $2 + $source_extension)
-        target = File.join($output, $1 + $output_extension)
+			  source_name, target_name = $2, $1
+        source = File.join($articles, source_name + $source_extension)
+        target = File.join($output, target_name + $output_extension)
+	      symblink = File.join($output, source_name + $output_extension)
         puts "Generating revision #{i}: '#{source}' -> '#{target}'" if $verbose
-        generate($1.to_i, source, target)  
+        generate($1.to_i, source, target) 
+	      ln_s(target, symblink) unless File.exists?(symblink)
       end
     end
   end
