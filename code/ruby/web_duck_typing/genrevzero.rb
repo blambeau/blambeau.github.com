@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby1.9
+#!/usr/bin/env ruby
 require 'rubygems'
 require 'rdoc/markup/to_html'
 require 'htmlentities'
