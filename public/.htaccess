@@ -11,11 +11,11 @@ Options All -Indexes
 </Files>
 
 # Last revision when empty
-RewriteRule ^$        0
+RewriteRule ^$        1
 
 # Explicit revision
 RewriteRule ^(\d+)$   statics/$1.html
 
 # If the file does'nt exist, its in the future
 RewriteCond %{REQUEST_FILENAME} !-f                          
-RewriteRule ^(.*)$  statics/future.html [L] 
+RewriteRule ^(.*)$  statics/404.html [L] 

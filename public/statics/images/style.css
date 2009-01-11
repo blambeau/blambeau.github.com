@@ -1,27 +1,48 @@
 /*
-By Herreman David
-http://www.free-css-templates.com
-StyleSheet for BinaryNews Template
-*/
+ * Initially written By Herreman David
+ * http://www.free-css-templates.com
+ * StyleSheet for BinaryNews Template
+ *
+ * Refactored by Bernard Lambeau
+ * http://www.revision-zero.org
+ */
 
 body {
  background-color: #e7e7e7;
  color: #FFF;
- padding: 0; margin: 0; font: 10pt Arial, sans-serif; line-height: 1.5em;
+ padding: 0; 
+ margin: 0; 
+ font: 10pt Arial, sans-serif; 
+ line-height: 1.5em;
 }
 
 a { color: #46574D; background: inherit; }
 a:hover { color: #647B6D; background: inherit;}
 
-h1 { font: bold 2em Arial, Sans-Serif; letter-spacing: -1px; padding: 16px 0 0 8px; margin: 0; }
-h2 { margin: 0; padding: 0; font: normal 1.6em Arial, Sans-Serif; letter-spacing: -1px; }
-h1 a { color: #46574D; background: inherit; }
-h1 a, h2 a { text-decoration: none; }
-h1 a:hover, h2 a:hover { color: #BFE1ED; background: inherit; }
-h3 { font: bold 1.2em Arial, Sans-Serif; text-decoration: underline; margin: 15px 0 10px 0; padding: 0; color: #46574D; background: #FFF; }
+h1 { 
+  margin: 0; 
+  padding: 0; 
+  font: normal 1.6em Arial, Sans-Serif; 
+  letter-spacing: -1px; 
+}
+h1 a { 
+  text-decoration: none; 
+}
+h1 a:hover { 
+  color: #BFE1ED; background: inherit; 
+}
+h2 { 
+  font: bold 1.2em Arial, Sans-Serif; 
+  text-decoration: underline; 
+  margin: 15px 0 10px 0; 
+  padding: 0; 
+  color: #46574D; 
+  background: #FFF; 
+}
+
 p { margin: 5pt 0 0 0; line-height: 1.5em; }
 form { margin: 0; }
-.sourcecode {
+pre {
   font-family: monospace;
   font-size: 8pt;
   background: #fffde8;
@@ -29,12 +50,7 @@ form { margin: 0; }
   border: #ffe0bb dotted 1px;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
-/*  margin: 0.5em 2em 0.5em 2em; */
   padding: 0.5em;
-}
-pre {
-  margin: 0 0 0 0;
-  padding: 0 0 0 0;
 }
 
 
@@ -60,13 +76,11 @@ input.submit { width: 28px; height: 20px; font-weight: bold; border: none; backg
 	padding: 0;
 }
 
-	.preheader a { color: #FFF; background: inherit; text-decoration:none; }
-	.preheader a:hover { color: #FFF; background: inherit;}
-
+.preheader a { color: #FFF; background: inherit; text-decoration:none; }
+.preheader a:hover { color: #FFF; background: inherit;}
 .preheader .padding {
-	
 	float: right;
-	padding: 52px 70px 0 0;
+	padding: 48px 70px 0 0;
 	color: #FFF;
 }
 
@@ -161,7 +175,7 @@ input.submit { width: 28px; height: 20px; font-weight: bold; border: none; backg
 	padding: 15px 0 0 0;
 }
 
-.main_content h2 {
+.main_content h1 {
 	background-color: #FFF;
 	padding: 5px 0 5px 0;
 	color: #46574D;
@@ -207,7 +221,7 @@ input.button {
 	margin-bottom: 10px;
 	border: 1px dashed #990000;
 }
-.error h2 {
+.error h1 {
 	color: #990000;
 	background: inherit;
 }
@@ -220,7 +234,7 @@ input.button {
 	margin-bottom: 5px;
 	border: 1px dashed #7BA813;
 }
-.success h2 {
+.success h1 {
 	color: #7BA813;
 	background: inherit;
 }
