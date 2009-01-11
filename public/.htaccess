@@ -13,6 +13,9 @@ Options All -Indexes
 # My own 404 page
 ErrorDocument 404 /statics/404.html
 
+# RSS flux
+RewriteRule ^rss$               statics/rss.xml [L]
+
 # Last revision when empty
 RewriteRule ^$        1
 

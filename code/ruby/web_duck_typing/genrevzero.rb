@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env ruby1.9
 require 'rubygems'
 require 'rdoc/markup/to_html'
 require 'htmlentities'
@@ -92,6 +92,62 @@ class RevZeroTemplateInstanciator
     @encoder = HTMLEntities.new
   end
   
+  # Finds the next block in a string
+  def find_sub_block(str)
+    raise "Syntax error in sub block, { expected #{str[0,1]} found"\
+      unless str[0,1]=='{'
+    index=0
+    count=0
+    while index<str.length
+      if (c=str[index,1])=='{'
+        count += 1
+      elsif c=='}'
+        count -= 1
+        if count==0 
+          return [str[1,index-1], str[index+1,str.length-index]]
+        end
+      end  
+      index += 1
+    end
+    raise "Syntax error in subblock: no } terminator"
+  end
+  
+  # Instanciates a given string _str_
+  def instanciate_str(line, hash, buffer)
+    # matches ${...}, +{...} and @{...}, first group is operator, second is varname
+    while matchdata=/([$+@!*])\{([^\}]+)\}/.match(line)
+      tagtype, varname = matchdata[1], matchdata[2]
+      buffer << matchdata.pre_match  # pre_match is send to buffer
+      case tagtype
+      when '$' # reference to a variable (encoding required)
+        raise "No data found for #{varname} (#{hash.keys.inspect})" unless hash.has_key?(varname)
+        buffer << @encoder.encode(hash[varname])
+      when '@' # reference to an action, we use singleton methods here
+        raise "Action #{varname} not found" unless self.respond_to?(varname)
+        buffer << self.send(varname)
+      when '+' # Template inclusion (no encoding)
+        raise "No data found for #{varname}" unless hash.has_key?(varname)
+        buffer << hash[varname]
+      when '!' # Ruby execution
+        buffer << Kernel.eval(varname)
+      when '*'
+        raise "No data found for #{varname}" unless hash.has_key?(varname)
+        # get infos
+        items = hash[varname]
+        raise "Non enumerable variable #{varname}" unless items.respond_to?(:each)
+        # find sub block and next line
+        blockstr, line = find_sub_block(matchdata.post_match)
+        items.each do |i|
+          instanciate_str(blockstr, i, buffer)
+        end
+        next
+      end
+      # continue with post_match (which can contain other tags)
+      line = matchdata.post_match
+    end
+    buffer << line # trailing contents send to buffer
+  end
+  
   #
   # Instanciates the _wlang_ template using key/value pairs given by _hash_. _buffer_ is 
   # expected to be an IO object on which template generation output is written 
@@ -105,32 +161,13 @@ class RevZeroTemplateInstanciator
   #              before launching the generation!
   #
   def instanciate(hash, buffer)
-    File.open(@template, "r") do |f|
-      f.each_line do |line|
-        # matches ${...}, +{...} and @{...}, first group is operator, second is varname
-        while matchdata=/([$+@])\{([^\}]+)\}/.match(line)
-          tagtype, varname = matchdata[1], matchdata[2]
-          buffer << matchdata.pre_match  # pre_match is send to buffer
-          case tagtype
-          when '$' # reference to a variable (encoding required)
-            raise "No data found for #{varname}" unless hash.has_key?(varname)
-            buffer << @encoder.encode(hash[varname])
-          when '@' # reference to an action, we use singleton methods here
-            raise "Action #{varname} not found" unless self.respond_to?(varname)
-            buffer << self.send(varname)
-          when '+' # Template inclusion (no encoding)
-            raise "No data found for #{varname}" unless hash.has_key?(varname)
-            buffer << hash[varname]
-          end
-          # continue with post_match (which can contain other tags)
-          line = matchdata.post_match
-        end
-        buffer << line # trailing contents send to buffer
-      end
-    end
+    # read all lines as a single line
+    line = nil
+    File.open(@template, "r") {|f| line = f.readlines().join()}
+    instanciate_str(line, hash, buffer)
   end  
   
-end
+end # RevZeroTemplateInstanciator
 
 #
 # Generates the revision number _revision_, from the article _source_ (path to
@@ -168,6 +205,9 @@ def generate(revision, source, target)
     end
     $instanciator.instanciate(meta, f)
   end
+  
+  # return meta
+  return meta
 end
 
 # Checks the options, return nil if everything is ok, an error message 
@@ -330,8 +370,11 @@ if ($source and $target)
   puts "Generating single file: '#{$source}' -> '#{$target}'" if $verbose
   generate(-1, $source, $target)  
 else
+  metas = []
   # index file mode
   File.open($index) do |index|
+    
+    # generate html files
     index.each_with_index do |line, i|
       raise("Parse error in index on line #{i}: #{line}") \
         unless /(\d+)\s+([a-z_]+)/ =~ line
@@ -340,10 +383,26 @@ else
         source = File.join($articles, source_name + $source_extension)
         target = File.join($output, target_name + $output_extension)
 	      symblink = File.join($output, source_name + $output_extension)
+	      
+	      # generate the .html file
         puts "Generating revision #{i}: '#{source}' -> '#{target}'" if $verbose
-        generate($1.to_i, source, target) 
+        meta = generate($1.to_i, source, target) 
+        meta["revnumber"] = source_name
+        metas << meta
+        
+        # create symbolic link
 	      ln_s(target, symblink) unless File.exists?(symblink)
       end
     end
   end
+    
+  # generate RSS flux 
+  template = File.join($articles, 'rss.wtpl')
+  instanciator = RevZeroTemplateInstanciator.new(template)
+  target = File.join($output, 'rss.xml')
+  File.open(target, "w") do |f|
+    meta = {"items" => metas}
+    instanciator.instanciate(meta, f)
+  end 
+
 end

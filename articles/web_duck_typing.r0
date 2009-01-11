@@ -1,6 +1,6 @@
 title{Web Duck Typing}
 subtitle{}
-
+abstract{How to maintain a web blog based on static files. In the article I elaborate my pragmatic solution to maintain my blog easily. Ruby programming language is used to automate the generation of my articles. For the first time, a simple template engine I've created is briefly discussed, with a 15 lines implementation!}
 = Toward a static blog that looks dynamic 
 This revision, of course, talks about the development of revision-zero.org itself:
 I can't imagine maintaining my computer science blog by writing HTML files by hand!
