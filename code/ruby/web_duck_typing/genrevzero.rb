@@ -401,6 +401,7 @@ else
   instanciator = RevZeroTemplateInstanciator.new(template)
   target = File.join($output, 'rss.xml')
   File.open(target, "w") do |f|
+    metas.reverse!
     meta = {"items" => metas}
     instanciator.instanciate(meta, f)
   end 
