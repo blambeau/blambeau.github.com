@@ -371,6 +371,7 @@ if ($source and $target)
   generate(-1, $source, $target)  
 else
   metas = []
+  current, source, target, numbered = nil
   # index file mode
   File.open($index) do |index|
     
@@ -378,11 +379,13 @@ else
     index.each_with_index do |line, i|
       raise("Parse error in index on line #{i}: #{line}") \
         unless /(\d+)\s+([a-z_]+)/ =~ line
-      if $revision.nil? or $revision==i
+      current = i
+          
+      if $revision.nil? or $revision==current
 			  source_name, target_name = $2, $1
         source = File.join($articles, source_name + $source_extension)
-        target = File.join($output, target_name + $output_extension)
-	      symblink = File.join($output, source_name + $output_extension)
+        target = File.join($output, source_name + $output_extension)
+        numbered = File.join($output, target_name + $output_extension)
 	      
 	      # generate the .html file
         puts "Generating revision #{i}: '#{source}' -> '#{target}'" if $verbose
@@ -391,9 +394,15 @@ else
         metas << meta
         
         # create symbolic link
-	      ln_s(target, symblink) unless File.exists?(symblink)
+        rm numbered if File.exists?(numbered)
+	      ln_s(target, numbered)
       end
     end
+    
+    # create last symbolic link
+    symblink = File.join($output, 'last.html')
+    rm symblink if File.exists?(symblink)
+    ln_s(target, symblink)
   end
     
   # generate RSS flux 

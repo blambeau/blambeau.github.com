@@ -17,7 +17,7 @@ ErrorDocument 404 /statics/404.html
 RewriteRule ^rss$               statics/rss.xml [L]
 
 # Last revision when empty
-RewriteRule ^$        1
+RewriteRule ^$                  last
 
 # Explicit revision
 RewriteRule ^([a-zA-Z0-9_]+)$   statics/$1.html
