@@ -1,0 +1,70 @@
+title{Technical topics addressed here}
+subtitle{}
+abstract{}
+date{2009/01/14 - 17:55}
+
+= What are we talking about?
+
+Hi all, after having implemented some additional features to writing tools 
+(since the >{last post}[web_duck_typing], I feel ready to start with real 
+technical topics. Instead of picking one of them precisely, I've decided to
+write a small outline first. Three main reasons for that. First, it will provide
+a basic search tool (otherwise, you'd have to know the revision number of articles, 
+which is not really user-friendly). Secondly, it naturally gives a TODO list for
+me. Lastly, I'll have a priority queue: by clicking the topic name (or typing
+an url like http://www.revision-zero.org/wlang for example), you keep me informed about 
+what interests you ! This way, I'll write new articles in the priority order <b>you
+have decided</b>. Below are the subjects I plan to address in the next few weeks.
+I did not put them in any particular order; you can also send me an email with 
+proposals if what you are interested in is not in the list and I'll see if I know
+something about the subject.
+
+== >{Generate secure code with wlang}[wlang]
+Really recently, http://www.sans.org published an {Experts Announce Agreement 
+on the 25 Most Dangerous Programming Errors}[http://www.sans.org/top25errors/].
+It could not been made at a better time for me: the first five errors in the
+top 25 allow variants of a security attack "by injection". This kind of attack
+is really simple and relies on a terrible fact: each time you're writing a 
+simple html page (or a SQL query), what you are actually doing is creating a 
+(kind of) program (that will be executed by the browser, or a database engine). 
+If you build your html page by concatening strings (injecting form data in your 
+page for example) what you are actually doing is generating code ! Code generation 
+is something really hard, for many reasons, including security issues. >{wlang}
+is a simple (abstract) tool for generating code. In particular it helps you
+avoiding bad practices: you don't have to worry about html encoding, back quoting
+and the like. Moreover, it is not designed for a particular task: as an abstract
+tool, it is reusable by instanciation/configuration. A typical configuration I use
+is as a secure HTML templating engine...
+
+== >{Waiting for a D}[d]
+_D_ is the name of the "Date and Darwen dream", two famous authors in the database
+community. In their {third-manifesto}[http://www.thethirdmanifesto.com], they argue 
+that our SQL databases are far from what we should actually have. I completely agree 
+with them and add: object databases are not what I'm dreaming
+of and object-relational mapping is not a solution neither. The subject has been
+a really hot one in the past (and is probably still so), but I don't want to enter
+the big debate. Instead, I would like to write about what is my dream (not really
+far from their dream, and really much inspired of their work). That dream is 
+possible, I've started a proof-of-concept implementation in Ruby really recently 
+(after many unsuccessful tries in the past) and this blog will certainly also
+contain material about the >{Duby}[duby] project.
+
+== >{Specialization by Constraint}[SbyC]
+Directly inspired from the same authors (and from the same work), Specialization
+by Constraint is a theoretical framework of inheritance (in the object oriented
+paradigm). Even if the two authors use it with a real data management point of 
+view, it seems to me that >{SbyC} can be applied somewhat more largely. The fact is 
+that, when the inheritance structure becomes complex, using subclasses and interfaces
+does not work at all. Specialization by Constraint can help, and provides
+as I will show I've
+successfully implemented an automaton tool that use it to keep some kind of 
+inheriting structure between the automaton beasts (deterministic automata are 
+automata, prefix tree acceptor are a special kind of deterministic automata, ...).
+ 
+ 
+
+== >{Web @nother Way}[waw]     
+                
+
+   
+
