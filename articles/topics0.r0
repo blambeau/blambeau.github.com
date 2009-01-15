@@ -1,6 +1,5 @@
 title{Technical topics}
 subtitle{}
-abstract{}
 date{2009/01/14 - 17:55}
 
 = What are we talking about?
@@ -28,10 +27,11 @@ is really simple and relies on a terrible fact: each time you're writing a
 simple html page (or a SQL query), what you are actually doing is creating a 
 (kind of) program (that will be executed by the browser, or the database engine). 
 If you build your html page by concatening strings (injecting form data in your 
-page for example) what you are actually doing is generating code ! Code generation 
+page for example or, more generally, using a templating engine) what you are actually 
+doing is generating code ! Code generation 
 is something really hard, for many reasons, including security issues. >{wlang}
 is a simple (abstract) tool for generating code. In particular it helps you
-respecting good practices: you don't have to worry about html encoding, back quoting
+respecting good practices: you don't have to worry about html encoding, SQL back quoting
 and the like. Moreover, it has not been designed for a particular task: as an abstract
 tool, it is reusable by instanciation/configuration. A typical configuration I use
 is as a secure HTML templating engine...
@@ -46,27 +46,28 @@ hot topic in the past (and is probably still so), but I don't want to enter
 the big debate. Instead, I would like to write about what is my dream (not really
 far from these authors's dream, and really inspired from their work). This dream is 
 possible: I've started a proof-of-concept implementation in Ruby really recently 
-(after many unsuccessful tries in the past). This blog will certainly also
-contain material about what I've called the >{Duby}[duby] project.
+(after many unsuccessful attempts in the past). This blog will certainly contain 
+material about what I've called the >{Duby}[duby] project.
 
 == >{Specialization by Constraint}[SbyC]
-Yesterday, I've been faced with horror to an exam question in a Java programming course
+Yesterday, I've been faced (with horror) with an exam question in a Java programming course
 (hopefully, not from my computer science departement) where students were asked
 to implement a Server class ... which was a subclass of ServerSocket. It seems to be 
 the worst practice in using inheritance: <b>a Server is not a ServerSocket</b>, it 
 *uses* a ServerSocket. Our programming languages should not allow us to make huge
 conceptual mistakes as this one ! Of course, the subject is controversial: we use inheritance, 
 as proposed by languages like Java or Ruby in two ways: <b>for reuse</b> (and using 
-it that way may lead to what I call big conceptual mistakes) and/or to express a 
+it that way may lead to what I call big conceptual mistakes) or to express a 
 <b>is_a</b> semantics.
 
 So ironic, when you try to use inheritance in the second way (conceptually the good one ;-)), it 
-quickly leads to difficulties (when the conceptual inheritance hierarchy is not trivial for 
+quickly leads to difficulties (when the conceptual inheritance hierarchy is not completely trivial for 
 example). Specialization by Constraint (SbyC) is a theoretical framework of inheritance (that I've
 been introduced to by the same two authors as before). Its first equation looks simple but 
 right: <b>types are sets of value; subtypes are subsets</b>. The authors introduce SbyC with a 
-strong data-management point of view, In this article, I'll try to be more pragmatic and show some 
-examples of where it is useful, and how dynamically typed languages help implementing it.
+strong data-management point of view. The subject also seems simple but is actually deep and
+technical. In this article, I'll try to be more pragmatic and show some examples of where SbyC 
+is useful, and how dynamically typed languages help implementing it.
  
 
 == >{Web @nother Way}[waw]     
@@ -78,7 +79,16 @@ differently than usually proposed. For example, we try to provide ambiant web ap
 i.e. able to adapt their behavior to the environment (AJAX-able client or not, I.E. vs. Firefox, 
 etc.) ... declaratively. We've learned a lot from that project, so that I think it's time to write
 something about it, and to try to provide a really stable implementation (most probably in Ruby).
-For the sake of history: wlang has been designed during the w@w PHP implementation!
+For the sake of history: wlang has been designed during the PHP w@w implementation!
 
+== >{Virtual variables}[virtualvar]
+My inspiration for virtual variables is twofold: database views and fluents. While the first 
+is probably well known, I guess you've never been talked of fluents. Fluents are simple beasts:
+they are simply boolean variables whose value changes with the occurence of events. For example, a 
+fluent _moving_ becomes _true_ when the event _start_ occurs and becomes _false_ when the event
+_stop_ occurs. Virtual variables are simply a generalization of that: they are variables because
+they can be assigned (when it makes sense) and they are virtual because their value is actually
+computed in some way (by some kind of formula for example, like database views, or by occurence
+of events, like fluents).
    
 

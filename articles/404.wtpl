@@ -10,7 +10,7 @@
     <div class="content">
       <div class="preheader">
         <div class="padding"> 
-          <a href="${base}">Back to home</a> &nbsp;
+          <a href="${base}">Back to last post</a> &nbsp;
         </div>
       </div>
       <div class="header">
