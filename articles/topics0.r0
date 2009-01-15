@@ -87,8 +87,8 @@ is probably well known, I guess you've never been talked of fluents. Fluents are
 they are simply boolean variables whose value changes with the occurence of events. For example, a 
 fluent _moving_ becomes _true_ when the event _start_ occurs and becomes _false_ when the event
 _stop_ occurs. Virtual variables are simply a generalization of that: they are variables because
-they have a value that change over time and can be assigned (when it makes sense); they are virtual 
-because their value is actually computed in some way (by some kind of formula for example, like 
+they have a value that changes over time and they can be assigned (when it makes sense); they are 
+virtual because their value is actually computed in some way (by some kind of formula for example, like 
 database views, or by occurence of events, like fluents). In this paper, I'll show why a "virtual
 variable" abstraction is powerful on selected examples. I'll also show how to implement such an
 abstraction so that it can really look like ordinary variables.   
