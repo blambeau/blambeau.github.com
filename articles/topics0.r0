@@ -91,4 +91,4 @@ they can be assigned (when it makes sense) and they are virtual because their va
 computed in some way (by some kind of formula for example, like database views, or by occurence
 of events, like fluents).
    
-
+>{Next topics}[topics1]

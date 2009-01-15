@@ -378,7 +378,7 @@ else
     # generate html files
     index.each_with_index do |line, i|
       raise("Parse error in index on line #{i}: #{line}") \
-        unless /(\d+)\s+([a-z_]+)/ =~ line
+        unless /^(\d+)\s+([a-zA-Z0-9_]+)$/ =~ line
       current = i
           
       if $revision.nil? or $revision==current

@@ -18,7 +18,10 @@
       </div>
       <div id="nav">
         <ul>
-          <li id="current"><a href="${base}">Home</a></li>
+          <li><a href="0">Initial post</a></li>
+          <li><a href="">Last post</a></li>
+          <li><a href="topics0">Topics</a></li>
+          <li><a href="about">About</a></li>
         </ul>
       </div>
       <div class="main_content">
