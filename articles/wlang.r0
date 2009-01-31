@@ -180,14 +180,14 @@ semantical rules</b> that hold where the value is injected. Those rules are nume
 and complex:
 
 1. they depend on the target language (i.e. HTML, SQL, Java, Ruby, ...)
-2. they may depend on a dialect: backquoting in MySQL vs. doublequoting in Sybase,
+2. they may depend on a dialect: backquoting in MySQL vs. doublequoting in Sybase
    for example.
 3. they depend on the place where you inject the value: single-quoted strings vs.
-   double-quoted strings, for example.
+   double-quoted strings for example.
 4. they depend on the injection semantics you want: does the injection participates
-   to the HTML tree structure or not, for example.  
+   to the HTML tree structure or not?  
 5. they can change dynamically during generation: what if you generate an HTML page
-   that also contains generated javascript or CSS ? Or you could generate Ruby code
+   that also contains generated javascript or CSS? Or you could generate Ruby code
    that embed generated SQL queries, ...    
 
 I agree with the experts: developpers make mistakes. But I also claim: there is a 
