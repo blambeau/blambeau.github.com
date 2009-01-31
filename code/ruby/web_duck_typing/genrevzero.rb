@@ -31,12 +31,16 @@ class RevZeroMarkupRecognizer < RDoc::Markup::ToHtml
 
   # Regular expression for link tags
   LINK_REGEX = />\{([^\}]+)\}(\[([^\]]+)\])?/
-
+  
+  # Regular expression for link tags
+  EXT_LINK_REGEX = />>\{([^\}]+)\}(\[([^\]]+)\])?/
+  
   # Initializes the generator and installs the recognization extensions
   def initialize
     super
     @markup.add_special(METATAG_REGEX, :METATAG)
     @markup.add_special(LINK_REGEX, :LINKTAG)
+    @markup.add_special(EXT_LINK_REGEX, :EXTLINKTAG)
     # this is due to something that looks like a but in RDoc::Markup::ToHtml
     instance_eval do
       @from_path = File.dirname(__FILE__)    end
@@ -55,10 +59,17 @@ class RevZeroMarkupRecognizer < RDoc::Markup::ToHtml
   # Handles generation for link ->{...} tags. Raises an RuntimeError if your
   # metahash has not been previously installed.
   def handle_special_LINKTAG(special)
-	  LINK_REGEX =~ special.text
-	  "<a href=\"#{$3 ? $3 : $1}\">#{$1}</a>"
-	end
-
+    LINK_REGEX =~ special.text
+    "<a href=\"#{$3 ? $3 : $1}\">#{$1}</a>"
+  end
+  
+  # Handles generation for link ->{...} tags. Raises an RuntimeError if your
+  # metahash has not been previously installed.
+  def handle_special_EXTLINKTAG(special)
+    EXT_LINK_REGEX =~ special.text
+    "<a target=\"_blank\" href=\"#{$3 ? $3 : $1}\">#{$1}</a>"
+  end
+  
   #
   # Parses a source text and fills the _metahash_ argument. Generated contents
   # is installed in the hash under 'contents' key. Meta tag contents is installed 
@@ -396,6 +407,14 @@ else
         # create symbolic link
         rm numbered if File.exists?(numbered)
 	      ln_s(target, numbered)
+	      
+	      # copy code of article if existing
+	      if File.exists?(File.join($articles, source_name))
+	        code_src = File.join($articles, source_name)
+          code_trg = File.join($output, source_name)
+          rm_r code_trg if File.exists?(code_trg)
+	        cp_r(code_src, code_trg)
+	      end
       end
     end
     

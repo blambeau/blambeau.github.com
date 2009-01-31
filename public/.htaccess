@@ -21,3 +21,8 @@ RewriteRule ^$                  last
 
 # Explicit revision
 RewriteRule ^([a-zA-Z0-9_]+)$   statics/$1.html
+
+php_flag magic_quotes_gpc Off
+php_flag magic_quotes_runtime Off
+php_flag magic_quotes_sybase Off
+

@@ -1,7 +1,16 @@
-export CODE=/home/blambeau/revision-zero/code/ruby/web_duck_typing
-export SOURCE=/home/blambeau/revision-zero/articles
-export TARGET=/home/blambeau/revision-zero/public/statics
-export BASE=http://www.local-revision-zero.org/
+CODE=/home/blambeau/revision-zero/code/ruby/web_duck_typing
+SOURCE=/home/blambeau/revision-zero/articles
+SRC_PUBLIC=/home/blambeau/revision-zero/public
+TARGET=/home/blambeau/revision-zero/public/statics
+TRG_PUBLIC=/home/blambeau/revision-zero/public
+BASE=http://www.local-revision-zero.org/
 
-$CODE/genrevzero.rb --verbose --single $SOURCE/404.r0 $TARGET/404.html --template $SOURCE/404.wtpl -Sbase=$BASE
+#cp $SRC_PUBLIC/.htaccess $TRG_PUBLIC
+#rm $TARGET/* -rf
+cp $SRC_PUBLIC/statics/* $TARGET -R
+#rm $TARGET/.svn -rf
+#rm $TARGET/images/.svn -rf
+$CODE/genrevzero.rb --verbose --from $SOURCE --to $TARGET --single $SOURCE/404.r0 $TARGET/404.html --template $SOURCE/404.wtpl -Sbase=$BASE
 $CODE/genrevzero.rb --verbose --from $SOURCE --to $TARGET --template $SOURCE/template.wtpl -Sbase=$BASE
+chmod ug+r,o+r,og-w $TARGET -R
+chmod ugo+x $TARGET/images
