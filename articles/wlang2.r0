@@ -1,0 +1,24 @@
+title{WLang (Part II)}
+subtitle{The foundations}
+date{2009/02/01 - 16:17}
+
+= WLang foundations
+After the >{discussion about the problem}[wlang] wlang solves, this article builds
+its foundations. It starts with a simple question: <em>what is wlang exactly?</em>
+I must confest that the term _wlang_ is overloaded, that is, its meaning depends 
+on the context:
+
+- When I talk about a source text, _wlang_ is actually the (abstract) grammar or
+  the language of that source.
+- When I talk about generating HTML files (which is historically the task for which
+  wlang has been designed), I use the term _wlang_ to refer to a <em>templating 
+  engine</em>.
+- If I use it to generate code in another language than HTML, it actually means
+  a <em>code generator</em>.
+
+I don't really want to choose one of these names/interpretations specifically as
+"the official one" and uses the last two terms (<em>templating engine</em> and 
+<em>code generator</em>) as synonyms... I hope thinks will be clearer to you at 
+the end of this paper.
+
+== Big picture
