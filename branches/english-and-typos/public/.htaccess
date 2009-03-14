@@ -1,0 +1,28 @@
+# Turns the rewriting engine on
+RewriteEngine On 
+
+# Prevents directory listing
+Options All -Indexes
+
+# Prevents access to .htaccess itself
+<Files .htaccess>
+ order allow,deny
+ deny from all
+</Files>
+
+# My own 404 page
+ErrorDocument 404 /statics/404.html
+
+# RSS flux
+RewriteRule ^rss$               statics/rss.xml [L]
+
+# Last revision when empty
+RewriteRule ^$                  last
+
+# Explicit revision
+RewriteRule ^([a-zA-Z0-9_]+)$   statics/$1.html
+
+php_flag magic_quotes_gpc Off
+php_flag magic_quotes_runtime Off
+php_flag magic_quotes_sybase Off
+

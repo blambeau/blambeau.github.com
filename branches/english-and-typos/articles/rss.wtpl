@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+    <channel>
+        <title>www.revision-zero.org</title>
+        <description>Computer-science blog</description>
+        <lastBuildDate>!{Time.now.to_s}</lastBuildDate>
+        <link>http://www.revision-zero.org</link>
+        *{items}{
+          <item>
+              <title>${title}</title>
+              <description>${contents}</description>
+              <pubDate>${date}</pubDate>
+              <link>http://www.revision-zero.org/${revnumber}</link>
+          </item>
+        }
+    </channel>
+</rss>
