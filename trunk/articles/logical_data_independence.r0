@@ -1,0 +1,61 @@
+title{About Logical Data Independence}
+subtitle{Let celebrate relational's birthday}
+date{2009/11/20 - 19:12}
+
+= Introduction
+
+I'm really happy to write something about databases today! The relational model, invented by Edgar F. Codd, 
+is born about 30 years ago (the official paper is dated from 1970, but the first draft was actually written 
+in 1969) but in my opinion we still need to investigate a lot of research and development for Codd's dream
+to become a reality.
+
+I wanted to write somewhing about what is called 'logical data independence' from a really long time but I didn't 
+find a good example illustrating the concept until today. I've found it now, inspired from a real but simple 
+application! So let's talk about it. The topic matters: even famous computer scientists wrongly confuse logical 
+and physical data independence ... and developers don't even imagine how such an independence could make their job
+easier ! Nevertheless I must confess that logical data independence is somewhat loosely defined... Therefore let's 
+say that I simply share my vision of what it means from a developer point of view.
+
+== Independence??
+
+What does 'logical (data) independence' mean? Well, we've got the concept of 'independence', and the one of 'logical' ;-)
+In my opinion, 'independence' is related to 'change'. And (the risk of appearing theorist) 'change' can be seen in
+the light of requirements. What are changing requirements? The most important in my experience: the need for new 
+features! New features are much more important than everything else: they demonstrate that the software is living, 
+that people use it, like it (at least, we hope so), and want it to evolve! I like new features, and I like new features 
+a lot more when developing them does not affect the code of existing ones. This is the real independence! In a sense, 
+independence is the complementary of rigourous testing: tests assert that requirements are still met (and by transitivity
+that features implementing them seem correct) when the code needs to change; independence helps avoiding to change too 
+much existing code when implementing new features.
+
+== Logical vs. Physical
+
+Then, we have a distinction between 'logical' and 'physical' independence which is too often misunderstood. The second 
+kind is generally well known (in books at least), but seems to disappear nowadays (at least, from my point of view)...
+Let me take an example. A long time ago (in the 60's and 70's), when you had to keep information about employees working 
+in departments, you typically kept employees records in a flat file and maintained a pointer to the department record in the 
+employee one. When you had to create a report with employees belonging to a given department, you had to iterate employee's 
+records, keeping those that referenced the good departement record. When the way the data was kept on disk was changed, the
+report's code had to change as well!
+
+=== Physical data independence
+
+With the introduction of the relational model (and SQL databases, which are the best (non-)relational implementation we have 
+nowadays), things have changed. The report's code is some variation around "SELECT * FROM EMPLOYEES WHERE DEPT_id='...'". 
+The most important thing is not that this query is declarative (it's probably required for independence, but not important 
+as such) but the fact that it is independent of the way the data is physically stored: flat files, B-trees, hash indexes 
+can all be chosen as physical storage for employees and departments and their connections (and the choice typically depends 
+on performance vs. used space constraints) without affecting the report's code itself! Talking about changes: you can add 
+or remove indexes, change the way base tables are saved o disk, etc. without affecting the application's code. The responsibility
+of ensuring that the query can be executed and returns the correct result and the choice of available information paths used 
+to do so is let to the database management system, not the application itself. This is what physical independence means!
+
+What are we doing today? With Object Relational Mapping (ORM: Hibernate, Active Records in Ruby on Rails and so on) we define an 
+Employee class which has an getDepartement accessor, which returns an instance of the Departement class. And the later may
+have a getEmployees accessor returning a List<Employee>, ... The report code uses those accessors and is strongly coupled 
+to the way data is organized. Back to the 60's guys! Maybe the data is not organized as such on disk (with ORM, a relational
+database is used as a backend) ... so it's not physical independence <i>per se</i>, but the effects are the same!
+
+=== Logical data independence
+
+And what about logical data independence? 
