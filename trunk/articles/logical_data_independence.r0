@@ -76,7 +76,7 @@ improved the separation between the external and internal specifications of a da
 <b>External specification</b>: the database module offers the ability to express 'what' is the data of interest for a given task (like 
 our report example), through a logical schema of the data (strongly rooted in mathematics, and first order logic in particular) 
 and 'deduction operators' (the relational algebra) allowing to query that data (the term 'deduction' comes from the fact that if 
-a database is a collection of known facts - and it is! - then a query is nothing that deducing new facts from existing ones. I'll 
+a database is a collection of known facts - and it is! - then a query is nothing else than deducing new facts from existing ones. I'll 
 discuss this vision in more details later). More generally, the external specification of a database is that it respects ACID 
 properties (Atomicity, Consistency, Isolation and Duration) and the fact that query results are always correct is related to 
 Consistency.
@@ -94,7 +94,7 @@ have to worry about as an application developer. Thanks Mr Codd!
 What about logical data independence? According to database books, physical independence means <b>non-intrusive changes of the 
 physical schema</b> where logical independence means <b>non-intrusive changes of the logical one</b>. Physical schema modifications 
 are generally well discussed in database books (index creation, suppression, and so on) and the physical independence well understood 
-by students (they often forget everything about it a bit later!). Examples of logical schema modification are much less convincing in 
+by students (they often forget everything about it a bit later, of course!). Examples of logical schema modification are much less convincing in 
 my opinion: renaming or suppression of an attribute (table column), removal of a table, and so on. They are logical schema changes, 
 of course, but not good examples! Strictly speaking if I remove a database table for real, I don't see how the application code using 
 it could not be affected...
