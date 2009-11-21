@@ -89,7 +89,7 @@ new indexes, analyze query plans and so on, independently of the application cod
 is related to the effective implementation of the ACID properties through extremely complex physical mechanisms that you don't 
 have to worry about as an application developer. Thanks Mr Codd!
 
-=== Logical data independence
+== Logical data independence
 
 What about logical data independence? According to database books, physical independence means <b>non-intrusive changes of the 
 physical schema</b> where logical independence means <b>non-intrusive changes of the logical one</b>. Physical schema modifications 
