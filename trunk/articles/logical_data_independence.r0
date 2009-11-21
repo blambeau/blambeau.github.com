@@ -1,4 +1,4 @@
-title{About Logical Data Independence}
+title{About Logical Data Independence (Background)}
 subtitle{Let celebrate relational's birthday}
 date{2009/11/20 - 19:12}
 
@@ -19,43 +19,93 @@ say that I simply share my vision of what it means from a developer point of vie
 == Independence??
 
 What does 'logical (data) independence' mean? Well, we've got the concept of 'independence', and the one of 'logical' ;-)
-In my opinion, 'independence' is related to 'change'. And (the risk of appearing theorist) 'change' can be seen in
-the light of requirements. What are changing requirements? The most important in my experience: the need for new 
-features! New features are much more important than everything else: they demonstrate that the software is living, 
-that people use it, like it (at least, we hope so), and want it to evolve! I like new features, and I like new features 
-a lot more when developing them does not affect the code of existing ones. This is the real independence! In a sense, 
-independence is the complementary of rigourous testing: tests assert that requirements are still met (and by transitivity
-that features implementing them seem correct) when the code needs to change; independence helps avoiding to change too 
-much existing code when implementing new features.
+The concept of 'independence' is related to 'change'; the main question 'independence' asks is 'how does a given change 
+affects the code of the software ?'.  You can even measure it: choose and decide to make some change to the current version
+of your software, implement it, commit it, and count the number of lines of code that have changed between the two versions.
+Actually, the numbers of lines is not the best measure at all and I strongly prefer counting how many packages/modules (if 
+you have an abstract module decomposition) and/or classes (if you don't) have been affected by the change.
 
-== Logical vs. Physical
+The risk of appearing theorist, 'change' can also be seen in the light of requirements. What are changing requirements? Well, 
+there's a lot but the most important in my experience is 'New requirements'. In other words, the need for new features! New 
+features are much more important than everything else: they demonstrate that the software is living, that people use it, like 
+it (at least, we hope so), and want it to evolve! I like new features, and I like new features a lot more when developing them 
+does not affect the code of existing ones. This is where independence comes into play! To me, independence is the complementary 
+of rigourous testing: tests assert that requirements are still met (and by transitivity that features implementing them seem correct) 
+when the code needs to change; independence helps avoiding to change too much existing code when implementing changing requirements.
 
-Then, we have a distinction between 'logical' and 'physical' independence which is too often misunderstood. The second 
-kind is generally well known (in books at least), but seems to disappear nowadays (at least, from my point of view)...
-Let me take an example. A long time ago (in the 60's and 70's), when you had to keep information about employees working 
+We are talking here about 'data independence'. My discourse so far was about 'architectural independence' in the large, also called 
+'weak coupling': two modules are weakly coupled if changing the code of one does not affect the second. In fact, we should make
+the distinction between two kinds of code modification. A module has an external specification (and an external, public API together
+with pre and post-conditions) and an internal specification (and internal private implementation). So, independence is twofold: how is 
+the second module affected by an external change of the first one (modification and/or extension of the API, for example)? and by an
+internal change? A good architecture (and the introduction of object-oriented programming in practice) provides well designed APIs, 
+allowing a strong independence when making internal changes; external changes is another story, of course! 
+
+A database is nothing else than a specific architectural module. Therefore the same internal/external distinction can can made and
+similar questions may be asked: how is the software code (all but the database code, that is) affected by an internal/external change
+of the database? Loosely speaking, this distinction is well known (in books): the difference between 'physical' and 'logical' data 
+independence. The first one is achieved from a long time now (but seems to somewhat disappear in my opinion) and the second one has
+never been reached (in my opinion as well). Let briefly discuss physical independence first!
+
+== Physical data independence
+
+A long time ago (in the 60's and 70's, I wasn't even born...), when you had to keep information about employees working 
 in departments, you typically kept employees records in a flat file and maintained a pointer to the department record in the 
 employee one. When you had to create a report with employees belonging to a given department, you had to iterate employee's 
-records, keeping those that referenced the good departement record. When the way the data was kept on disk was changed, the
-report's code had to change as well!
-
-=== Physical data independence
+records in the flat file (through file cursors and such kind of physical abstractions), keeping those that reference the good 
+department record by following the pointer. When the way the data was kept on disk was changed, the report's code had to change 
+as well!
 
 With the introduction of the relational model (and SQL databases, which are the best (non-)relational implementation we have 
 nowadays), things have changed. The report's code is some variation around "SELECT * FROM EMPLOYEES WHERE DEPT_id='...'". 
 The most important thing is not that this query is declarative (it's probably required for independence, but not important 
-as such) but the fact that it is independent of the way the data is physically stored: flat files, B-trees, hash indexes 
-can all be chosen as physical storage for employees and departments and their connections (and the choice typically depends 
-on performance vs. used space constraints) without affecting the report's code itself! Talking about changes: you can add 
-or remove indexes, change the way base tables are saved o disk, etc. without affecting the application's code. The responsibility
-of ensuring that the query can be executed and returns the correct result and the choice of available information paths used 
-to do so is let to the database management system, not the application itself. This is what physical independence means!
+<i>per se</i>) but the fact that it is independent of the way the data is physically stored: flat files, B-trees, hash indexes 
+can all be chosen as physical storage and indexing of employee and department records as well as their 'connection' through DEPT_id
+without affecting the report's code itself (the query is still the same query)! 
 
-What are we doing today? With Object Relational Mapping (ORM: Hibernate, Active Records in Ruby on Rails and so on) we define an 
-Employee class which has an getDepartement accessor, which returns an instance of the Departement class. And the later may
-have a getEmployees accessor returning a List<Employee>, ... The report code uses those accessors and is strongly coupled 
-to the way data is organized. Back to the 60's guys! Maybe the data is not organized as such on disk (with ORM, a relational
-database is used as a backend) ... so it's not physical independence <i>per se</i>, but the effects are the same!
+Talking about changes: you can add or remove indexes, change the way base tables are kept on disk, etc. without affecting the 
+application's code. The responsibility of ensuring that the query can be executed and returns the correct results as well as the 
+choice of available information paths (what index will be used, for example) used to do so is let to the database management 
+system (DBDM), not the application itself. This is what physical independence means!
+
+== Database specifications
+
+Let's turn back briefly to our previous architectural discussion. Codd's work on the relational model and databases has strongly 
+improved the separation between the external and internal specifications of a database:
+
+<b>External specification</b>: the database module offers the ability to express 'what' is the data of interest for a given task (like 
+our report example), through a logical schema of the data (strongly rooted in mathematics, and first order logic in particular) 
+and 'deduction operators' (the relational algebra) allowing to query that data (the term 'deduction' comes from the fact that if 
+a database is a collection of known facts - and it is! - then a query is nothing that deducing new facts from existing ones. I'll 
+discuss this vision in more details later). More generally, the external specification of a database is that it respects ACID 
+properties (Atomicity, Consistency, Isolation and Duration) and the fact that query results are always correct is related to 
+Consistency.
+ 
+<b>Internal specification</b>: no matter what are choosen information paths (index selection) for executing a particular query, the
+query execution returns correct results. Moreover, we expect the database implementation to be smart enough to select a good
+query plan ensuring a good query execution performance. This is where the query optimizer comes into play, turning the 60's 
+developer (who was selecting information path by explicit application coding) to the 80's database administrator (who creates 
+new indexes, analyze query plans and so on, independently of the application code itself). More generally, the internal specification 
+is related to the effective implementation of the ACID properties through extremely complex physical mechanisms that you don't 
+have to worry about as an application developer. Thanks Mr Codd!
 
 === Logical data independence
 
-And what about logical data independence? 
+What about logical data independence? According to database books, physical independence means <b>non-intrusive changes of the 
+physical schema</b> where logical independence means <b>non-intrusive changes of the logical one</b>. Physical schema modifications 
+are generally well discussed in database books (index creation, suppression, and so on) and the physical independence well understood 
+by students (they often forget everything about it a bit later!). Examples of logical schema modification are much less convincing in 
+my opinion: renaming or suppression of an attribute (table column), removal of a table, and so on. They are logical schema changes, 
+of course, but not good examples! Strictly speaking if I remove a database table for real, I don't see how the application code using 
+it could not be affected...
+
+Better books relate logical independence to views ... without providing any convincing example I must add. However, it is perfectly 
+correct! Logical database independence is strongly related to views. I would add that a database that does not provide a real, complete
+and transparent view mechanism (including a way to update views) is strictly unable to provide logical independence. Moreover,
+views are not logical independence <i>per se</i> but they are the way to achieve that goal. I've said previously that "logical 
+independence has never been reached". I close this first paper with a short explanation of that sentence: few DBMS provide a good view
+mechanism, few SQL DBMS allow updating views (automatically or through triggers or rules written by the DBA), no support is provided
+by SQL DBMS to manage logical changes through successive schema versions and few DBAs know how to use views the good way.
+
+The story does not end here, of course. The >{next paper}[logical_data_independence_2] will show a real but simple (and I hope convincing) 
+example of what 'logical data independence' may really mean in practice.
