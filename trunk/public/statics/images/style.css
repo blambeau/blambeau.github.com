@@ -41,6 +41,9 @@ h2 {
 }
 
 p { margin: 5pt 0 0 0; line-height: 1.5em; }
+ul li {
+	margin-bottom: 5px;
+}
 form { margin: 0; }
 pre {
   font-family: monospace;
