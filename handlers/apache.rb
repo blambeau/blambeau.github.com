@@ -14,6 +14,16 @@ class String
   def to_xhtml_href(url)
     url
   end
+  
+  # Converts an external to an internal link
+  def external_to_internal(url)
+    case url
+      when 'rss'
+        'rss.xml'
+      else
+        "#{url}.html"
+    end
+  end
 
 end
 
@@ -28,26 +38,14 @@ copy_public(output)
 # Copy the .htaccess file below to the output folder
 FileUtils.cp(File.join($here, 'apache_htaccess.txt'), File.join(output, '.htaccess'))
 
-# Converts each writing to an html file, using the static.wtpl
-# template
-$info.writings.each_with_index do |writing, index|
-  source = WLang::file_instantiate(template, wlang_context(writing, index))
-  File.open(File.join(output, "#{writing.identifier}.html"), 'w') do |io|
-    io << source
-  end
-  File.open(File.join(output, "#{index}.html"), 'w') do |io|
-    io << source
-  end
-  File.open(File.join(output, "-1.html"), 'w') do |io|
-    io << source
-  end if index == $info.writings.size-1
-end
+# Converts each writing to an html file, using the static.wtpl template
+$info.writings.each_with_index {|writing, index| 
+  compose_page(template, output, writing)
+  compose_page(template, output, writing, index.to_s)
+}
 
-# Converts each other (404, for instance) to an html file, using the 
-# static.wtpl template. The only difference with previous iteration 
-# is the index, which is set to info.writings.size
-$info.others.each do |writing|
-  File.open(File.join(output, "#{writing.identifier}.html"), 'w') do |io|
-    io << WLang::file_instantiate(template, wlang_context(writing, $info.writings.size))
-  end
-end
+# Converts the other ones
+$info.others.each {|writing| 
+  template = File.join($templates, "#{writing.template}.wtpl")
+  compose_page(template, output, writing, writing.identifier, wlang_context(writing, $info.writings.size))
+}

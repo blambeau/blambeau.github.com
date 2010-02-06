@@ -45,4 +45,6 @@ others:
 - identifier: '404'
   title: Forward reference detected
   date: 2009/01/10 - 18:16
-  show: false
+  template: static
+- identifier: rss
+  template: rss

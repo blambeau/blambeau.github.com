@@ -17,9 +17,14 @@ class String
     if /^[-]?\d+$/ =~ url.to_s.strip
       url = $info.writings[url.to_i]
       url = url ? url.identifier : "404"
+      "#{url}.html"
+    elsif 'rss' == url
+      "rss.xml"
+    else
+      "#{url}.html"
     end
-    "#{url}.html"
   end
+  alias :external_to_internal :to_xhtml_href
 
 end
 
@@ -31,19 +36,11 @@ output = ARGV[0] || File.join($output, 'static')
 FileUtils.rm_rf(output) if File.exists?(output)
 copy_public(output)
 
-# Converts each writing to an html file, using the static.wtpl
-# template
-$info.writings.each_with_index do |writing, index|
-  File.open(File.join(output, "#{writing.identifier}.html"), 'w') do |io|
-    io << WLang::file_instantiate(template, wlang_context(writing, index))
-  end
-end
+# Converts each writing to an html file, using the static.wtpl template
+$info.writings.each {|writing| compose_page(template, output, writing)}
 
-# Converts each other (404, for instance) to an html file, using the 
-# static.wtpl template. The only difference with previous iteration 
-# is the index, which is set to info.writings.size
-$info.others.each do |writing|
-  File.open(File.join(output, "#{writing.identifier}.html"), 'w') do |io|
-    io << WLang::file_instantiate(template, wlang_context(writing, $info.writings.size))
-  end
-end
+# Converts the other ones
+$info.others.each {|writing| 
+  template = File.join($templates, "#{writing.template}.wtpl")
+  compose_page(template, output, writing, writing.identifier, wlang_context(writing, $info.writings.size))
+}

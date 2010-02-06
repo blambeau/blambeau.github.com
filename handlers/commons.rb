@@ -42,10 +42,19 @@ def copy_public(to)
 end
 
 # Creates a wlang context for a given writing/index pair
-def wlang_context(writing, index)
+def wlang_context(writing, index = $info.writings.index(writing))
   context = {:info => $info, 
              :writing => writing, 
              :current_index => index, 
              :current => writing.identifier,
              :analytics => $analytics}
+end
+
+# WLang-composes _template_file_ in _output_folder_ for the page whose
+# url is given and with a given context
+def compose_page(template_file, output_folder, writing, url = writing.identifier, context = wlang_context(writing))
+  target_file_name = "".external_to_internal(url)
+  File.open(File.join(output_folder, target_file_name), 'w') do |io|
+    io << WLang::file_instantiate(template_file, context)
+  end
 end
