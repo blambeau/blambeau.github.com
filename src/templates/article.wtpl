@@ -1,0 +1,4 @@
+<h2><a href="#">${writing.title}</a></h2>
+
+^{redcloth/xhtml}{<<{../articles/+{writing['id']}.r0}}
+

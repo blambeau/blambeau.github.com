@@ -1,7 +1,3 @@
-title{WLang (Part I)}
-subtitle{The problem}
-date{2009/01/18 - 13:35}
-
 = The problem WLang solves
 As I've said previously (in the >{abstract of this paper}[topics0]), each time
 you write a simple html page (or a SQL query) manually, what you are actually doing is 

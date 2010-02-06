@@ -1,0 +1,32 @@
+--- 
+analytics: false
+current: born
+writings: 
+- id: born
+  title: Revision-Zero is born!
+  short: Revision-Zero is born!
+  date: 2009/01/10 - 18:16
+- id: web_duck_typing
+  title: Web Duck Typing
+  date: 2009/01/11 - 17:35
+- id: about
+  title: About www.revision-zero.org
+  short: About
+  date: 2009/01/15 - 9:31
+- id: topics0
+  title: Technical topics
+  date: 2009/01/14 - 17:55
+- id: wlang
+  title: WLang (Part I)
+  date: 2009/01/18 - 13:35
+- id: release_time
+  title: Release Time!
+  subtitle: Open-sources libraries available
+  date: 2009/03/13 - 10:17
+- id: logical_data_independence
+  title: About Logical Data Independence (1/3)
+  short: Logical Data Independence
+  subtitle: Let's celebrate the birthday of Relational
+  date: 2009/11/20 - 19:12
+
+  

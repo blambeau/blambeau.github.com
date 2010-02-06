@@ -1,8 +1,5 @@
-title{Web Duck Typing}
-subtitle{}
-date{2009/01/11 - 17:35}
-
 = Toward a static blog that looks dynamic 
+
 This revision, of course, talks about the development of revision-zero.org itself:
 I can't imagine maintaining my computer science blog by writing HTML files by hand!
 Everyone here knows that it would quickly lead to a nightmare: changing

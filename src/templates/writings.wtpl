@@ -1,0 +1,5 @@
+<ul>
+  *{info.writings.reverse as w}{
+    <li><a href="@{w.id}">${w['short'] || w['title']}</a></li> 
+  }
+</ul>
