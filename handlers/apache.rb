@@ -42,6 +42,7 @@ FileUtils.cp(File.join($here, 'apache_htaccess.txt'), File.join(output, '.htacce
 $info.writings.each_with_index {|writing, index| 
   compose_page(template, output, writing)
   compose_page(template, output, writing, index.to_s)
+  compose_page(template, output, writing, "-1") if index==$info.writings.size-1
 }
 
 # Converts the other ones
