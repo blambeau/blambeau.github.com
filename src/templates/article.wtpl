@@ -1,4 +1,8 @@
-<h2><a href="#">${writing.title}</a></h2>
+<div class="writing-title">
+  <h2>${writing.title}</h2>
+  <div class="date">${writing.date}</div>
+  <div style="clear:both"></div>
+</div>
 
-^{redcloth/xhtml}{<<{../articles/+{writing['id']}.r0}}
+^{redcloth/xhtml}{<<+{../articles/+{writing.identifier}.r0}}
 

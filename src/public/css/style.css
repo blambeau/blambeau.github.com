@@ -85,35 +85,41 @@ color: #000;
 }
 
 .left {
-margin-top: 10px;
-float: left;
-width: 200px;
-line-height: 15px;
+	margin-top: 10px;
+	float: left;
+	width: 200px;
+	line-height: 15px;
 }
 .left h2 {
-margin-top: 10px;
-font: bold 13px Verdana, 'Trebuchet MS', Sans-serif;
-line-height: 30px;	
-background: #CC0001 url(../images/contenth2.jpg) repeat-x;
-height: 30px;
-color: #fff;
-padding-left: 10px;
+	margin-top: 10px;
+	font: normal 13px Verdana, 'Trebuchet MS', Sans-serif;
+	line-height: 25px;	
+	background: #CC0001 url(../images/contenth2.jpg) repeat-x;
+	height: 25px;
+	color: #fff;
+	padding-left: 10px;
 }
 .left ul  {
-color: #aaa;
-text-align: left;
-margin: 3px 0 8px 0; 
-padding-left: 10px;
-text-decoration: none;	
-list-style-type:none;	
+	color: #aaa;
+	text-align: left;
+	margin: 3px 0 8px 0; 
+	padding-left: 10px;
+	text-decoration: none;	
+	list-style-type:none;	
 }
 .left ul li {
-padding: 2px 0 2px 0px;
-margin: 0 2px;	
+	padding: 2px 0 2px 0px;
+	margin: 0 2px;	
 }
 .left ul a {
-font-weight: 600;
-color: #2A84E5;
+	font-weight: normal;
+	color: #2A84E5;
+}
+.left ul li.current {
+	border-bottom: 1px solid #2A84E5;
+}
+.left ul li.current a {
+	font-weight: bold;
 }
 .left ul a:hover { color : #333; }
 
@@ -124,15 +130,29 @@ color: #2A84E5;
 	margin-left: 10px;
 	line-height: 20px;
 }
-.middle h2 {
-	font: bold 14px Verdana, 'Trebuchet MS', Sans-serif;
-	color: #fff;	
+.middle .writing-title {
 	background: #CC0001 url(../images/contenth2.jpg) repeat-x;
+	color: #fff;	
 	margin-bottom: 5px;
 	margin-top: 10px;
-	height: 30px;
-	line-height: 30px;
-	padding-left: 10px;
+	padding: 0px 10px;
+	height: 25px;
+	line-height: 25px;
+	font: normal 14px Verdana, 'Trebuchet MS', Sans-serif;
+}
+.middle .writing-title h2, .middle .writing-title .date {
+	padding: 0px;
+	margin: 0px;
+	font: normal 14px Verdana, 'Trebuchet MS', Sans-serif;
+	float: left;
+	height: 25px;
+	line-height: 25px;
+}
+.middle .writing-title .date {
+	font: normal 12px Verdana, 'Trebuchet MS', Sans-serif;
+	float: right;
+	height: 25px;
+	line-height: 25px;
 }
 .middle h3 {
 	font: bold 14px Verdana, 'Trebuchet MS', Sans-serif;
@@ -145,12 +165,51 @@ color: #2A84E5;
 	color: #000;
 }
 .middle p, .middle pre {
-	padding: 10px 5px 0px 20px;
+	padding: 10px 15px 0px 20px;
 	overflow: hidden;
+}
+.middle ol, .middle ul, .middle dl {
+	padding: 10px 5px 0px 40px;
+	overflow: hidden;
+	text-align: justify;
+}
+.middle ol li, .middle ul li, .middle dl dd {
+	padding-right: 15px; padding-top: 10px;
+}
+.middle dl dt {
+	clear: both;
+	float: left;
+	font-weight: bold;
+}
+.middle dl dd {
+	padding-left: 100px;
 }
 .middle p {
 	text-align: justify;
 }
+.middle .CodeRay {
+	font-family: Courier;
+  background: #262626;
+  color: #efefef;
+  border: 1px dashed #999;
+  overflow: hidden;
+	color: white;
+	margin: 10px;
+}
+.middle .CodeRay pre {
+	padding: 10px;
+	margin: 0px;
+}
+.middle .CodeRay .code { color: #ffdead; background: transparent; }
+.middle .CodeRay .c { color: #b22222; font-weight: bold; background: transparent; }
+.middle .CodeRay span.no { display: none; }
+.middle .CodeRay .r { color: #00ffff; background: transparent; }
+.middle .CodeRay .s { color: #7fffd4; background: transparent; }
+.middle .CodeRay .i  { color: #7fffd4; background: transparent; }
+.middle .CodeRay .iv { color: #eedd82; background: transparent; }
+.middle .CodeRay .rx  { color: #ffa07a; background: transparent; }
+.middle .CodeRay .pc  { color: #00ffee; background: transparent; }
+.middle .CodeRay .idl    { color: #ffa07a; background: transparent; }
 
 
 .right {

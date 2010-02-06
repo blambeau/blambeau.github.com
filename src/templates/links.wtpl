@@ -1,10 +1,10 @@
 <div class="headerm">
   <ul>
-    <li><a href="#">home</a></li> 
-    <li><a href="#">about</a></li> 
-    <li><a href="#">initial post</a></li> 
-    <li><a href="#">next post</a></li>
-    <li><a href="#">previous post</a></li>
-    <li><a href="#">last post</a></li> 
+    <li><a href="@{-1}">home</a></li> 
+    <li><a href="@{about}">about</a></li> 
+    <li><a href="@{0}">initial post</a></li> 
+    <li><a href="@{!{current_index+1}}">next post</a></li>
+    <li><a href="@{!{current_index-1}}">previous post</a></li>
+    <li><a href="@{-1}">last post</a></li> 
   </ul>
 </div>

@@ -11,12 +11,11 @@
     </div>
 
     <div class="left">
-      <h2>Writings</h2>
       <<+{writings.wtpl share all}
     </div>
 
     <div class="middle">
-<<+{article.wtpl share all with writing: info.writings.find{|a| a['id'] == info.current}}
+<<+{article.wtpl share all}
     </div>
 
     <div style="clear: both;"> </div>

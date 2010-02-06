@@ -1,0 +1,5 @@
+RewriteRule ^$                   0                   # leads to last revision 
+RewriteRule ^(\d+)$              pages/$1.html       # leads to an exact revision
+
+RewriteCond %{REQUEST_FILENAME}  !-f                 # leads to future (no such file)
+RewriteRule ^(.*)$               pages/404.html [L]

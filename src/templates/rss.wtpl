@@ -5,12 +5,12 @@
         <description>Computer-science blog</description>
         <lastBuildDate>!{Time.now.to_s}</lastBuildDate>
         <link>http://www.revision-zero.org</link>
-        *{items}{
+        *{info.writings as w}{
           <item>
-              <title>${title}</title>
-              <description>${contents}</description>
-              <pubDate>${date}</pubDate>
-              <link>http://www.revision-zero.org/${revnumber}</link>
+              <title>${w.title}</title>
+              <description></description>
+              <pubDate>${w.date}</pubDate>
+              <link>http://www.revision-zero.org/${w.identifier}</link>
           </item>
         }
     </channel>

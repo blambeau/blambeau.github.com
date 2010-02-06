@@ -1,0 +1,18 @@
+<<={../articles/writings.yaml as info}
+={(info.writings + info.others).find{|a| a.identifier == current} as writing}
+={info.writings.index(writing) || 0 as current_index}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>revision-zero.org</title>
+	<base href="http://127.0.0.1:8080/"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
+  <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+</head>
+
+<body>
+<<+{body.wtpl share all}
+</body>
+
+</html>    
