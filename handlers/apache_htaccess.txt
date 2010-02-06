@@ -17,7 +17,8 @@ ErrorDocument 404 /404.html
 RewriteRule ^rss$               rss.xml [L]
 
 # Last revision when empty
-RewriteRule ^$                  -1
+RewriteRule ^$                  -1.html
+RewriteRule ^-1$                -1.html
 
 # Explicit revision
 RewriteRule ^([a-zA-Z0-9_]+)$   $1.html
