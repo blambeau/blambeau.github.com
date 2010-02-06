@@ -38,6 +38,9 @@ $info.writings.each_with_index do |writing, index|
   File.open(File.join(output, "#{index}.html"), 'w') do |io|
     io << source
   end
+  File.open(File.join(output, "-1.html"), 'w') do |io|
+    io << source
+  end if index == $info.writings.size-1
 end
 
 # Converts each other (404, for instance) to an html file, using the 
