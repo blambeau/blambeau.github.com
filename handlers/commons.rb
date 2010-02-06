@@ -6,6 +6,12 @@ require 'fileutils'
 WLang::file_extension_map('.r0', 'wlang/xhtml')
 
 # Some reusable paths
+if ARGV[0] == '--analytics'
+  $analytics = true
+  ARGV.shift
+else
+  $analytics = false
+end
 $here = File.dirname(__FILE__)
 $top = File.join($here, '..')
 $src = File.join($top, 'src')
@@ -41,5 +47,5 @@ def wlang_context(writing, index)
              :writing => writing, 
              :current_index => index, 
              :current => writing.identifier,
-             :analytics => false}
+             :analytics => $analytics}
 end
