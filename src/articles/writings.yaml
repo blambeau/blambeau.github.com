@@ -3,6 +3,7 @@ analytics: false
 categories:
 - Web
 - Database
+- Architecture
 - Free Software
 - Revision-Zero.org
 writings: 
@@ -51,6 +52,11 @@ writings:
   short: This blog as a book
   date: 2010/02/07 - 12:39
   category: Revision-Zero.org
+- identifier: independence
+  title: About independence in computer science
+  short: Independence ?
+  date: 2010/02/07 - 16:10
+  category: Architecture
 others:
 - identifier: '404'
   title: Forward reference detected

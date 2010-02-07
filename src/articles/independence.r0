@@ -1,0 +1,20 @@
+I've been talking about _logical data independence_ @{logical_data_independence}{here}, about source code independence @{book#how}{there}, and so on. It's probably time to provide some lecture about _independence_ in the large when talking about computer science.
+
+I wanted to start this post with a quick review of googling "computer science independence" or "software architecture independence". I have to admit that the results are not really convincing...
+
+In my opinion, one of the major weaknesses of computer science nowadays is the lack of theoretical abstraction. For instance, good students of mine know about java interfaces, but they don't have any insight of general principles underlying the _reason of introducing interfaces_... Whatever your profile, *knowing good principles is always better than knowing practical tips and tricks !*
+
+h3. What does independence mean?
+
+Independence in computer science is both about _change_ and about _abstraction_. More precisely, _reaching independence_ means _using the good abstractions_ to allow the software not to be too much hurted by _changes_. 
+
+h3. What kind of change?
+
+Changes may be numerous and of different nature:
+
+|<code>Requirements</code>|Probably the worst... changing requirements (what the software is supposed to do) often means changing the implementation in depth. How to react to changing requirements?|
+|<code>Evolution</code>|New features? Great! New features generally means that the software is adopted by its users. But how to implement new features without hurting existing ones?|
+|<code>Optimization</code>|People want softwares to act fast, and always faster. Optimizing means _changing the base code_, but is often dangerous if it leads to breaking features. So what?|
+|<code>Third party</code>|Almost all softwares use third party libraries. Those libraries also change and these changes may affect portability of your own software. Once again, how to get away from third party changes.|
+|<code>Assumptions</code>||
+|<code>Input/Output</code>||

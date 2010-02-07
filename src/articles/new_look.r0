@@ -14,7 +14,7 @@ I've moved a lot of my open-source developments on "github":http://github.com/bl
 
 h3(#implem). Thank you "CodeRay":http://coderay.rubychan.de/, "RedCloth":http://redcloth.org/, "WLang":http://github.com/blambeau/wlang
 
-As I've said previously, this blog has a new implementation. The principle (explained in @{web_duck_typing}{first posts}) is unchanged, but WLang is now used to generate the website in different versions. The migration from dedicated code to WLang opens a lot of possibilities: inline code is pretty-printed thanks to "coderay":http://coderay.rubychan.de/, sources of the articles are now written in "redcloth":http://redcloth.org/, and so on. The source code is really simple, and distributed for free on my "github pages repository":http://github.com/blambeau/blambeau.github.com/tree/revision-zero. Have a look at the revision-zero branch, it's so simple ;-)
+As I've said previously, this blog has a new implementation. The principle (explained in @{web_duck_typing}{first posts}) is unchanged, but WLang is now used to @{book}{generate the website in different versions}. The migration from dedicated code to WLang opens a lot of possibilities: inline code is pretty-printed thanks to "coderay":http://coderay.rubychan.de/, sources of the articles are now written in "redcloth":http://redcloth.org/, and so on. The source code is really simple, and distributed for free on my "github pages repository":http://github.com/blambeau/blambeau.github.com/tree/revision-zero. Have a look at the revision-zero branch and on the @{book}{book post}, it's so simple ;-)
 
 h3(#look). Thank you "Free-CSS":http://www.free-css-templates.com
 
