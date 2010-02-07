@@ -18,6 +18,8 @@ class String
   # Converts an external to an internal link
   def external_to_internal(url)
     case url
+      when /\.(css|js|gif|jpg|png|pdf|zip)$/
+        url
       when 'rss'
         'rss.xml'
       else

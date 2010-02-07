@@ -14,14 +14,17 @@ class String
   # ones (revision-zero uses a lot of numbers in source articles 
   # and templates).
   def to_xhtml_href(url)
-    if /^[-]?\d+$/ =~ url.to_s.strip
-      url = $info.writings[url.to_i]
-      url = url ? url.identifier : "404"
-      "#{url}.html"
-    elsif 'rss' == url
-      "rss.xml"
-    else
-      "#{url}.html"
+    case url.strip
+      when /\.(css|js|gif|jpg|png|pdf|zip)$/
+        url
+      when /^[-]?\d+$/
+        url = $info.writings[url.to_i]
+        url = url ? url.identifier : "404"
+        "#{url}.html"
+      when 'rss'
+        "rss.xml"
+      else
+        "#{url}.html"
     end
   end
   alias :external_to_internal :to_xhtml_href
