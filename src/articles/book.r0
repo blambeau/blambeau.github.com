@@ -36,7 +36,7 @@ Here is a typical blog page, say <code>book/hello_reader.r0</code>, written in "
 
 Have a look on the different versions now: "here":book#how, on "revision-zero.org":http://www.revision-zero.org/book#how and "the book":http://www.revision-zero.org/downloads/revision-zero.html... WLang adapts itself to the environment, because the blog code-source is sufficiently abstracts (what needs to be done for links is not explicitely described). 
 
-h3(#how). Going further...
+h3(#further). Going further...
 
 WLang can do a lot more... For example, the two code exerpts above are generated using the following wlang source codes:
 
@@ -65,7 +65,7 @@ No so difficult in fact, the code above use the following wlang tags (see @{http
     <td>instantiates the content of the file denoted by _url_ as a wlang template</td>
   </tr>
   <tr>
-    <td><code>^{encoder}{source}</code></code></td>
+    <td><code>^{encoder}{source}</code></td>
     <td>encodes _source_ using a third party _encoder_</td>
   </tr>
 </table>  
