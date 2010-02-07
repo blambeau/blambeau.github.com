@@ -4,18 +4,25 @@ body { margin:0; padding: 0; background: #fbeec7;
        font: 13px Arial, Verdana, Tahoma, sans-serif;}
 img { border: none; }
 a  { color: #2A84E5; text-decoration: none; }
-a:hover {  color: #000; }
+a:hover {  color: #000; cursor: pointer;}
 
 #top      { background: #fbeec7 url(../images/top.jpg) no-repeat; padding: 10px 0;    }
 #contentt { background: #fbeec7 url(../images/content.jpg) repeat-y; padding: 20px;   }
 #bottom   { background: #fbeec7 url(../images/bottom.jpg) no-repeat; padding: 10px 0; }
 #wrap     { width: 970px; margin: 0 auto; }
 #header   { height: 100px; line-height: 30px; }
+#header .header-left {float: left;}
+#header .header-right {float: right;}
+#header .header-clear {clear: both;}
 #header h1 { font-size: 45px; letter-spacing: -1px; padding: 30px 0 0 10px; color: #000;}
 #header h1 a { color: #3B8FE9; text-decoration: none; }
 #header h1 a:hover { color: #000; }
 #header h2 { letter-spacing: -1px; padding: 0 0 0 16px; font-size: 25px; color: #000; 
              padding-left: 120px; font-style: italic; }
+#header .header-right {padding: 30px 20px 0px 10px;}
+#header .header-right ul li { list-style: none; }
+#header .header-right ul li a {font-size: 16px; font-weight: bold; color: #CC0001;}
+#header .header-right ul li a:hover { color: black; }
 #headermenu { height: 40px; background: #3B8FE9 url(../images/menubg.jpg) repeat-x; line-height: 40px; }
 .headerm { padding: 0; font-variant: small-caps; font-family: verdana; }
 .headerm li {
@@ -114,10 +121,15 @@ a:hover {  color: #000; }
 .middle h2 a:hover {
 	color: #000;
 }
-.middle p, .middle pre {
+.middle p, .middle pre, .middle table {
 	padding: 10px 15px 0px 20px;
 	overflow: hidden;
 }
+.middle table {padding-left: 40px;}
+.middle table tr td {padding: 3px 5px;}
+.middle table tr td code {font-weight: bold;}
+.middle table tr td { vertical-align: top; text-align: justify;}
+
 .middle ol, .middle ul, .middle dl {
 	padding: 5px 5px 0px 40px;
 	overflow: hidden;
@@ -126,15 +138,11 @@ a:hover {  color: #000; }
 .middle ol li, .middle ul li, .middle dl dd {
 	padding-right: 15px; padding-top: 5px;
 }
-.middle dl dt {
-	font-weight: bold;
-}
-.middle dl dd {
-	padding-left: 120px;
-}
-.middle p {
-	text-align: justify;
-}
+.middle dl dt { font-weight: bold; padding-top: 0px; padding-bottom: 0px;}
+.middle dl dd { padding-left: 120px; padding-bottom: 10px; padding-top: 0px; margin: 0px;}
+.middle p { text-align: justify; }
+
+
 .middle .CodeRay {
 	font-family: Courier;
   background: #262626;
@@ -143,6 +151,7 @@ a:hover {  color: #000; }
   overflow: hidden;
 	color: white;
 	margin: 10px;
+	margin-left: 20px;
 }
 .middle .CodeRay pre {
 	padding: 10px;
@@ -150,10 +159,17 @@ a:hover {  color: #000; }
 }
 .middle .CodeRay .code { color: #ffdead; background: transparent; }
 .middle .CodeRay .c { color: #b22222; font-weight: bold; background: transparent; }
-.middle .CodeRay span.no { display: none; }
-.middle .CodeRay .r { color: #00ffff; background: transparent; }
+.middle .CodeRay .r, 
+.middle .CodeRay .ke,
+.middle .CodeRay .ty,
+.middle .CodeRay .pd,
+.middle .CodeRay .ta,
+.middle .CodeRay .kw { color: #00ffff; background: transparent; }
+.middle .CodeRay .vl,
 .middle .CodeRay .s { color: #7fffd4; background: transparent; }
 .middle .CodeRay .i  { color: #7fffd4; background: transparent; }
+.middle .CodeRay .fu,
+.middle .CodeRay .an { color: #ffa07a; background: transparent; }
 .middle .CodeRay .iv { color: #eedd82; background: transparent; }
 .middle .CodeRay .rx  { color: #ffa07a; background: transparent; }
 .middle .CodeRay .pc  { color: #00ffee; background: transparent; }

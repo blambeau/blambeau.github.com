@@ -22,7 +22,7 @@ class String
   # Renders a link tag <a href="url">label</a> for the 
   # static version of the website
   def to_xhtml_link(url, label)
-    "<a href=\"#{to_xhtml_href(url)}\">#{label}</a>"
+    "<a onclick=\"#{to_xhtml_href(url)}\">#{label}</a>"
   end
   
   # This method resolve number-based urls to identifier-based
@@ -33,7 +33,7 @@ class String
       when /\.(gif|jpg|png)$/
         imgfile = File.join($public, url)
         encode_image(imgfile)
-      when /\.(css|js|pdf|zip)$/
+      when /\.(css|js|pdf|zip|html)$/
         url
       when /^[-]?\d+$/
         url = $info.writings[url.to_i]
@@ -42,7 +42,7 @@ class String
       when 'rss'
         "http://www.revision-zero.org/rss"
       else
-        "javascript:goto_page('#{url}')"
+        "goto_page('#{url}')"
     end
   end
   alias :external_to_internal :to_xhtml_href

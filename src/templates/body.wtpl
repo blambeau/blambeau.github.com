@@ -1,7 +1,16 @@
 <div id="wrap">
   <div id="header">
-    <h1><a href="#">Revision-Zero.org</a></h1>
-    <h2>Talking about computer science</h2>
+    <div class="header-left">
+      <h1><a href="#">Revision-Zero.org</a></h1>
+      <h2>Talking about computer science</h2>
+    </div>
+    <div class="header-right">
+      <ul>
+        <li>@{book}{New! This blog as a book}</li>
+      </ul>
+    </div>
+    <div class="header-clear">
+    </div>
   </div>
   <div id="top"></div>
   

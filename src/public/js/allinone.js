@@ -1,7 +1,9 @@
+function book_toggle(identifier) {
+  $('#page_' + identifier).toggle();
+  $('#link_' + identifier).toggleClass("current");
+}
 function goto_page(url) {
-	document.getElementById('page_' + current).style.display = "none";
-	document.getElementById('link_' + current).className = "normal";
-	current = url;
-	document.getElementById('page_' + current).style.display = "block";
-	document.getElementById('link_' + current).className = "current";
+  book_toggle(current);
+  current = url;
+  book_toggle(current);
 }

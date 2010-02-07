@@ -1,8 +1,8 @@
 <h2>Writings</h2>
-<ul>
+<ul id="writings">
   *{info.writings.reverse as w}{
     <li class="?{w.identifier == current}{current}{normal}" id="link_${w.identifier}">
-      <a href="@{${w.identifier}}">?{w.identifier == current}{&raquo;&nbsp;}${w.short || w.title}</a>
+      @{${w.identifier}}{?{w.identifier == current}{» }${w.short || w.title}}
     </li> 
   }
 </ul>

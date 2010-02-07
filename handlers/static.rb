@@ -15,7 +15,7 @@ class String
   # and templates).
   def to_xhtml_href(url)
     case url.strip
-      when /\.(css|js|gif|jpg|png|pdf|zip)$/
+      when /\.(css|js|gif|jpg|png|pdf|zip|html)$/
         url
       when /^[-]?\d+$/
         url = $info.writings[url.to_i]
