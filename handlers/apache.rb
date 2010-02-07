@@ -30,7 +30,7 @@ class String
 end
 
 # The static template to use
-template = File.join($templates, 'static.wtpl')
+template = File.join($handler_templates, 'static.wtpl')
 
 # Copy public folder to output now
 output = ARGV[0] || File.join($output, 'apache')
@@ -49,6 +49,6 @@ $info.writings.each_with_index {|writing, index|
 
 # Converts the other ones
 $info.others.each {|writing| 
-  template = File.join($templates, "#{writing.template}.wtpl")
+  template = File.join($handler_templates, "#{writing.template}.wtpl")
   compose_page(template, output, writing, writing.identifier, wlang_context(writing, $info.writings.size))
 }

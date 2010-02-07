@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<<+{body.wtpl share all}
+<<+{../templates/body.wtpl share all with middle_template: 'article'}
 </body>
 
 </html>    

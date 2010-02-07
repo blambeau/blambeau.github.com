@@ -18,6 +18,7 @@ $src = File.join($top, 'src')
 $public = File.join($src, 'public')
 $articles = File.join($src, 'articles')
 $templates = File.join($src, 'templates')
+$handler_templates = File.join($src, 'handlers')
 $output = File.join($top, 'output')
 
 # The information writings.yaml
@@ -42,11 +43,11 @@ def copy_public(to)
 end
 
 # Creates a wlang context for a given writing/index pair
-def wlang_context(writing, index = $info.writings.index(writing))
+def wlang_context(writing = nil, index = $info.writings.index(writing))
   context = {:info => $info, 
              :writing => writing, 
              :current_index => index, 
-             :current => writing.identifier,
+             :current => writing ? writing.identifier : -1,
              :analytics => $analytics}
 end
 

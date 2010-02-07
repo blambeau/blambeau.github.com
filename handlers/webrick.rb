@@ -51,7 +51,7 @@ class WawStaticsWebrickServlet < WEBrick::HTTPServlet::AbstractServlet
       requested = 'index' if requested.nil? or requested.empty?
       requested = 'born' if requested == 'index'
       requested = '404' unless File.exists?(File.join(@root, 'src', 'articles', "#{requested}.r0"))
-      template = File.join(@root, 'src', 'templates', 'webrick.wtpl')
+      template = File.join(@root, 'src', 'handlers', 'webrick.wtpl')
       begin
         [requested == '404' ? 404 : 200, 'text/html', WLang::file_instantiate(template, :current => requested)]
       rescue Exception => ex

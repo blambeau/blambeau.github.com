@@ -1,73 +1,23 @@
-* {
-padding: 0;
-margin: 0;
-} 
-
-body {
-margin:0;
-padding: 0;
-background: #fbeec7;
-color: #444;
-font: 13px Arial, Verdana, Tahoma, sans-serif;
-line-height: 17px;
-}
-
-img {border: none;}
-a{ color: #2A84E5; text-decoration: none; }
+* { padding: 0; margin: 0; } 
+body { margin:0; padding: 0; background: #fbeec7;
+       color: #444; line-height: 17px;
+       font: 13px Arial, Verdana, Tahoma, sans-serif;}
+img { border: none; }
+a  { color: #2A84E5; text-decoration: none; }
 a:hover {  color: #000; }
 
-#top {
-background: #fbeec7 url(../images/top.jpg) no-repeat;
-padding: 10px 0;
-}
-#contentt {
-background: #fbeec7 url(../images/content.jpg) repeat-y;
-padding: 20px;
-}
-#bottom {
-background: #fbeec7 url(../images/bottom.jpg) no-repeat;
-padding: 10px 0;
-}
-
-#wrap {
-width: 970px;
-margin: 0 auto;
-}
-
-#header {
-height: 100px;
-line-height: 30px;
-}
-#header h1 { 
-	font-size: 45px;
-	letter-spacing: -1px;
-	padding: 30px 0 0 10px;
-	color: #000;
-}
-#header h1 a { 
-color: #3B8FE9;
-text-decoration: none;
-}
-#header h1 a:hover {
-color: #000;
-}
-#header h2 { 
-	letter-spacing: -1px; padding: 0 0 0 16px; 
-	font-size: 25px; color: #000; 
-  padding-left: 120px;
-  font-style: italic;
-}
-
-#headermenu {
-	height: 40px;
-	background: #3B8FE9 url(../images/menubg.jpg) repeat-x;
-	line-height: 40px;
-}
-.headerm { 
-	padding: 0;
-	font-variant: small-caps;
-	font-family: verdana;
-}
+#top      { background: #fbeec7 url(../images/top.jpg) no-repeat; padding: 10px 0;    }
+#contentt { background: #fbeec7 url(../images/content.jpg) repeat-y; padding: 20px;   }
+#bottom   { background: #fbeec7 url(../images/bottom.jpg) no-repeat; padding: 10px 0; }
+#wrap     { width: 970px; margin: 0 auto; }
+#header   { height: 100px; line-height: 30px; }
+#header h1 { font-size: 45px; letter-spacing: -1px; padding: 30px 0 0 10px; color: #000;}
+#header h1 a { color: #3B8FE9; text-decoration: none; }
+#header h1 a:hover { color: #000; }
+#header h2 { letter-spacing: -1px; padding: 0 0 0 16px; font-size: 25px; color: #000; 
+             padding-left: 120px; font-style: italic; }
+#headermenu { height: 40px; background: #3B8FE9 url(../images/menubg.jpg) repeat-x; line-height: 40px; }
+.headerm { padding: 0; font-variant: small-caps; font-family: verdana; }
 .headerm li {
 	float:left;
 	list-style-type:none;

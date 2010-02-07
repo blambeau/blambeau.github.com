@@ -15,7 +15,7 @@
     </div>
 
     <div class="middle">
-<<+{article.wtpl share all}
+<<+{+{middle_template}.wtpl share all}
     </div>
 
     <div style="clear: both;"> </div>
