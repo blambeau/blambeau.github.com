@@ -34,6 +34,7 @@ end
 # Copy the public folder somewhere. 
 def copy_public(to)
   FileUtils.mkdir(to) unless File.exists?(to)
+  FileUtils.mkdir(File.join(to, 'downloads')) unless File.exists?(File.join(to, 'downloads'))
   Dir[File.join($public, '**', '*')].each do |file|
     relfile = relativize(File.expand_path(file), File.expand_path($public))
     target = File.join(to, relfile)
