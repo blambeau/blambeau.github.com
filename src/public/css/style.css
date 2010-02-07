@@ -169,20 +169,18 @@ color: #000;
 	overflow: hidden;
 }
 .middle ol, .middle ul, .middle dl {
-	padding: 10px 5px 0px 40px;
+	padding: 5px 5px 0px 40px;
 	overflow: hidden;
 	text-align: justify;
 }
 .middle ol li, .middle ul li, .middle dl dd {
-	padding-right: 15px; padding-top: 10px;
+	padding-right: 15px; padding-top: 5px;
 }
 .middle dl dt {
-	clear: both;
-	float: left;
 	font-weight: bold;
 }
 .middle dl dd {
-	padding-left: 100px;
+	padding-left: 120px;
 }
 .middle p {
 	text-align: justify;

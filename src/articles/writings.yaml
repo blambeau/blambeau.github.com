@@ -41,6 +41,11 @@ writings:
   subtitle: Let's celebrate the birthday of Relational
   date: 2009/11/20 - 19:12
   category: Databases
+- identifier: new_look
+  title: New look for Revision-Zero.org!
+  short: New look, new life!
+  date: 2010/02/07 - 10:10
+  category: Revision-Zero.org
 others:
 - identifier: '404'
   title: Forward reference detected
