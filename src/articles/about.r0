@@ -2,14 +2,11 @@ This blog is about computer science, and tries to make the bridge between theore
 
 h3. Using it
 
-- sequentially := Really first post of this blog is at @{0}{http://www.revision-zero.org/0}. The next one is at @{1}{http://www.revision-zero.org/1}, and so on. If you want to read all posts sequentially, that's a way to do it (you can also use the _previous_ and _next_ buttons to achieve the same goal).
-
-- by topic := You can access a given topic by its name (if you know it) with an url like this: @{about}{http://www.revision-zero.org/about}. Short topic names always match the <code>[a-zA-Z-0-9_]+</code> regular expression. Moreover, you'll find (not so special) posts where I maintain a TODO list of the topics I would like to write about. The first
-topic post is at @{topics0}{http://www.revision-zero.org/topics0}, the next one will be at @{topics1}{http://www.revision-zero.org/topics1} and so on. For your ease, those topic pages are linked together: previous and next links <b>at bottom</b> of the topic pages implement a linked list of topic posts. 
-
-- rss := Probably the easiest way to stay in touch: http://www.revision-zero.org/rss. You can add this rss flux to your "iGoogle":http://www.google.com/ig home page, or read it with "Google Reader":http://www.google.com/reader/view.
-
-- by proposals := You would like a topic to be addressed ? If it already exists in the topic pages but is not written yet, simply click on the topic name and I'll be informed of your interest. Otherwise, send me an email with your proposal and I'll see if I can do something! 
+|<code>sequentially</code>|Really first post of this blog is at @{0}{http://www.revision-zero.org/0}. The next one is at @{1}{http://www.revision-zero.org/1}, and so on. If you want to read all posts sequentially, that's a way to do it (you can also use the _previous_ and _next_ buttons to achieve the same goal).|
+|<code>by topic</code>|You can access a given topic by its name (if you know it) with an url like this: @{about}{http://www.revision-zero.org/about}. Short topic names always match the <code>[a-zA-Z-0-9_]+</code> regular expression. Moreover, you'll find (not so special) posts where I maintain a TODO list of the topics I would like to write about. The first
+topic post is at @{topics0}{http://www.revision-zero.org/topics0}, the next one will be at @{topics1}{http://www.revision-zero.org/topics1} and so on. For your ease, those topic pages are linked together: previous and next links <b>at bottom</b> of the topic pages implement a linked list of topic posts.|
+|<code>rss</code>|Probably the easiest way to stay in touch: http://www.revision-zero.org/rss. You can add this rss flux to your "iGoogle":http://www.google.com/ig home page, or read it with "Google Reader":http://www.google.com/reader/view.|
+|<code>by proposals</code>|You would like a topic to be addressed ? If it already exists in the topic pages but is not written yet, simply click on the topic name and I'll be informed of your interest. Otherwise, send me an email with your proposal and I'll see if I can do something!|
 
 h3. The author
 

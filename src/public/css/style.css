@@ -125,14 +125,14 @@ a:hover {  color: #000; cursor: pointer;}
 	padding: 10px 15px 0px 20px;
 	overflow: hidden;
 }
-.middle table {padding-left: 40px;}
-.middle table tr td {padding: 3px 5px;}
+.middle table {padding-left: 20px;}
+.middle table tr td {padding: 3px 10px 3px 0px;}
 .middle table tr td code {font-weight: bold;}
 .middle table tr td { vertical-align: top; text-align: justify;}
 .middle table ul li {padding: 2px 0px 2px 0px; margin:0px;}
 
 .middle ol, .middle ul, .middle dl {
-	padding: 5px 5px 0px 40px;
+	padding: 5px 5px 0px 60px;
 	overflow: hidden;
 	text-align: justify;
 }
@@ -142,7 +142,7 @@ a:hover {  color: #000; cursor: pointer;}
 .middle dl dt { font-weight: bold; padding-top: 0px; padding-bottom: 0px;}
 .middle dl dd { padding-left: 120px; padding-bottom: 10px; padding-top: 0px; margin: 0px;}
 .middle p { text-align: justify; }
-
+.middle blockquote {font-style: italic; padding-left:30px; padding-right: 30px;}
 
 .middle .CodeRay {
 	font-family: Courier;
