@@ -4,8 +4,14 @@
   <title>No Analytics</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
   <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+  <script type="text/javascript" src="js/jquery-1.4.1.min.js"></script>
 </head>
-<body onLoad="javascript:__utmSetVar('no_report')">
+<body>
+<script type="text/javascript">
+  $(document).ready(function(){
+    __utmSetVar('no_analytics');
+  });
+</script>
 <script type="text/javascript">
   var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
   document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
