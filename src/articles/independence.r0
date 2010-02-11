@@ -61,3 +61,15 @@ The patterns presented before are practical coding patterns. The reason of using
 There is something really nice these four theoretical principles: they are extremely correlated! Encapsulating a specific design choice by introducing a new module, for instance, generally reduces coupling, introduces a better separation of concerns, and naturally leads to a good cohesion and information hiding at that place. Unfortunately, the reverse is also true: forget to encapsulate some design choice and you'll also augment coupling and reduce cohesion. If that design choice is questioned later, the software will likely be extremely difficult to refactor... and reacting to changes will be challenging.
 
 A simple word, _independence_, sometimes requires a long discourse ;-)
+
+h3. Credits
+
+Coding patterns are mine. I'm really grateful to Axel van Lamsweerde (my thesis promotor), for introducing me to the underlying principles in his Requirements Engineering course[1]. While not being sure about their origin, I think that those principles have been initially proposed by David Parnas[2] and Barry Boehm[3]. Anyway, these authors propose excellent lectures about them.
+
+h3. References
+
+fn1. Axel van Lamsweerde, _Requirements Engineering: from system goals to UML models to software specifications_, Wiley, 2009.
+
+fn2. David Parnas, _"Software Aging" in Software Fundamentals_, Addison-Wesley, 2001, pg. 557-558, 563.
+
+fn3. Barry Boehm. _Software Cost Estimation with COCOMO II_, Prentice Hall, 2000, pg. 23, 28.
