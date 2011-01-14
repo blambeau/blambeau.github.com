@@ -1,0 +1,29 @@
+Hi all!
+
+I've spent a few hours on a new project recently: the Noe ruby library (the source code is "available on github":https://github.com/blambeau/noe). Noe is born because I'm tired of always replaying the same scenario every time I start a new ruby library / scientific paper / java program / static or dynamic web site / and so on. You probably know what I mean: projects relying on same and (somewhat) stable technologies tend to follow stable conventions. Therefore they also have similar folder structures and file templates, and one would like to have tools to instantiate these structures and files in one click! Noe is such a tool:
+
+<notextile>
+^{xhtml/coderay/ruby}{<<{noe/starter.sh}}
+</notextile>
+
+h3. Why not using existing tools for ruby?
+
+Why reinventing the wheel, once again? Similar generators already exists: "hoe":http://seattlerb.rubyforge.org/hoe/ by Ryan Davis and Eric Hodel, "echoe":https://github.com/fauna/echoe by Evan Weaver, "bones":https://github.com/TwP/bones by Tim Pease and so on. They generate such a ruby structure from templates and do even better: they also (and somewhat magically) provide a lot of rake tasks to manage the lifecycle of your project (for those who might not know what a _rake task_ is, let simply add that "_rake_":http://rake.rubyforge.org/ is the ruby maker, a tool that helps running code-related tasks like building, testing, packaging, or releasing the program/library you are developping)!
+
+Given my needs, I had two main reasons for not reusing/extending these tools:
+
+* First, they do not support generating skeletons for something else than ruby projects. Nothing in their architecture looked designed for such a need so that extending them appeared difficult.
+* Second, INHO they violate some important principles: keep separation of concerns, achieve a strong level @{independence}{independence}, @{document_at_earliest_point_of_usage}{document at the earliest user point of usage}, provide magic only if it does not restrict features, and so on.
+
+I won't argue here about such principles and their violation by the projects listed above. Drop me an email if you are interested in having details.
+
+h3. Template -> Skeleton
+
+So, imagine you have a template defined on some _meta_variables_. You also provide a mechanism to assign values to those variables. Noe makes the rest, it instantiates the whole project template as a fresh new project skeleton!
+
+!@{images/noe/workflow.gif}!
+
+Only thanks to a few commands, as illustrated below:
+
+!@{images/noe/commands.png}!
+

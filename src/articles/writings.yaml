@@ -57,6 +57,11 @@ writings:
   short: Independence ?
   date: 2010/02/07 - 16:10
   category: Architecture
+- identifier: noe
+  title: Skeleton-driven coding with Noe
+  short: Skeleton-driven coding
+  date: 2011/01/14 - 16:51
+  category: Architecture
 others:
 - identifier: '404'
   title: Forward reference detected
