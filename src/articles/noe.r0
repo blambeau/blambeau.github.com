@@ -1,9 +1,15 @@
-Hi all!
+h3. Hi all!
 
-I've spent a few hours on a new project recently: the Noe ruby library (the source code is "available on github":https://github.com/blambeau/noe). Noe is born because I'm tired of always replaying the same scenario every time I start a new ruby library / scientific paper / java program / static or dynamic web site / and so on. You probably know what I mean: projects relying on same and (somewhat) stable technologies tend to follow stable conventions. Therefore they also have similar folder structures and file templates, and one would like to have tools to instantiate these structures and files in one click! Noe is such a tool:
+I've spent a few hours on a new project recently: the Noe ruby library (the source code is "available on github":https://github.com/blambeau/noe). Noe is born because I'm tired of always replaying the same scenario every time I start a new ruby library / scientific paper / java program / static or dynamic web site / and so on. You probably know what I mean: our projects follow conventions, and in particular well-defined folder structures and file templates. One would like to have tools to instantiate these structures and files in one click! Noe is such a tool:
 
 <notextile>
 ^{xhtml/coderay/ruby}{<<{noe/starter.sh}}
+</notextile>
+
+Before going any further, here is how to install it. You'll need a correct ruby installation to run it, see "ruby-lang.org":http://ruby-lang.org. After that, noe is a simply ruby gem:
+
+<notextile>
+^{xhtml/coderay/ruby}{<<{noe/install.sh}}
 </notextile>
 
 h3. Why not using existing tools for ruby?
@@ -19,11 +25,65 @@ I won't argue here about such principles and their violation by the projects lis
 
 h3. Template -> Skeleton
 
-So, imagine you have a template defined on some _meta_variables_. You also provide a mechanism to assign values to those variables. Noe makes the rest, it instantiates the whole project template as a fresh new project skeleton!
+Basic usage of Noe is really simple. First, you build (or reuse of course) a project template respecting a few conventions about _variables_ (like using @__varname__@ in file and folder names). Then you provide a .noespec file (actually a good old .yaml file) that assigns values to such variables. Noe makes the rest: it instantiates the whole project template as a fresh new project skeleton!
 
 !@{images/noe/workflow.gif}!
 
-Only thanks to a few commands, as illustrated below:
+h3. Maintaining your Skeleton
 
-!@{images/noe/commands.png}!
+The generation of a project skeleton is a good start, but Noe comes with additional power! For example, it allows you to modify your .noespec file later while regenerating only parts of the project skeleton (to avoid overriding your own work). This regeneration feature comes with different variants.
 
+h4. Regenerating all files
+
+When you start a new project you might want to write your .noespec file iteratively, generating the whole skeleton over and over again. Noe has a special mode for this:
+
+<notextile>^{xhtml/coderay/ruby}{
+blambeau@yemana % noe go --force
+blambeau@yemana % [... modify .noespec ...]
+blambeau@yemana % noe go --force
+blambeau@yemana % [... modify .noespec ...]
+}</notextile>
+
+
+h4. Regenerating some files only 
+
+It often occurs that some files are constants, up to a project configuration (that you may encapsulate in your .noespec file). Examples of such files in the ruby community are the Rakefile, the Gemfile, the .gemspec and so on. If the configuration changes, you can simply remove the old version and ask Noe to resurect the files:
+
+<notextile>^{xhtml/coderay/ruby}{
+blambeau@yemana % rm Rakefile Gemfile
+blambeau@yemana % noe go --add-only
+}</notextile>
+
+h4. Trusting the template creator...
+
+The creator of the template you use (maybe yourself) might have a personal opinion about what files should be kept under Noe's control (thanks to the configuration specified in the .noespec file) and which ones should not be overriden after the creation of the skeleton. Good templates come with full documentation about such assumptions. Noe provides a special mode for maintaining your skeleton safely, while respecting the creator conventions:
+
+<notextile>^{xhtml/coderay/ruby}{
+blambeau@yemana % noe go --safe-override
+}</notextile>
+
+h4. ... but keep control!
+
+Even if you almost agree with the conventions of the template creator, you might want to maintain a file manually that would normally be kept under Noe's control. That file will be overriden everytime you invoke the previous command, and of course you want to prevent this from occuring. Fortunately, Noe comes with a powerful mechanism to override template conventions. This is done inside your .noespec file, under the template-info/manifest section. In the example below, we explicitely specify that the Gemfile may be overriden when using @--safe-override@ while the Rakefile will be maintained manually.
+
+p=. !@{images/noe/safe_override.png}!
+
+h3. Writing a template
+
+At the time of writing, I'm still actively writing documentation for Noe, and a template maintainer guide in particular. I've imagined writing a Noe template for writing templates, but while perfectly possible, it quickly appeared that adding an additional level of meta-abstraction would lead to something less understandable than a good old explanation here.
+
+After having installed Noe (see '@noe help install@') properly, you end up with a @~/.noerc@ file with Noe's basic configuration and a @~/.noe@ folder with default templates bundled with noe (have a look at the default ruby template). A template is basically a subfolder in @~/.noe@ with the structure shown below.
+
+p=. !@{images/noe/dotnoe.gif}!
+
+The specification file, namely @noespec.yaml@ is used by '@noe prepare@' to generate the initial version of the project's .noespec file. It is generally much longer than shown, as the template creator may also provide variables with default values, specify a default @{wlang}{wlang} dialect, provide a @template-info/manifest@ to control the @--safe-override@ option and override the default wlang dialect for specific files, and so on.
+
+The @src@ folder contains the meta-structure of the project skeleton. @__varname__@ may be used in file and directory names. They will be renamed thanks to the values provided in the .noespec file when the skeleton is generated by '@noe go@'.
+
+h3. Last but not least
+
+I would not want closing this post without mentionning one of the greatest reason why I think that Noe could become a great and really friendly tool: files and instantiated by @{wlang}{wlang}! WLang is designed to help generating code, i.e. to help you maintaining clean templates even for complex tasks through the support of dialects. So, let me close this post with another not so simple example:
+
+p=. !@{images/noe/wlang_is_great.gif}!
+
+Enjoy "Noe":https://github.com/blambeau/noe!

@@ -1,0 +1,7 @@
+template-info:
+  name: "!{template_name}"
+  version: 1.1.0
+  summary: A template summary
+variables:
+  varname: var default value
+  ...

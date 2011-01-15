@@ -111,15 +111,18 @@ a:hover {  color: #000; cursor: pointer;}
 	height: 25px;
 	line-height: 25px;
 }
-.middle h3 {
-	font: bold 14px Verdana, 'Trebuchet MS', Sans-serif;
-	margin-top: 15px;
-}
 .middle h2 a {
 	color: #fff;
 }
 .middle h2 a:hover {
 	color: #000;
+}
+.middle h3 {
+	font: bold 14px Verdana, 'Trebuchet MS', Sans-serif;
+	margin-top: 15px;
+}
+.middle h4 {
+	margin-top: 10px;
 }
 .middle p, .middle pre, .middle table {
 	padding: 10px 15px 0px 20px;

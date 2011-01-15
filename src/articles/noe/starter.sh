@@ -1,4 +1,12 @@
 blambeau@yemana % noe prepare --template=ruby hello_world
+Project successfully prepared ! 
+
+Coming Next?
+ * edit hello_world/hello_world.noespec
+ * noe go
+
+Thank you for using Noe (v1.1.0), enjoy!
+
 blambeau@yemana % cd hello_world 
 blambeau@yemana % noe go     
 blambeau@yemana % ls -lA
