@@ -37,30 +37,25 @@ h4. Regenerating all files
 
 When you start a new project you might want to write your .noespec file iteratively, generating the whole skeleton over and over again. Noe has a special mode for this:
 
-<notextile>^{xhtml/coderay/ruby}{
-blambeau@yemana % noe go --force
-blambeau@yemana % [... modify .noespec ...]
-blambeau@yemana % noe go --force
-blambeau@yemana % [... modify .noespec ...]
-}</notextile>
-
+<notextile>
+^{xhtml/coderay/ruby}{<<{noe/genall.sh}}
+</notextile>
 
 h4. Regenerating some files only 
 
 It often occurs that some files are constants, up to a project configuration (that you may encapsulate in your .noespec file). Examples of such files in the ruby community are the Rakefile, the Gemfile, the .gemspec and so on. If the configuration changes, you can simply remove the old version and ask Noe to resurect the files:
 
-<notextile>^{xhtml/coderay/ruby}{
-blambeau@yemana % rm Rakefile Gemfile
-blambeau@yemana % noe go --add-only
-}</notextile>
+<notextile>
+^{xhtml/coderay/ruby}{<<{noe/gensome.sh}}
+</notextile>
 
 h4. Trusting the template creator...
 
 The creator of the template you use (maybe yourself) might have a personal opinion about what files should be kept under Noe's control (thanks to the configuration specified in the .noespec file) and which ones should not be overriden after the creation of the skeleton. Good templates come with full documentation about such assumptions. Noe provides a special mode for maintaining your skeleton safely, while respecting the creator conventions:
 
-<notextile>^{xhtml/coderay/ruby}{
-blambeau@yemana % noe go --safe-override
-}</notextile>
+<notextile>
+^{xhtml/coderay/ruby}{<<{noe/gensafe.sh}}
+</notextile>
 
 h4. ... but keep control!
 
