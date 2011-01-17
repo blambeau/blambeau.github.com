@@ -5,7 +5,7 @@
         <description>Computer-science blog</description>
         <lastBuildDate>!{Time.now.to_s}</lastBuildDate>
         <link>http://www.revision-zero.org</link>
-        *{info.writings as w}{
+        *{info.writings[-5..-1].reverse as w}{
           <item>
               <title>${w.title}</title>
               <description>
