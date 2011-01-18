@@ -13,61 +13,76 @@ writings:
   short: Revision-Zero is born!
   date: 2009/01/10 - 18:16
   category: Revision-Zero.org
+  keywords: []
 - identifier: web_duck_typing
   title: Toward a static blog that looks dynamic
   short: Web Duck Typing
   date: 2009/01/11 - 17:35
   category: Revision-Zero.org
+  keywords: [ "duck typing" ]
 - identifier: about
   title: What is this blog about?
   short: About
   date: 2009/01/15 - 9:31
   category: Revision-Zero.org
+  keywords: []
 - identifier: topics0
   title: What are we talking about?
   short: Technical topics
   date: 2009/01/14 - 17:55
   category: Revision-Zero.org
+  keywords: []
 - identifier: wlang
   title: WLang (Part I)
   date: 2009/01/18 - 13:35
   category: Web
+  keywords: [ "templating engine", "code generation", "back quoting", "escaping", 
+              "sql injection", "XSS attack" ]
 - identifier: release_time
   title: Open-sources libraries available
   short: Release Time!
   date: 2009/03/13 - 10:17
   category: Free Software
+  keywords: [ "open source", "ruby libraries" ]
 - identifier: logical_data_independence
   title: About Logical Data Independence (1/3)
   short: Logical Data Independence
   subtitle: Let's celebrate the birthday of Relational
   date: 2009/11/20 - 19:12
   category: Databases
+  keywords: [ "database", "logical data independence", "independence", "views" ]
 - identifier: new_look
   title: New look for Revision-Zero.org!
   short: New look, new life!
   date: 2010/02/07 - 10:10
   category: Revision-Zero.org
+  keywords: []
 - identifier: book
   title: Whole Revision-Zero.org in a single .html file
   short: This blog as a book
   date: 2010/02/07 - 12:39
   category: Revision-Zero.org
+  keywords: [ "html image embedding", "templating engine" ]
 - identifier: independence
   title: About independence in computer science
   short: Independence ?
   date: 2010/02/07 - 16:10
   category: Architecture
+  keywords: [ "independence", "coupling", "cohesion", "separation of concerns", "information hiding",
+              "architecture" ]
 - identifier: noe
   title: Skeleton-driven coding with Noe
   short: Skeleton-driven coding
   date: 2011/01/14 - 16:51
   category: Architecture
+  keywords: [ "skeleton-driven coding", "project skeleton", "gem library", "ruby template",
+              "ruby", "rubygems", "ruby gem", "templating engine" ]
 - identifier: kernel_dot_spawn
   title: Kernel.spawn
   short: Kernel.spawn
   date: 2011/01/18 - 09:19
   category: Ruby
+  keywords: [ "ruby", "Kernel", "shell" ]
 others:
 - identifier: '404'
   title: Forward reference detected
