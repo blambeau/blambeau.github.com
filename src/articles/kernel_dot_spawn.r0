@@ -10,23 +10,23 @@ h4. Redirecting
 
 By default, standard file descriptors (i.e. standard input, output and error) will be shared with the calling process. Redirecting them is really simple however, as illustrated below. Be warned however that *the @IO@ object must be a real @IO@ object*. In other words, retrieving the process output via a @StringIO@ will not work properly...
 
-<notextile>^{xhtml/coderay/ruby}{<<{kernel-dot-spawn/example1.rb}}</notextile>
+<notextile>^{xhtml/coderay/ruby}{<<{kernel_dot_spawn/example1.rb}}</notextile>
 
 Interestingly, you can also redirect to files directly:
 
-<notextile>^{xhtml/coderay/ruby}{<<{kernel-dot-spawn/example2.rb}}</notextile>
+<notextile>^{xhtml/coderay/ruby}{<<{kernel_dot_spawn/example2.rb}}</notextile>
 
 h4. Closing
 
 It may happen that the subprocess is too verbose and interfers with the output of your own process, by printing debuging information on the standard output for example... In this case, you would like to simply close the subprocess output:
 
-<notextile>^{xhtml/coderay/ruby}{<<{kernel-dot-spawn/example3.rb}}</notextile>
+<notextile>^{xhtml/coderay/ruby}{<<{kernel_dot_spawn/example3.rb}}</notextile>
 
 h4. Changing current directory of the callee
 
 Another interesting use case: some sub processes may expect being located in a specific location. Not difficult either:
 
-<notextile>^{xhtml/coderay/ruby}{<<{kernel-dot-spawn/example4.rb}}</notextile>
+<notextile>^{xhtml/coderay/ruby}{<<{kernel_dot_spawn/example4.rb}}</notextile>
 
 h3. Going further
 

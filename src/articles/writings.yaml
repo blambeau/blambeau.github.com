@@ -63,7 +63,7 @@ writings:
   short: Skeleton-driven coding
   date: 2011/01/14 - 16:51
   category: Architecture
-- identifier: kernel-dot-spawn
+- identifier: kernel_dot_spawn
   title: Kernel.spawn
   short: Kernel.spawn
   date: 2011/01/18 - 09:19
