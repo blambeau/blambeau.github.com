@@ -1,0 +1,11 @@
+In this post I summarizes my main argument about a recurrent discussion we have with colleagues about _software reuse_. The concept of _software reuse_ is not new and many writings already exist about this. Probably the better I've read so far is _Software Reuse_ from Charles W. Krueger[1], published in ... 1992. The abstract of the paper starts with the following paragraph:
+
+bq. Software reuse is the process of creating software systems from existing software rather than building software systems from scratch. This simple yet powerful vision was introduced in 1968. Software reuse has, however, failed to become a standard software engineering practice. In an attempt to understand why, researchers have renewed their interest in software reuse and in the obstacles to implementing it. 
+
+In 2011, I would certainly not argue that software reuse failed to become a standard practice, because fortunately thinks have evolved. However, having re-read the paper recently, I strongly feel that something is still wrong in here. 
+
+h3. References
+
+fn1. Charles W. Krueger, _Software Reuse_, ACM Computing Surveys, Volume 24 Issue 2, June 1992
+
+ 
