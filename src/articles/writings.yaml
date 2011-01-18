@@ -6,6 +6,7 @@ categories:
 - Architecture
 - Free Software
 - Revision-Zero.org
+- Ruby
 writings: 
 - identifier: born
   title: Welcome to Revision-Zero.org!
@@ -62,6 +63,11 @@ writings:
   short: Skeleton-driven coding
   date: 2011/01/14 - 16:51
   category: Architecture
+- identifier: kernel-dot-spawn
+  title: Kernel.spawn
+  short: Kernel.spawn
+  date: 2011/01/18 - 09:19
+  category: Ruby
 others:
 - identifier: '404'
   title: Forward reference detected
