@@ -1,3 +1,33 @@
-h3. Kernel.spawn
+Ruby 1.9 comes with new methods to execute a (shell) command, namely "@Kernel.spawn@":http://www.ruby-doc.org/core/classes/Kernel.html#M001442 also available as "@Process.spawn@":http://ruby-doc.org/core-1.9/classes/Process.html#M002230. In a few words, @Kernel.spawn@ is the powerful tool hidden behind "@Kernel.`@":http://www.ruby-doc.org/core/classes/Kernel.html#M001408, "@Kernel.exec@":http://www.ruby-doc.org/core/classes/Kernel.html#M001438, and "@Kernel.system@":http://www.ruby-doc.org/core/classes/Kernel.html#M001441. If your feeling that the latter methods, as well as "@IO.popen@":http://www.ruby-doc.org/core/classes/IO.html#M000880 are sometimes too restrictive, "@Kernel.spawn@":http://www.ruby-doc.org/core/classes/Kernel.html#M001442 is probably for you.
 
-Do you already know the Kernel.spawn and Process.spawn methods introduced in Ruby 1.9??
+Note: these methods have *not* been backported in Ruby 1.8.x, but you can still use them thanks to the "sfl gem":https://rubygems.org/gems/sfl (source code available on "github":https://github.com/ujihisa/spawn-for-legacy). Note that the compatibility coverage of the latter gem is far from 100%. Anyway, all examples below are supported by the 2.0 version which should be available really soon.
+
+h3. Quick overview
+
+The new @spawn@ method comes with a lot of options *set environment variables* for the subprocess, *change the current directory*, *redirect file descriptors* (i.e. standard input and output), and so on. In all cases it *doesn‘t wait for end of the command* but *returns the pid* of the subprocess. Therefore, you'll have to use "@Process.wait@":http://www.ruby-doc.org/core/classes/Process.html#M001287 or "@Process.detach@":http://www.ruby-doc.org/core/classes/Process.html#M001292 on the resulting pid. Below are listed typical use cases.
+
+h4. Redirecting
+
+By default, standard file descriptors (i.e. standard input, output and error) will be shared with the calling process. Redirecting them is really simple however, as illustrated below. Be warned however that *the @IO@ object must be a real @IO@ object*. In other words, retrieving the process output via a @StringIO@ will not work properly...
+
+<notextile>^{xhtml/coderay/ruby}{<<{kernel-dot-spawn/example1.rb}}</notextile>
+
+Interestingly, you can also redirect to files directly:
+
+<notextile>^{xhtml/coderay/ruby}{<<{kernel-dot-spawn/example2.rb}}</notextile>
+
+h4. Closing
+
+It may happen that the subprocess is too verbose and interfers with the output of your own process, by printing debuging information on the standard output for example... In this case, you would like to simply close the subprocess output:
+
+<notextile>^{xhtml/coderay/ruby}{<<{kernel-dot-spawn/example3.rb}}</notextile>
+
+h4. Changing current directory of the callee
+
+Another interesting use case: some sub processes may expect being located in a specific location. Not difficult either:
+
+<notextile>^{xhtml/coderay/ruby}{<<{kernel-dot-spawn/example4.rb}}</notextile>
+
+h3. Going further
+
+I've not seen many blog entries about @Kernel.spawn@, which is the reason I've written this post (more to bring that powerful method to your attention than to be exhaustive). I've covered only a few use cases and options, refer to the "official documentation":http://www.ruby-doc.org/core/classes/Kernel.html#M001442 for details. Remember that the "sfl gem":https://github.com/ujihisa/spawn-for-legacy does not provide 100% coverage, even if examples listed above should work properly using it's 2.0 release!

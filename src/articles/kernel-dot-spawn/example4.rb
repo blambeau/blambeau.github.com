@@ -1,0 +1,1 @@
+pid = Kernel.spawn("ls -lA", {:chdir => "/home/blambeau"})

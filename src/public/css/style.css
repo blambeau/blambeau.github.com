@@ -123,7 +123,8 @@ a:hover {  color: #000; cursor: pointer;}
 	margin-top: 15px;
 }
 .middle h4 {
-	margin-top: 10px;
+	margin-top: 15px;
+  margin-bottom: 0px;
 }
 .middle p, .middle pre, .middle table {
 	padding: 10px 15px 0px 20px;
@@ -164,7 +165,7 @@ a:hover {  color: #000; cursor: pointer;}
 	margin: 0px;
 }
 .middle .CodeRay .code { color: #ffdead; background: transparent; }
-.middle .CodeRay .c { color: #b22222; font-weight: bold; background: transparent; }
+.middle .CodeRay .c { color: #e22222; font-weight: bold; background: transparent; }
 .middle .CodeRay .r, 
 .middle .CodeRay .ke,
 .middle .CodeRay .ty,
@@ -174,10 +175,12 @@ a:hover {  color: #000; cursor: pointer;}
 .middle .CodeRay .vl,
 .middle .CodeRay .s { color: #7fffd4; background: transparent; }
 .middle .CodeRay .i  { color: #7fffd4; background: transparent; }
+.middle .CodeRay .co,
 .middle .CodeRay .fu,
 .middle .CodeRay .an { color: #ffa07a; background: transparent; }
 .middle .CodeRay .iv { color: #eedd82; background: transparent; }
 .middle .CodeRay .rx  { color: #ffa07a; background: transparent; }
+.middle .CodeRay .sy,
 .middle .CodeRay .pc  { color: #00ffee; background: transparent; }
 .middle .CodeRay .idl    { color: #ffa07a; background: transparent; }
 
