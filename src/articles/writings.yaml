@@ -83,6 +83,12 @@ writings:
   date: 2011/01/18 - 09:19
   category: Ruby
   keywords: [ "ruby", "Kernel", "shell" ]
+- identifier: reuse_or_not_reuse
+  title: Reuse or not reuse
+  short: Reuse or not reuse
+  date: 2011/01/18 - 16:53
+  category: Architecture
+  keywords: [ "reuse", "software reuse", "architecture", "process communication" ]
 others:
 - identifier: '404'
   title: Forward reference detected
