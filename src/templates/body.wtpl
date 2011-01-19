@@ -5,10 +5,10 @@
       <h2>Talking about computer science</h2>
     </div>
     <div class="header-right">
-      <a href="mailto:blambeau@gmail.com"><img src="images/mail.png"/></a>
-      <a href="http://twitter.com/blambeau" target="_blank"><img src="images/twitter.png"/></a>
-      <a href="http://blambeau.github.com/" target="_blank"><img src="images/github.png"/></a>
-      <a href="http://revision-zero.org/rss" target="_blank"><img src="images/rss.png"/></a>
+      <a href="mailto:blambeau@gmail.com"><img src="@{images/mail.png}"/></a>
+      <a href="http://twitter.com/blambeau" target="_blank"><img src="@{images/twitter.png}"/></a>
+      <a href="http://blambeau.github.com/" target="_blank"><img src="@{images/github.png}"/></a>
+      <a href="http://revision-zero.org/rss" target="_blank"><img src="@{images/rss.png}"/></a>
     </div>
     <div class="header-clear">
     </div>
