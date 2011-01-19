@@ -30,7 +30,7 @@ Here is a typical blog page, say <code>book/hello_reader.r0</code>, written in "
 
 On the version of the blog that you are currently reading, this code is transformed by wlang as:
 
-<notextile>^{xhtml/coderay/html}{^{redcloth/xhtml}{<<+{book/hello_reader.r0}}}</notextile>
+#<{html}{^{redcloth/xhtml}{<<+{book/hello_reader.r0}}}
 
 Have a look on the different versions now: "here":book#how, on "revision-zero.org":http://www.revision-zero.org/book#how and "the book":http://www.revision-zero.org/downloads/revision-zero.html... WLang adapts itself to the environment. This is made possible because the blog source code is sufficiently abstracts (what needs to be done for links is not explicitely described). Abstraction is the true nature of quality computer science.
 

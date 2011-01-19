@@ -40,9 +40,7 @@ bq. Abstraction is the process or result of generalization by reducing the infor
 
 The last part of this sentence is worth reading! Let me discuss the @{book#how}{example of blog's links}. From the point of view of the blog sources (the format I use for writing these papers), a link is a pair: _identifier_ of a target location and _label_ to render:
 
-<notextile>
-^{xhtml/coderay/html}{%{wlang/dummy}{ Let me discuss my @{book#how}{example of blog's links} }}
-</notextile>
+#<{html}{%{wlang/dummy}{ Let me discuss my @{book#how}{example of blog's links} }}
 
 This abstraction is sufficient: it encloses the relevant information for the practical purpose of what a link _is_ in the blog sources. The way theses links are "implemented" (by a _href and url_ or a _onclick and ajax_) is another story... From a development point of view, abstracting is enforcing a separation between (un)related concerns: _specification_ from _implementation details_, for instance.
 

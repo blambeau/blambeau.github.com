@@ -14,9 +14,7 @@ h3. Revision 0's implementation
 
 This first revision of the web site is pragmatic and simple: it's a simple HTML/CSS file, and something like the following lines in the .htaccess file, providing the first navigation mechanism:
 
-<notextile>
-^{xhtml/coderay/ruby}{<<{htaccess.txt}}
-</notextile>
+#<{text}{<<{htaccess.txt}}
 
 Simple isn't it?? Everything will certainly change in the implementation in a really short-term future but it makes the job for now and has been implemented in a couple of minutes (I'm lying: I don't masterize mod_rewrite at all and it took a lot of time to me to write these simple four lines. It should be read as: <em>[...] it makes the job for now and <b>can</b> be implemented in a couple of minutes</em>).
             
