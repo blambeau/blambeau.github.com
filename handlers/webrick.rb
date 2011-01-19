@@ -2,8 +2,8 @@ require 'rubygems'
 require 'webrick'
 require 'wlang'
 require 'wlang/ext/hash_methodize'
+require File.expand_path('../commons', __FILE__)
 
-WLang::file_extension_map('.r0', 'wlang/xhtml')
 class String
   
   def to_xhtml_link(url, label)

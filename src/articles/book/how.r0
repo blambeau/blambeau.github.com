@@ -1,9 +1,0 @@
-<notextile>
-^{xhtml/coderay/html}{<<{hello_reader.r0}}
-</notextile>
-
-On the version of the blog that you are currently reading, this code is transformed by wlang as:
-
-<notextile>
-^{xhtml/coderay/html}{^{redcloth/xhtml}{<<+{hello_reader.r0}}}
-</notextile>

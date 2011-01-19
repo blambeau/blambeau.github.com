@@ -1,9 +1,25 @@
-require 'rubygems'
-require 'wlang'
-require 'wlang/ext/hash_methodize'
+begin
+  require 'wlang'
+  require 'wlang/ext/hash_methodize'
+rescue LoadError
+  require 'rubygems'
+  retry
+end
 require 'yaml'
 require 'fileutils'
-WLang::file_extension_map('.r0', 'wlang/xhtml')
+
+WLang::dialect('revzero', '.r0') do 
+  ruby_require "cgi", "wlang/dialects/xhtml_dialect" do
+    encoders WLang::EncoderSet::XHtml
+    rules WLang::RuleSet::Basic
+    rules WLang::RuleSet::Encoding
+    rules WLang::RuleSet::Imperative
+    rules WLang::RuleSet::Buffering
+    rules WLang::RuleSet::Context
+    rules WLang::RuleSet::XHtml
+    post_transform "redcloth/xhtml"
+  end
+end
 
 # Some reusable paths
 if ARGV[0] == '--analytics'
@@ -59,4 +75,9 @@ def compose_page(template_file, output_folder, writing, url = writing.identifier
   File.open(File.join(output_folder, target_file_name), 'w') do |io|
     io << WLang::file_instantiate(template_file, context)
   end
+end
+
+if $0 == __FILE__
+  test_r0 = File.expand_path('../test/test.r0', __FILE__)
+  puts WLang::file_instantiate(test_r0, {}, "revzero")
 end
