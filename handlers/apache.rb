@@ -34,7 +34,7 @@ template = File.join($handler_templates, 'static.wtpl')
 
 # Copy public folder to output now
 output = ARGV[0] || File.join($output, 'apache')
-FileUtils.rm_rf(output) if File.exists?(output)
+#FileUtils.rm_rf(output) if File.exists?(output)
 copy_public(output)
 
 # Copy the .htaccess file below to the output folder
@@ -42,6 +42,7 @@ FileUtils.cp(File.join($here, 'apache_htaccess.txt'), File.join(output, '.htacce
 
 # Converts each writing to an html file, using the static.wtpl template
 $info.writings.each_with_index {|writing, index| 
+  puts "Generating #{writing}"
   compose_page(template, output, writing)
   compose_page(template, output, writing, index.to_s)
   compose_page(template, output, writing, "-1") if index==$info.writings.size-1
@@ -49,6 +50,7 @@ $info.writings.each_with_index {|writing, index|
 
 # Converts the other ones
 $info.others.each {|writing| 
+  puts "Generating #{writing}"
   template = File.join($handler_templates, "#{writing.template}.wtpl")
   compose_page(template, output, writing, writing.identifier, wlang_context(writing, $info.writings.size))
 }

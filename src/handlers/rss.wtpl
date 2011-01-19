@@ -9,7 +9,7 @@
           <item>
               <title>${w.title}</title>
               <description>
-                &{^{redcloth/xhtml}{<<+{../articles/+{w.identifier}.r0}}}
+                <<+{../articles/+{w.identifier}.r0}}
               </description>
               <pubDate>${w.date}</pubDate>
               <link>http://www.revision-zero.org/${w.identifier}</link>
