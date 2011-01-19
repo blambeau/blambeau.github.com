@@ -106,8 +106,3 @@ def compose_page(template_file, output_folder, writing, url = writing.identifier
     io << WLang::file_instantiate(template_file, context)
   end
 end
-
-if $0 == __FILE__
-  test_r0 = File.expand_path('../test/test.r0', __FILE__)
-  puts WLang::file_instantiate(test_r0, {}, "revzero")
-end
