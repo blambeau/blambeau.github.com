@@ -8,21 +8,15 @@ h3. How does it work?
 
 A bit of CSS:
 
-<notextile>
-^{xhtml/coderay/css}{ul#writings li.current a { text-decoration: underline; font-weight: bold }}
-</notextile>
+#<{css}{ul#writings li.current a { text-decoration: underline; font-weight: bold }}
 
 A bit of javascript (many thanks to "jquery":http://www.query.com/ for their job):
 
-<notextile>
-^{xhtml/coderay/javascript}{<<{../public/js/allinone.js}}
-</notextile>
+#<{../public/js/allinone.js}
 
 And, for images we embed them as base64 (more information and tools about this technique "on this site":http://www.greywyvern.com/code/php/binary2base64):
 
-<notextile>
-^{xhtml/coderay/html}{<img src="data:image/png;base64,..."></img>}
-</notextile>
+#<{html}{<img src="data:image/png;base64,..."></img>}
 
 h3(#how). Where is wlang in here ??
 
@@ -32,7 +26,7 @@ What does independence mean in this book context? It means that the blog sources
 
 Here is a typical blog page, say <code>book/hello_reader.r0</code>, written in "textile markup language":http://en.wikipedia.org/wiki/Textile_(markup_language), but containing wlang tags (<code>\@{abstract_link\}{label of the link}</code>, for instance).
 
-<notextile>^{xhtml/coderay/html}{<<{book/hello_reader.r0}}</notextile>
+#<{book/hello_reader.r0}
 
 On the version of the blog that you are currently reading, this code is transformed by wlang as:
 
@@ -44,13 +38,9 @@ h3(#further). Going further...
 
 WLang can do a lot more... For example, the two code exerpts above are generated using the following wlang source codes:
 
-<notextile>
-^{xhtml/coderay/html}{%{wlang/dummy}{^{xhtml/coderay/html}{ <<{hello_reader.r0} }}}
-</notextile>
+#<{book/source1.r0}
 
-<notextile>
-^{xhtml/coderay/html}{%{wlang/dummy}{^{xhtml/coderay/html}{ ^{redcloth/xhtml}{ <<+{hello_reader.r0} } }}}
-</notextile>
+#<{book/source2.r0}
 
 No so difficult in fact, the code above use the following wlang tags (see @{http://blambeau.github.com/wlang/specification.html}{wlang documentation} for details):
 

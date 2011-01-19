@@ -45,9 +45,7 @@ The Ruby implementation of the tool I've built to help me in my writing task sim
   
 As I did not have a _wlang_ implementation in Ruby so far, I've implemented only the subset presented before. Ruby is a fantastic programming language: the core method of the corresponding class looks like this:
 
-<notextile>
-^{xhtml/coderay/ruby}{<<{web_duck_typing.rb}}
-</notextile>
+#<{web_duck_typing/web_duck_typing.rb}
 
 The entire code of this article being really specific to what I'm doing for this blog, I won't give it for download. However, feel free to send me an email if you want to have a copy (under a GPL licence). I'm also pretty sure that a more complete Ruby implementation of _wlang_ will appear here soon! 
 

@@ -2,24 +2,11 @@ As I've said previously (in the @{topics0}{abstract of this paper}), each time y
 
 h3. Hello World in PHP 
 
-First of all: you can try this example @{statics/wlang/helloworld.php}{here}. 
+First of all: you can try this example @{sandbox/helloworld.php}{here}. 
 
 Assume you've written a <code>helloworld.php</code> that invites the user to enter his name and simply says hello when the form is submitted:
 
-<notextile>
-^{xhtml/coderay/html}{
-<html>
-  <head><title>Hello world in PHP</title></head>
-  <body>
-    <h1>Hello <?= $_POST['name'] ?></h1>
-    <form action="helloworld.php" method="POST">
-      <input type="text" name="name"/>
-      <input type="submit" value="Submit"/>
-    </form>
-  </body>
-</html>
-}
-</notextile>
+#<{wlang/helloworld.php}
 
 What does PHP when it executes (or interprets) such a page (which is commonly called a <em>server page</em>, and similar examples can be found in JSP, ASP, Ruby On Rails, etc.) ? In the example at hand, it replaces the whole block<b><code><?= $POST['name'] ?></code></b> by what the user has entered in the form under the field called 'name' (which is the actual execution of the PHP code <b><code>$POST['name']</code></b>). The resulting page is then sent to the browser which interprets it and this interpretation leads to the rendering of the page on your display. 
 
@@ -44,8 +31,7 @@ First of all: if you want to learn more, read the "Wikipedia entry on SQL inject
 
 Assume this time that your application allows a user to display the list of its recent buying. For this, many developers build SQL queries by string concatenations. The JAVA code excerpt below provides a typical example:
 
-<notextile>
-^{xhtml/coderay/java}{
+#<{java}{
 String buyerName = ...                  // some buyer name received previously
 Connection c = ...                      // get a JDBC connection
 String sql = "SELECT * FROM buying " +
@@ -55,32 +41,21 @@ Statement st = c.createStatement(sql)   // create a query statement
 ResultSet rs = st.execute()             // execute it and get result
 ...                                     // display results to the user
 }
-</notextile>
   
 As previously, this program must be considered incorrect. If my name is O'Neil for example, it fails with a SQLException. Indeed, the created query will be the one below, which is not syntactically valid: the quote between O and Neil disturbs the query parser of the database engine, which raises an error.
 
-<notextile>
-^{xhtml/coderay/sql}{
-SELECT * FROM buying WHERE buyerName = 'O'Neil'
-}
-</notextile>
+#<{sql}{SELECT * FROM buying WHERE buyerName = 'O'Neil'}
 
 Assume now that I've got write access to the _buyerName_ variable, that is, that I can choose its value (because it comes from a GUI or an HTML form, it is shown as a parameter in the query string of a web application, ...). More dangerous than before, nothing prevents me to choose a value like ... this: 
 
-<notextile>
-^{xhtml/coderay/sql}{
-'; DELETE FROM buying WHERE buyerName='concurrent
-}
-</notextile>
+#<{sql}{'; DELETE FROM buying WHERE buyerName='concurrent}
 
 and the result will be to execute the following query, with the obvious dramatic consequences.
 
-<notextile>
-^{xhtml/coderay/sql}{
+#<{sql}{
 SELECT * FROM buying WHERE buyerName = ''; 
 DELETE FROM buying WHERE buyerName='concurrent'
 }
-</notextile>
 
 What is this to say? That building a query be concatenation of strings is generating code (here, it will be executed by a database engine). And, once again, that writing a program that generates correct and secure code is not an easy task: a program that looks correct sometimes is not!
 
@@ -88,8 +63,7 @@ You probably know the solution to this problem as well. There's two solutions in
 
 The second way is probably considered as the best practice, and consists in creating what is called <em>prepared statements</em>, as in the following example:
 
-<notextile>
-^{xhtml/coderay/java}{
+#<{java}{
 String buyerName = ...         
 Connection c = ...             
 String sql = "SELECT * FROM buying WHERE buyerName = ?"
@@ -97,18 +71,15 @@ PreparedStatement st = c.prepareStatement(sql)
 st.setString(1, buyerName);
 ResultSet rs = st.execute()
 }
-</notextile>
 
 Creating queries this way also solves the problem: question mark are replaced by values at query execution time; this replacement may be seen as taking care of encoding values properly, based on their type (so that Strings will be first backquoted and then enclosed inside single quotes, for example).
 
 Forgetting to encode data properly when creating SQL queries by string concatenation leads to the well known security attacks called "SQL injection attacks" Moreover, let me insist on one fact: <b>it is not a problem specific to Java and you can introduce  security holes of this kind with almost all of the best languages.</b> For example, in Ruby, the (much more developer-friendly) string below suffers the same kind of problem (Ruby automatically replaces the <code>#{buyerName}</code> part of this string by the invocation of <code>buyerName.to_s</code>):
 
-<notextile>
-^{xhtml/coderay/java}{
+#<{java}{
 buyerName = ...
 sql = "SELECT * FROM buying WHERE buyerName='#{buyerName}'" 
 }
-</notextile>
 
 |<code>Conclusion?</code>|As backquoting is left to their responsibility, dramatic consequences of such attacks are due to developper's errors. At least, it seems to be the conclusion of the recent "Experts Announce Agreement on the 25 Most Dangerous Programming Errors":http://www.sans.org/top25errors/.|
 

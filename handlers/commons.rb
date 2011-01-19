@@ -5,6 +5,12 @@ rescue LoadError
   require 'rubygems'
   retry
 end
+begin
+  require "albino"
+rescue LoadError
+  require 'rubygems'
+  retry
+end
 require 'yaml'
 require 'fileutils'
 
@@ -18,6 +24,30 @@ WLang::dialect('revzero', '.r0') do
     rules WLang::RuleSet::Context
     rules WLang::RuleSet::XHtml
     post_transform "redcloth/xhtml"
+    
+    # Add the rule to code highlight things
+    rule "#<" do |parser, offset|
+      uri, lexer = nil
+      uri, reached = parser.parse(offset, "wlang/uri")
+      if parser.has_block?(reached)
+        lexer = uri.to_sym
+        text, reached = parser.parse_block(reached)
+        highlighted = Albino.colorize(text, lexer)
+        ["<notextile>#{highlighted}</notextile>", reached]
+      else
+        file = parser.template.file_resolve(uri, false)
+        if File.file?(file) and File.readable?(file)
+          lexer = File.extname(file)[1..-1].to_sym
+          lexer = :text if lexer == :r0
+          highlighted = Albino.colorize(File.read(file), lexer)
+          ["<notextile>#{highlighted}</notextile>", reached]
+        else
+          text = parser.parse(offset, "wlang/dummy")[0]
+          parser.error(offset, "unable to apply highligh rule #<{#{text}}, not a file or not readable (#{file})")
+        end
+      end
+    end
+    
   end
 end
 
