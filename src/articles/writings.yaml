@@ -83,7 +83,7 @@ writings:
   date: 2011/01/18 - 09:19
   category: Ruby
   keywords: [ "ruby", "Kernel", "shell" ]
-- identifier: reuse_or_not_reuse
+- identifier: reuse
   title: Reuse or ... no reuse ?
   short: Reuse or ... no reuse ?
   date: 2011/01/18 - 16:53

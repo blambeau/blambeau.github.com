@@ -1,0 +1,32 @@
+With colleagues we have a somewhat recurrent discussion about _software reuse_. Discussion has raised once again recently, so that I decided to summarize my personal point of view on this blog. After a short review of a good (yet already old) paper from the scientific litterature, I would like to discuss the specific reuse-related difficulties I've almost always encountered in my own research work and my two-cents proposal to have more effective reuse in practice.
+
+h3. A short review of _software reuse_
+
+The concept of _software reuse_ is not new and many writings already exist about this. Probably the better I've read so far is a review due to Charles W. Krueger published in 1992 and simply titled _Software Reuse_[1]. The abstract of the paper starts with the following paragraph:
+
+bq. Software reuse is the process of creating software systems from existing software rather than building software systems from scratch. This simple yet powerful vision was introduced in 1968. Software reuse has, however, failed to become a standard software engineering practice. In an attempt to understand why, researchers have renewed their interest in software reuse and in the obstacles to implementing it. 
+
+The paper is actually a review of the research effors at that time about _reuse techniques_. The paper discusses the ``software abstractions'' that each of these techniques introduces. Also, it classifies them according to the way such abstractions are _selected_, _specialized_ and then _integrated_ when the reusing process takes place. Interestingly, the paper calls for gauging the effectiveness of such abstractions in terms of _cognitive distance_, that is, the _intellectual effort required (by software developers) to use them_. Abstractions discussed in the body of the paper are:
+
+bq. _high-level languages_, _design and code scavenging_, _source code components_, _software schemas_, _application generators_, _very high-level languages_, _transformational systems_ and _software architectures_.
+
+h4. A quick retrospective
+
+I suppose that in 2011, no one would seriously argue that _software reuse has failed to become a standard software engineering practice_. Following the list of software abstractions mentionned in the paper: 
+
+* We have good _high level languages_ (from _C_ to _ruby_, _clojure_ and _python_, also via _java_, _C#_, and so on. to list the ones I use/know),
+* Most of them come with effective abstractions to build and share "abstract data types" and other "reusable libraries" (which are a kind of _source code components_: java's .jars, ruby gems, ...),
+* The object-oriented paradigm gave us reusable patterns (a kind of _design scavenging_: think to design patterns[2]) which have had an impact fay beyond object-oriented programming itself,
+* We also have a lot of reusable frameworks (somewhere between _source code components_ and _software architectures_), probably the most common being _web frameworks_ (ruby on rails, django, struts, ASP.net, ...)
+* Every day, the web gives use better ways to apply _code scavenging_ (think to "github's gist":https://gist.github.com/ or "google code search":http://www.google.com/codesearch) or 
+* Integrated Development Environment come bundled with _application generators_ (wizards that you find in Eclipse and Visual Studio are worth mentionning). In note in passing that my @{noe}{recent post about Noe} is an example of software reuse, being located somewhere between "controlled _code scavenging_" and _application generators_.
+* The concept of _very high level languages_ (VHLL) is more difficult to capture precisely and lead to software reuse that is very specific to specialized domains. However, I would say that the recent advent of Domain Specific Languages (DSLs) and good support for them in dynamic languages (ruby, python, clojure, ...) can seen as promoting and helping buinding VHLLs.
+
+
+
+h3. References
+
+fn1. Charles W. Krueger, _Software Reuse_, ACM Computing Surveys, Volume 24 Issue 2, June 1992
+
+fn2. ...
+ 
