@@ -1,4 +1,4 @@
 task :apache do
-  `ruby handlers/apache.rb --analytics output/apache`
-  `ruby handlers/allinone.rb output/apache/download/revision-zero.html`
+  `ruby handlers/apache.rb --analytics ../revision-zero`
+  `ruby handlers/allinone.rb ../revision-zero/downloads/revision-zero.html`
 end
