@@ -42,7 +42,7 @@ FileUtils.cp(File.join($here, 'apache_htaccess.txt'), File.join(output, '.htacce
 
 # Converts each writing to an html file, using the static.wtpl template
 $info.writings.each_with_index {|writing, index| 
-  puts "Generating #{writing}"
+  puts "Generating #{writing.identifier}"
   compose_page(template, output, writing)
   compose_page(template, output, writing, index.to_s)
   compose_page(template, output, writing, "-1") if index==$info.writings.size-1
@@ -50,7 +50,7 @@ $info.writings.each_with_index {|writing, index|
 
 # Converts the other ones
 $info.others.each {|writing| 
-  puts "Generating #{writing}"
+  puts "Generating #{writing.identifier}"
   template = File.join($handler_templates, "#{writing.template}.wtpl")
   compose_page(template, output, writing, writing.identifier, wlang_context(writing, $info.writings.size))
 }
