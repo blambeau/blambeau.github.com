@@ -19,10 +19,10 @@ I suppose that in 2011, no one would seriously argue that _software reuse has fa
 * The object-oriented paradigm gave us reusable patterns (a kind of _design scavenging_: think to design patterns[2]) which have had an impact fay beyond object-oriented programming itself,
 * We also have a lot of reusable frameworks (somewhere between _source code components_ and _software architectures_), probably the most common being _web frameworks_ (ruby on rails, django, struts, ASP.net, ...)
 * Every day, the web gives use better ways to apply _code scavenging_ (think to "github's gist":https://gist.github.com/ or "google code search":http://www.google.com/codesearch) or 
-* Integrated Development Environment come bundled with _application generators_ (wizards that you find in Eclipse and Visual Studio are worth mentionning). In note in passing that my @{noe}{recent post about Noe} is an example of software reuse, being located somewhere between "controlled _code scavenging_" and _application generators_.
-* The concept of _very high level languages_ (VHLL) is more difficult to capture precisely and lead to software reuse that is very specific to specialized domains. However, I would say that the recent advent of Domain Specific Languages (DSLs) and good support for them in dynamic languages (ruby, python, clojure, ...) can seen as promoting and helping buinding VHLLs.
-
-
+* Integrated Development Environment come bundled with _application generators_ (wizards that you find in Eclipse and Visual Studio are worth mentionning). Parser generators are common tools as well. In note in passing that my @{noe}{recent post about Noe} is an example of software reuse, somewhere between "controlled _code scavenging_" and _application generators_.
+* The concept of _very high level languages_ (VHLL) is more difficult to capture precisely and may lead to software reuse that is very specific to specialized domains. However, I would say that the recent advent of Domain Specific Languages (DSLs) and good support for them in dynamic languages (ruby, python, clojure, ...) can seen as promoting and helping buinding VHLLs.
+* Transformational systems are 
+* Last, _software schemas_. I must confess not being familiar with them. The paper is not that clear about the concept and a google search does not return relevant results nowadays. I would like to know if they have had an impact on current software engineering practices. So if someone knows something about, just let me know!
 
 h3. References
 
