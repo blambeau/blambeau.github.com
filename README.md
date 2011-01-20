@@ -13,9 +13,9 @@ This blog is a static website generated using the powerful [wlang](https://githu
     ruby handlers/static.rb
 
     # will generate a clean dynamic version of the website running on 
-    # http://127.0.0.1:8080. This is the the one I use to write my posts 
+    # http://127.0.0.1:4567. This is the the one I use to write my posts 
     # easily
-    ruby handlers/webrick.rb
+    ruby handlers/sinatra.rb
 
 ## Licence
 

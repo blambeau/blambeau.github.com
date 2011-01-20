@@ -5,6 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
 <mate name="keywords" content="computer-science, +{(writing.keywords || ['ruby']).join(', ')}"/>  
 <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+<script type="text/javascript" src="js/jquery-1.4.1.min.js"></script>
 </head>
 <body>
     
