@@ -1,0 +1,19 @@
+<div class="leave-a-comment">
+  <h2>Leave a comment</h2>
+  <div style="clear:both"></div>
+</div>
+
+<p>The form below allows you to leave me a comment about the post above. 
+Comments are not automatically rendered below posts, but I'll be happy 
+to address interesting questions/issues. Simply leave me an email if you 
+want a personal answer.</p>
+
+<form id="leave-a-comment" action="/services/comment" method="POST">
+<input type="hidden" name="writing" value="{writing.identifier}"/>
+<label for="nickname">Nickname</label> 
+<input type="text" name="nickname" value=""/>
+<label for="mail">Email (optional)</label> 
+<input type="text" name="mail" value=""/>
+<label for="comment">Comment</label>
+<textarea name="comment"></textarea>
+</form>

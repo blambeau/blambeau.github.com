@@ -26,6 +26,7 @@
 
     <div class="middle">
 <<+{+{middle_template}.wtpl share all}
+?{!allinone}{<<+{comment.wtpl share all}}
     </div>
 
     <div style="clear: both;"> </div>

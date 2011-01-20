@@ -8,7 +8,7 @@
 </head>
 <body>
     
-<<+{../templates/body.wtpl share all with middle_template: 'article'}
+<<+{../templates/body.wtpl share all with allinone:false, middle_template:'article'}
     
 ?{analytics}{
   <script type="text/javascript">

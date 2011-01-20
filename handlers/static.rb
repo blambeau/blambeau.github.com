@@ -31,19 +31,25 @@ class String
 
 end
 
-# The static template to use
-template = File.join($handler_templates, 'static.wtpl')
+begin
+  # The static template to use
+  template = File.join($handler_templates, 'static.wtpl')
 
-# Copy public folder to output now
-output = ARGV[0] || File.join($output, 'static')
-FileUtils.rm_rf(output) if File.exists?(output)
-copy_public(output)
+  # Copy public folder to output now
+  output = ARGV[0] || File.join($output, 'static')
+  FileUtils.rm_rf(output) if File.exists?(output)
+  copy_public(output)
 
-# Converts each writing to an html file, using the static.wtpl template
-$info.writings.each {|writing| compose_page(template, output, writing)}
+  # Converts each writing to an html file, using the static.wtpl template
+  $info.writings.each {|writing| compose_page(template, output, writing)}
 
-# Converts the other ones
-$info.others.each {|writing| 
-  template = File.join($handler_templates, "#{writing.template}.wtpl")
-  compose_page(template, output, writing, writing.identifier, wlang_context(writing, $info.writings.size))
-}
+  # Converts the other ones
+  $info.others.each {|writing| 
+    template = File.join($handler_templates, "#{writing.template}.wtpl")
+    compose_page(template, output, writing, writing.identifier, wlang_context(writing, $info.writings.size))
+  }
+rescue WLang::Error => ex
+  puts ex.message
+  puts ex.wlang_backtrace
+  puts ex.backtrace
+end

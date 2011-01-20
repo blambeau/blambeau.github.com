@@ -1,6 +1,6 @@
 task :generate do
-  Process.wait Kernel.spawn("ruby -I. -I../wlang/lib handlers/apache.rb --analytics output/official")
-  Process.wait Kernel.spawn("ruby -I. -I../wlang/lib handlers/allinone.rb output/official/downloads/revision-zero.html")
+  Process.wait Kernel.spawn("ruby -I. -I../wlang/lib handlers/apache.rb --analytics output/official/public")
+  Process.wait Kernel.spawn("ruby -I. -I../wlang/lib handlers/allinone.rb output/official/public/downloads/revision-zero.html")
 end
 
 task :deploy => :generate do

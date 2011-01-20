@@ -88,6 +88,7 @@ a:hover {  color: #000; cursor: pointer;}
 	margin-left: 10px;
 	line-height: 20px;
 }
+.middle .leave-a-comment,
 .middle .writing-title {
 	background: #CC0001 url(../images/contenth2.jpg) repeat-x;
 	color: #fff;	
@@ -98,7 +99,9 @@ a:hover {  color: #000; cursor: pointer;}
 	line-height: 25px;
 	font: normal 14px Verdana, 'Trebuchet MS', Sans-serif;
 }
-.middle .writing-title h2, .middle .writing-title .date {
+.middle .leave-a-comment h2,
+.middle .writing-title h2, 
+.middle .writing-title .date {
 	padding: 0px;
 	margin: 0px;
 	font: normal 14px Verdana, 'Trebuchet MS', Sans-serif;
@@ -176,9 +179,26 @@ padding: 5px 20px 10px 20px;
 #footer .footer-right { float: right;}
 #footer .footer-clear { clear:both; }
 
-
-
-
+#leave-a-comment label, 
+#leave-a-comment input,
+#leave-a-comment textarea {
+  font: 13px Arial, Verdana, Tahoma, sans-serif;	
+	display: block;
+	padding: 2px;
+	width: 710px;
+}
+#leave-a-comment input,
+#leave-a-comment textarea {
+	margin-left: 25px;
+	width: 685px;
+}
+#leave-a-comment label {
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+#leave-a-comment textarea {
+	height: 200px;
+}
 
 
 
