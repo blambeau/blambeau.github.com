@@ -8,7 +8,7 @@ Comments are not automatically rendered below posts, but I'll be happy
 to address interesting questions/issues. Simply leave me an email if you 
 want a personal answer.</p>
 
-<form id="leave-a-comment" method="POST">
+<form id="leave-a-comment" method="POST" enctype="multipart/form-data" action="/leave-a-comment">
   <input type="hidden" name="writing" value="{writing.identifier}"/>
   <label for="nickname">Nickname</label> 
   <input type="text" name="nickname" value=""/>
@@ -19,20 +19,25 @@ want a personal answer.</p>
   <input type="submit" value="Submit"/>
 </form>
 <script type="text/javascript"> 
+  function leave_a_comment() {
+    data = $("form#leave-a-comment").serialize();
+    $.ajax({type: "POST", 
+            url: "/leave-a-comment", 
+            data: request_data, 
+            dataType: "json",
+      error: function(data) {
+        alert("Unable to send data: " + data);
+      },
+      success: function(data) {
+        alert("Everything fine!: " + data);
+      }
+    });
+    return false;
+  };
   $(document).ready(function() {
     $("form#leave-a-comment").submit(function() {
-      data = $("form#leave-a-comment").serialize();
-      $.ajax({type: "POST", 
-              url: "/leave-a-comment", 
-              data: request_data, 
-              dataType: "json",
-          error: function(data) {
-            alert("Unable to send data: " + data);
-          },
-          success: function(data) {
-            alert("Everything fine!: " + data);
-          }
-        });
-      });
+      leave_a_comment();
+      return false;
+    });
   });
 </script> 
