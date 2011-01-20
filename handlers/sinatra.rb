@@ -34,6 +34,20 @@ get '/:requested' do
   end
 end
 post '/leave-a-comment' do
-  puts params.inspect
-  "ok"
+  nick, comment = params["nickname"], params["comment"]
+  nick, comment = nick.strip, comment.strip
+  from = params["mail"].strip
+  from = from.empty? ? "info@revision-zero.org" : from
+  if nick.empty? or comment.empty?
+    "ko"
+  else
+    begin
+      require 'net/smtp'
+      smtp_conn = Net::SMTP.new("localhost", 25)
+      smtp_conn.open_timeout = 3
+      smtp_conn.start
+      smtp_conn.send_message("from: #{nick}\n\n#{comment}", from, "blambeau@gmail.com")
+      smtp_conn.finish
+    "ok"
+  end
 end

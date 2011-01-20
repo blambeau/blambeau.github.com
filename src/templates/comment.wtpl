@@ -16,28 +16,27 @@ want a personal answer.</p>
   <input type="text" name="mail" value=""/>
   <label for="comment">Comment</label>
   <textarea name="comment"></textarea>
-  <input type="submit" value="Submit"/>
+  <input type="button" onclick="javascript:leave_a_comment();" value="Submit" class="button"/>
+  <div class="feedback"></div>
 </form>
 <script type="text/javascript"> 
   function leave_a_comment() {
-    data = $("form#leave-a-comment").serialize();
     $.ajax({type: "POST", 
             url: "/leave-a-comment", 
-            data: request_data, 
-            dataType: "json",
-      error: function(data) {
-        alert("Unable to send data: " + data);
+            data: $("form#leave-a-comment").serialize(), 
+            dataType: "text/plain",
+      error: function(data, textStatus, XMLHttpRequest) {
+        $('form#leave-a-comment .feedback').html('<p class="ko">Sorry, an error occured. please try later!</p>');
       },
-      success: function(data) {
-        alert("Everything fine!: " + data);
+      success: function(data, textStatus, XMLHttpRequest) {
+        if (data == "ok") {
+          $('form#leave-a-comment .button').hide();
+          $('form#leave-a-comment .feedback').html('<p class="ok">Thank you for your comment!</p>');
+        } else {
+          $('form#leave-a-comment .feedback').html('<p class="ko">Please provide a nickname and a message!</p>');
+        }
       }
     });
     return false;
   };
-  $(document).ready(function() {
-    $("form#leave-a-comment").submit(function() {
-      leave_a_comment();
-      return false;
-    });
-  });
 </script> 
