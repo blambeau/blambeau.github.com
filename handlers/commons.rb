@@ -48,6 +48,20 @@ WLang::dialect('revzero', '.r0') do
       end
     end
     
+    rule "@?" do |parser,offset| 
+      require 'uri'
+      link, reached = parser.parse(offset)
+      if parser.has_block?(reached)
+        term, reached = parser.parse_block(reached)
+      else
+        term = link
+      end
+      link = <<-LINK.strip
+        <a href="http://lmgtfy.com/?q=#{URI.escape(link)}" target="_blank">#{term}</a>
+      LINK
+      [ link, reached ]
+    end
+    
   end
 end
 

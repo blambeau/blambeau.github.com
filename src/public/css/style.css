@@ -129,6 +129,12 @@ a:hover {  color: #000; cursor: pointer;}
 	margin-top: 15px;
   margin-bottom: 0px;
 }
+.middle h4 a, .middle h4 a:visited {
+	color: #444;
+}
+.middle h4 a:hover {
+  color: #2A84E5; text-decoration: none;
+}
 .middle p, .middle pre, .middle table {
 	padding: 10px 15px 0px 20px;
 	overflow: hidden;

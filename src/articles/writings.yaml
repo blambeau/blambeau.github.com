@@ -7,6 +7,19 @@ categories:
 - Free Software
 - Revision-Zero.org
 - Ruby
+programming_languages: 
+  - C
+  - Camel
+  - Clojure
+  - Factor
+  - Go
+  - Haskell
+  - Java
+  - Javascript
+  - Lua
+  - Python
+  - Ruby
+  - Smalltalk
 writings: 
 - identifier: born
   title: Welcome to Revision-Zero.org!
@@ -83,6 +96,12 @@ writings:
   date: 2011/01/18 - 09:19
   category: Ruby
   keywords: [ "ruby", "Kernel", "shell" ]
+- identifier: reuse
+  title: Software Reuse, in theory
+  short: Software Reuse, in theory
+  date: 2011/01/18 - 16:53
+  category: Architecture
+  keywords: [ "reuse", "software reuse", "architecture", "process communication" ]
 others:
 - identifier: '404'
   title: Forward reference detected
