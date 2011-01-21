@@ -4,9 +4,9 @@
 </div>
 
 <p>The form below allows you to leave me a comment about the post above. 
-Comments are not automatically rendered below posts, but I'll be happy 
-to address interesting questions/issues. Simply leave me an email if you 
-want a personal answer.</p>
+Comments are not automatically rendered below posts, but I would be happy 
+to address interesting questions/issues. Simply leave me a contact address 
+if you prefer a personal answer.</p>
 
 <form id="leave-a-comment" method="POST" enctype="multipart/form-data" action="/leave-a-comment">
   <input type="hidden" name="writing" value="{writing.identifier}"/>
