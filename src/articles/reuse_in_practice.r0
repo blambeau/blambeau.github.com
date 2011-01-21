@@ -1,0 +1,18 @@
+h4. High Level Languages
+
+From _C_ to _ruby_, _clojure_ and _python_, also via _smalltalk_, _java_, _C#_, and so on., high level languages are numerous and various. Each one comes with its set of tools to raise the abstraction level (sometimes in certain respects only, like providing good abstractions for concurrency, or low-level tasks), which is good!
+
+However. If high level languages effectively help reducing the first kind of intellectual effort (from conceptualization to specification), I would add that the second kind (from specification to runnable code) is unfortunately the poor relation. Indeed, almost all new languages require installing an environment (an interpreter or virtual machine, for example), which in turn requires a lot of knowledge about the language itself and its ecosystem, which is somewhat insane.
+
+To explain why, let me take an example. Imagine that I have implemented an absolutely terrific and lovely graph layout algorithm that fits your need. You should of course be able to reuse it without having to understand its implementation! Now, imagine that I've written it in ruby / python / clojure / Objective-C / Camel / Haskell / Go (choose the one that you *don't know at all*). Even if my program takes a graph description on standard input and generate its results on standard output (i.e. a pure black-box function), your intellectual effort to reuse it depends on *your own knowledge of the language I used, or at least of its ecosystem*. This state of affairs definitely hurts reuse!
+
+My two cents proposal: *languages execution environments must become first-class citizens of the operating system*. Targeting package management systems is certainly a good clue (I've recently learned that "Lucas Nussbaum has decided to quit ruby packaging for Debian":http://www.lucas-nussbaum.net/blog/?p=617. It's sad!). One-click installers, and tools that encapsulate execution environment inside pure executables are worth considering as well. 
+
+Why not having support from the OS itself to hide the existence of so many languages and the way programs have to be executed? Wouldn't you enjoy the following scenario, whatever the language hidden behing the @.gsd@ extension?
+
+#<{sh}{
+% curl http://revision-zero.org/graph_layout.gsd
+% chmod +x graph_layout.gsd
+% ./graph_layout.gsd mygraph.xml
+}
+

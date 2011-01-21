@@ -7,6 +7,19 @@ categories:
 - Free Software
 - Revision-Zero.org
 - Ruby
+programming_languages: 
+  - C
+  - Camel
+  - Clojure
+  - Factor
+  - Go
+  - Haskell
+  - Java
+  - Javascript
+  - Lua
+  - Python
+  - Ruby
+  - Smalltalk
 writings: 
 - identifier: born
   title: Welcome to Revision-Zero.org!
@@ -84,8 +97,8 @@ writings:
   category: Ruby
   keywords: [ "ruby", "Kernel", "shell" ]
 - identifier: reuse
-  title: Reuse or ... no reuse ?
-  short: Reuse or ... no reuse ?
+  title: Software Reuse, in theory
+  short: Software Reuse, in theory
   date: 2011/01/18 - 16:53
   category: Architecture
   keywords: [ "reuse", "software reuse", "architecture", "process communication" ]
