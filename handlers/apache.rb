@@ -29,28 +29,34 @@ class String
 
 end
 
-# The static template to use
-template = File.join($handler_templates, 'static.wtpl')
+begin
+  # The static template to use
+  template = File.join($handler_templates, 'static.wtpl')
 
-# Copy public folder to output now
-output = ARGV[0] || File.join($output, 'apache')
-#FileUtils.rm_rf(output) if File.exists?(output)
-copy_public(output)
+  # Copy public folder to output now
+  output = ARGV[0] || File.join($output, 'apache')
+  #FileUtils.rm_rf(output) if File.exists?(output)
+  copy_public(output)
 
-# Copy the .htaccess file below to the output folder
-FileUtils.cp(File.join($here, 'apache_htaccess.txt'), File.join(output, '.htaccess'))
+  # Copy the .htaccess file below to the output folder
+  FileUtils.cp(File.join($here, 'apache_htaccess.txt'), File.join(output, '.htaccess'))
 
-# Converts each writing to an html file, using the static.wtpl template
-$info.writings.each_with_index {|writing, index| 
-  puts "Generating #{writing.identifier}"
-  compose_page(template, output, writing)
-  compose_page(template, output, writing, index.to_s)
-  compose_page(template, output, writing, "-1") if index==$info.writings.size-1
-}
+  # Converts each writing to an html file, using the static.wtpl template
+  $info.writings.each_with_index {|writing, index| 
+    puts "Generating #{writing.identifier}"
+    compose_page(template, output, writing)
+    compose_page(template, output, writing, index.to_s)
+    compose_page(template, output, writing, "-1") if index==$info.writings.size-1
+  }
 
-# Converts the other ones
-$info.others.each {|writing| 
-  puts "Generating #{writing.identifier}"
-  template = File.join($handler_templates, "#{writing.template}.wtpl")
-  compose_page(template, output, writing, writing.identifier, wlang_context(writing, $info.writings.size))
-}
+  # Converts the other ones
+  $info.others.each {|writing| 
+    puts "Generating #{writing.identifier}"
+    template = File.join($handler_templates, "#{writing.template}.wtpl")
+    compose_page(template, output, writing, writing.identifier, wlang_context(writing, $info.writings.size))
+  }
+rescue WLang::Error => ex
+  puts ex.message
+  puts ex.wlang_backtrace
+  puts ex.backtrace
+end
