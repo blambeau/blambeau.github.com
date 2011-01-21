@@ -4,6 +4,6 @@ task :generate do
 end
 
 task :deploy => :generate do
-  puts `cd output/official && git commit -a -m "RevZero regenerated." && git push origin revzero`
+  puts `cd output/official && git add * && git commit -a -m "RevZero regenerated." && git push origin revzero`
   puts `rvm 1.8.7, ruby /usr/bin/aello-invoke revzero`
 end
