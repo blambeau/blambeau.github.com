@@ -1,22 +1,46 @@
-With colleagues we have a somewhat recurrent discussion about _software reuse_. Discussion has raised once again recently, so that I decided to summarize my personal point of view on this blog. After a short review of a good (yet already old) paper from the scientific litterature, I would like to discuss the specific reuse-related difficulties I've almost always encountered in my own research work and my two-cents proposal to have more effective reuse in practice.
+With colleagues we have a somewhat recurrent discussion about _software reuse_. Discussion has raised once again recently, so that I decided to summarize my personal point of view on this blog. After a short review of a good (yet already old) paper from the scientific literature, I would like to discuss the specific difficulties I've almost always encountered in my own work and my two-cents proposal to have more effective reuse in practice.
 
-h3. A short review of _software reuse_
+h3. A short review of a survey
 
-The concept of _software reuse_ is not new and many writings already exist about this. Probably the better I've read so far is a review due to Charles W. Krueger published in 1992 and simply titled _Software Reuse_[1]. The abstract of the paper starts with the following paragraph:
+The concept of _software reuse_ is not new and many writings already exist about it. Probably the better I've read so far is a review due to Charles W. Krueger published in 1992 and simply entitled _Software Reuse_[1]. The abstract of the paper starts with the following paragraph:
 
-bq. Software reuse is the process of creating software systems from existing software rather than building software systems from scratch. This simple yet powerful vision was introduced in 1968. Software reuse has, however, failed to become a standard software engineering practice. In an attempt to understand why, researchers have renewed their interest in software reuse and in the obstacles to implementing it. 
+bq. Software reuse is the process of creating software systems from existing software rather than building software systems from scratch. This simple yet powerful vision was introduced in 1968 [2]. Software reuse has, however, failed to become a standard software engineering practice. In an attempt to understand why, researchers have renewed their interest in software reuse and in the obstacles to implementing it. 
 
-The paper is actually a review of the research effors at that time about _reuse techniques_. The paper discusses the ``software abstractions'' that each of these techniques introduces. Also, it classifies them according to the way such abstractions are _selected_, _specialized_ and then _integrated_ when the reusing process takes place. Interestingly, the paper calls for gauging the effectiveness of such abstractions in terms of _cognitive distance_, that is, the _intellectual effort required (by software developers) to use them_. Abstractions discussed in the body of the paper are:
+The paper is actually a survey of the research efforts at that time about _reuse techniques_. The techniques discussed are (I will briefly discuss each of them a bit later): 
 
 bq. _high-level languages_, _design and code scavenging_, _source code components_, _software schemas_, _application generators_, _very high-level languages_, _transformational systems_ and _software architectures_.
 
+Each technique is more fully described in a section of 2 to 3 pages each. The paper classifies them along four main dimensions:
+
+* *Abstraction*. What are the ``software abstractions'' introduced by the reuse technique? In other words what is the type of software artifacts that are reused and what abstractions describe them?
+* *Selection*. How are the reusable artifacts intended to be ``selected_ for reuse? How to locate and compare them, for example?
+* *Specialization*. As artifacts are often generalizations, reusing them implies having a way to specialize them (through parameters, constraints, ...). How is this achieved for each technique?
+* *Integration*: How are reusable artifacts integrated inside the complete software system under construction? 
+
+The paper also aims at _evaluating_ the effectiveness of the reuse techniques, or at least it gives clues to do so. For this it calls for gauging the effectiveness of a reuse technique in terms of _cognitive distance_, that is, in terms of the _intellectual effort required (by software developers) to use it_. Interestingly, the author points out in his conclusion that the cognitive distance can be reduced in two ways:
+
+* by reducing the intellectual effort required to go *from the conceptualization of a system to a specification* in the abstractions proposed by the reuse technique and, 
+* by reducing the effort required to *produce an executable system from that specification*.
+
+The paper also provides an approximate ranking of the height reuse techniques, rated on how well they minimize cognitive distance by each of these two methods. _Application generators_ win the first ranking while _high level languages_ win the second one (refer to the paper for details).
+
+h4. A personal opinion
+
+I'd like to close this section with something more subjective. First, we can certainly argue about the effectiveness of the reuse techniques discussed as well as the proposed rankings. My personal feeling however is that the rankings are quite convincing even if not all reuse techniques suffer the same success. Second, I would like to point out how relevant the _research method_ seems to me (don't forget that the paper has been published in 1992): 
+
+* most of the reusable artifacts and reuse techniques I know and use everyday are covered by this survey, 
+* in my opinion, the four dimensions chosen for classifying them still give remarkable clues today for comparing and improving the tools we have,
+* when evaluating the effort required to apply a reuse technique, the notion of _cognitive distance_ for evaluating reuse techniques and the relevance of distinguishing between the conceptualization (in your mind), the specification (in terms of reusable abstractions) and the realization (something that executes) is definitely worth considering ... and should be considered much more often, IMHO.
+
+Of course, I'll specifically refer to these points later in this post. Before actually discussing the specific difficulties I encounter in practice, I would like to review the different reuse techniques discussed in the paper in the light of the languages and tools we use in 2011.
+
 h4. A quick retrospective
 
-I suppose that in 2011, no one would seriously argue that _software reuse has failed to become a standard software engineering practice_. Following the list of software abstractions mentionned in the paper: 
+I suppose that in 2011, no one would seriously argue that _software reuse has failed to become a standard software engineering practice_. Following the list of software abstractions mentioned in the paper: 
 
 * We have good _high level languages_ (from _C_ to _ruby_, _clojure_ and _python_, also via _java_, _C#_, and so on. to list the ones I use/know),
 * Most of them come with effective abstractions to build and share "abstract data types" and other "reusable libraries" (which are a kind of _source code components_: java's .jars, ruby gems, ...),
-* The object-oriented paradigm gave us reusable patterns (a kind of _design scavenging_: think to design patterns[2]) which have had an impact fay beyond object-oriented programming itself,
+* The object-oriented paradigm gave us reusable patterns (a kind of _design scavenging_: think to design patterns[3]) which have had an impact fay beyond object-oriented programming itself,
 * We also have a lot of reusable frameworks (somewhere between _source code components_ and _software architectures_), probably the most common being _web frameworks_ (ruby on rails, django, struts, ASP.net, ...)
 * Every day, the web gives use better ways to apply _code scavenging_ (think to "github's gist":https://gist.github.com/ or "google code search":http://www.google.com/codesearch) or 
 * Integrated Development Environment come bundled with _application generators_ (wizards that you find in Eclipse and Visual Studio are worth mentionning). Parser generators are common tools as well. In note in passing that my @{noe}{recent post about Noe} is an example of software reuse, somewhere between "controlled _code scavenging_" and _application generators_.
@@ -26,7 +50,8 @@ I suppose that in 2011, no one would seriously argue that _software reuse has fa
 
 h3. References
 
-fn1. Charles W. Krueger, _Software Reuse_, ACM Computing Surveys, Volume 24 Issue 2, June 1992
+fn1. Charles W. Krueger, "_Software Reuse_":http://lmgtfy.com/?q=Charles+W.+Krueger,+Software+Reuse, ACM Computing Surveys, Volume 24 Issue 2, June 1992
 
-fn2. ...
- 
+fn2. Peter Naur and Brian Randell, "_Software engineering: Report of a conference sponsored by the NATO Science Committee_":http://homepages.cs.ncl.ac.uk/brian.randell/NATO/nato1968.PDF, Garmisch, Germany: Scientific Affairs Division, NATO, October 1968
+
+fn3. ...
