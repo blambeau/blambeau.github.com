@@ -1,6 +1,6 @@
 Ruby 1.9 comes with new methods to execute a (shell) command, namely "@Kernel.spawn@":http://www.ruby-doc.org/core/classes/Kernel.html#M001442 also available as "@Process.spawn@":http://ruby-doc.org/core-1.9/classes/Process.html#M002230. In a few words, @Kernel.spawn@ is the powerful tool hidden behind "@Kernel.`@":http://www.ruby-doc.org/core/classes/Kernel.html#M001408, "@Kernel.exec@":http://www.ruby-doc.org/core/classes/Kernel.html#M001438, and "@Kernel.system@":http://www.ruby-doc.org/core/classes/Kernel.html#M001441. If your feeling is that the latter methods, as well as "@IO.popen@":http://www.ruby-doc.org/core/classes/IO.html#M000880 are sometimes too restrictive, "@Kernel.spawn@":http://www.ruby-doc.org/core/classes/Kernel.html#M001442 is probably for you.
 
-Note: these methods have *not* been backported in Ruby 1.8.x, but you can still use them thanks to the "sfl gem":https://rubygems.org/gems/sfl (source code available on "github":https://github.com/ujihisa/spawn-for-legacy). Note that the compatibility coverage of the latter gem is far from 100%. Anyway, all examples below are supported by the 2.0 version which should be available really soon.
+Note: these methods have *not* been backported in Ruby 1.8.x, but you can still use them thanks to the "sfl gem":https://rubygems.org/gems/sfl (source code available on "github":https://github.com/ujihisa/spawn-for-legacy). Note that the compatibility coverage of the latter gem is far from 100%. Anyway, all examples below are supported by the 2.0 version.
 
 h3. Quick overview
 
@@ -30,4 +30,4 @@ Another interesting use case: some sub processes may expect being located in a s
 
 h3. Going further
 
-I've not seen many blog entries about @Kernel.spawn@, which is the reason I've written this post (more to bring that powerful method to your attention than to be exhaustive). I've covered only a few use cases and options, refer to the "official documentation":http://www.ruby-doc.org/core/classes/Kernel.html#M001442 for details. Remember that the "sfl gem":https://github.com/ujihisa/spawn-for-legacy does not provide 100% coverage, even if examples listed above should work properly using it's 2.0 release!
+I've not seen many blog entries about @Kernel.spawn@, which is the reason I've written this post (more to bring that powerful method to your attention than to be exhaustive). I've covered only a few use cases and options, refer to the "official documentation":http://www.ruby-doc.org/core/classes/Kernel.html#M001442 for details. Remember that the "sfl gem":https://github.com/ujihisa/spawn-for-legacy does not provide 100% coverage, even if examples listed above should work properly using its 2.0 release!

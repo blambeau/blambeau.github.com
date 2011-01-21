@@ -10,7 +10,7 @@ I've moved a lot of my open-source developments on "github":http://github.com/bl
 
 * "WLang":http://github.com/blambeau/wlang is now considered stable (version 0.9.1). For recall, WLang is a code generator and templatin engine. This blog, for example is entirely generated with WLang (see "below":new_look#implem)
 * "Waw":http://github.com/blambeau/waw is a web framework, an alternative to Rails! More information about it in a few weeks. Waw is currently in very active development, but has its first adopters: have a look at the website of "Hit-Radio":http://www.hit-radio.be, a new belgian radio and the "UCLouvain ACM Student Chapter":http://uclouvain.acm-sc.be.
-* "Rubyrel":http://github.com/blambeau/rubyrel is the library I will use to celebrate the 40th birthday of the relational model. It's time to have tools for managing our databases... and it's time to forget about ORMs and bad other solutions.
+* "DbAgile":http://github.com/blambeau/dbagile is the library I will use to celebrate the 40th birthday of the relational model. It's time to have tools for managing our databases... and it's time to provide alternatives to ORMs.
 
 h3(#implem). Thank you "CodeRay":http://coderay.rubychan.de/, "RedCloth":http://redcloth.org/, "WLang":http://github.com/blambeau/wlang
 
