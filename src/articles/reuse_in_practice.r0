@@ -10,4 +10,24 @@ I intentionally restrict (with loss of generality) the scope of what _Software R
 
 p=. !@{images/reuse/io_reuse.gif}!
 
-Making so certainly restricts the software reuse techniques covered by this post: _software architectures_ for example are grey-boxes and may not easily be seen as functions. The same applies to certain _source code components_ (reusable libraries), if they are *intentionally not designed* (remark the wording) to be used as pure black-box functions.
+Making so certainly restricts the software reuse techniques covered by this post: _software architectures_ for example are grey-boxes and may not easily be seen as functions. The same applies to certain _source code components_ (reusable libraries), if they are _intentionally not designed_ (remark the wording) to be used as pure black-box functions.
+
+Don't take this literally however: *I don't restrict my attention to _dataflow_ or _pipe and filter_ architectures* only. A lot of reusable pieces are input/output functions or at least can be thought so. In short and as I will explain shortly:
+
+!!{Thinking of you problem and designing your program to (at least) behave as a function certainly makes sense for reuse}
+
+h4. Some examples
+
+In my opinion, a lot of programs can be thought as input/output functions (some have side effects, other are _pure_ functions):
+
+* A (simplified version) of @?{Dijkstra's algorithm} takes a graph and two nodes as input and generates the shortest (directed) path between them as output,
+* A @?{graph layout algorithm} takes a graph as input, and generates layout information as output (position of each node, spline points for the edges, and so on),
+* A @?{pretty-printer} (resp. a @?{code highlighter}) takes a chunk of code as input and generates a correctly indented version (resp. colorized html version) of the very same code as output,
+* A (simple) @?{SAT solver} takes a boolean formula as input and generates a satisfying interpretation (one truth value for each variable such that the formula evaluates to true) as output (or _false_ if the formula is not satisfiable),
+* A (simple) @?{model-checker} takes a model and a property as input and generates a binary response (true if the property is respected by the model, false if it is violated) as output,
+* A @?{graph coloring algorithm}, regardless of whether it is a naive greedy one or the latest constraint programming technique, takes a graph as input and generates a coloring information as output (a color for each node),
+* and so on.
+
+Note: thinking of these programs as functions does not mean that they cannot have numerous options, which may be considered as being part of a larger input.
+
+h3. What's wrong with _Reuse_ ??

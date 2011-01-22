@@ -159,6 +159,13 @@ a:hover {  color: #000; cursor: pointer;}
 .middle blockquote {font-style: italic; padding-left:30px; padding-right: 30px;}
 .middle p.footnote {padding-top: 0px;}
 
+.middle .attention {
+	padding: 10px 145px;
+	text-align: center;
+	font-size: 1.1em;
+	font-style: italic;
+}
+
 .right {
 margin-top: 10px;
 float: right;
