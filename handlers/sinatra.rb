@@ -35,7 +35,7 @@ get '/:requested' do
     "ko: #{ex.message}"
   end
 end
-post '/leavecomment' do
+post '/leave-comment' do
   # nick name
   nick = params["nickname"] 
   nick = nick.empty? ? nil : nick

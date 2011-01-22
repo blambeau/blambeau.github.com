@@ -1,6 +1,6 @@
 function leave_a_comment() {
   $.ajax({type: "POST", 
-          url: "/leavecomment", 
+          url: "/leave-comment", 
           data: $("form#leave-a-comment").serialize(), 
           dataType: "text/plain",
     error: function(data, textStatus, XMLHttpRequest) {
