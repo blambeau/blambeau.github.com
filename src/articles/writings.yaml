@@ -101,7 +101,7 @@ writings:
   short: Software Reuse, in theory
   date: 2011/01/18 - 16:53
   category: Architecture
-  keywords: [ "reuse", "software reuse", "architecture", "process communication" ]
+  keywords: [ "reuse", "software reuse", "architecture" ]
 others:
 - identifier: '404'
   title: Forward reference detected

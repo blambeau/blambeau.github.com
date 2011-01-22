@@ -1,8 +1,8 @@
-With colleagues we have a somewhat recurrent discussion about _software reuse_. Discussion has raised once again recently, so I decided to summarize my personal point of view on this blog. After a short review of a good (yet already old) paper from the scientific literature, I would like to discuss the specific difficulties I've almost always encountered in my own work and my two-cents proposal to have more effective reuse in practice. I start with the paper review in this post; in the next one I'll try to provide a more practical lecture of software reuse.
+With colleagues we have a somewhat recurrent discussion about _software reuse_. The discussion raised once again recently, so I decided to summarize my personal point of view on this blog. After a short review of a good (yet already old) paper from the scientific literature, I would like to discuss the specific difficulties I've almost always encountered in my own work and my two-cents proposal to have more effective reuse in practice. I start with the paper review in this post; in the next one I'll try to provide a more practical lecture of software reuse.
 
 h3. A short review of a survey
 
-The concept of _software reuse_ is not new and many writings already exist about it. Probably the better I've read so far is a review due to Charles W. Krueger published in 1992 and simply entitled _Software Reuse_[1]. The abstract starts with the following paragraph:
+The concept of _software reuse_ is not new and many writings already exist about it. Probably the best I've read so far is a review due to Charles W. Krueger published in 1992 and simply entitled _Software Reuse_[1]. The abstract starts with the following paragraph:
 
 bq. Software reuse is the process of creating software systems from existing software rather than building software systems from scratch. This simple yet powerful vision was introduced in 1968 (ed. in [2]). Software reuse has, however, failed to become a standard software engineering practice. In an attempt to understand why, researchers have renewed their interest in software reuse and in the obstacles to implementing it. 
 
@@ -78,7 +78,7 @@ I must confess not being familiar with software schemas. The paper states that _
 
 h3. Conclusion
 
-In this post I've tried to lay some sound foundations for a more practical discussion about software reuse in practice that will take place in a later post. For this, I've mainly reviewed a paper from 1992, namely _Software Reuse_ by Charles W. Krueger. Beyond the specific software reuse techniques discussed, I'm convinced that the classification and evaluation proposed by the author makes sense. Software reuse means having good abstractions as well as tools to _select_, _specialized_ and _integrate_ them inside a larger software. Effective reuse is best achieved by techniques that minimize the intellectual effort required by software developers to express an abstract specification as well as converting it to something executable.
+In this post I've tried to lay some sound foundations for a more practical discussion about software reuse that will take place in a later post. For this, I've mainly reviewed a paper from 1992, namely _Software Reuse_ by Charles W. Krueger. Beyond the specific software reuse techniques discussed, I'm convinced that the classification and evaluation proposed by the author makes sense. Software reuse means having good abstractions as well as tools to _select_, _specialized_ and _integrate_ them inside a larger software. Effective reuse is best achieved by techniques that minimize the intellectual effort required by software developers to express an abstract specification as well as converting it to something executable.
 
 See you at the @{reuse_in_practice}{practical session about reuse}!
 
