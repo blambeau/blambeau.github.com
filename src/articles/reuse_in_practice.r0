@@ -1,18 +1,13 @@
-h4. High Level Languages
+In a @{reuse}{previous post} I compared _Software Reuse_ techniques discussed in @?{Charles W. Krueger Software Reuse}{Krueger's 1992 paper} (_high level languages_, _source code components_, _software architectures_, _application generators_ and so on.) with the numerous languages, abstractions and tools that we use today. As we've seen, 
 
-From _C_ to _ruby_, _clojure_ and _python_, also via _smalltalk_, _java_, _C#_, and so on., high level languages are numerous and various. Each one comes with its set of tools to raise the abstraction level (sometimes in certain respects only, like providing good abstractions for concurrency, or low-level tasks), which is good!
+bq. For a reuse technique to be effective, it *minimizes the cognitive distance* (i.e. the intellectual effort required) between the initial concept of a system and its final executable implementation. Two kinds of intellectual efforts can be minimized in practice: 1) the one required to go *from the initial system conceptualization to a specification* in abstractions of the reuse technique and 2) the one required to *produce an executable system from the specification* produced.
 
-However. If high level languages effectively help reducing the first kind of intellectual effort (from conceptualization to specification), I would add that the second kind (from specification to runnable code) is unfortunately the poor relation. Indeed, almost all new languages require installing an environment (an interpreter or virtual machine, for example), which in turn requires a lot of knowledge about the language itself and its ecosystem, which is somewhat insane.
+The issued addressed here is: _What efforts are still required to achieve a more effective reuse in practice?_ And the topic will be addressed in the light of these simple yet sound foundations.
 
-To explain why, let me take an example. Imagine that I have implemented an absolutely terrific and lovely graph layout algorithm that fits your need. You should of course be able to reuse it without having to understand its implementation! Now, imagine that I've written it in ruby / python / clojure / Objective-C / Camel / Haskell / Go (choose the one that you *don't know at all*). Even if my program takes a graph description on standard input and generate its results on standard output (i.e. a pure black-box function), your intellectual effort to reuse it depends on *your own knowledge of the language I used, or at least of its ecosystem*. This state of affairs definitely hurts reuse!
+h3. Scope of the discussion
 
-My two cents proposal: *languages execution environments must become first-class citizens of the operating system*. Targeting package management systems is certainly a good clue (I've recently learned that "Lucas Nussbaum has decided to quit ruby packaging for Debian":http://www.lucas-nussbaum.net/blog/?p=617. It's sad!). One-click installers, and tools that encapsulate execution environment inside pure executables are worth considering as well. 
+I intentionally restrict (with loss of generality) the scope of what _Software Reuse_ means here in comparison with @?{Charles W. Krueger Software Reuse}{Krueger's paper} and @{reuse}{my previous post} by considering _black-box reuse_ only. That is, I consider pieces of software that can be seen as mathematical functions: they compute an output from a well defined input:
 
-Why not having support from the OS itself to hide the existence of so many languages and the way programs have to be executed? Wouldn't you enjoy the following scenario, whatever the language hidden behing the @.gsd@ extension?
+p=. !@{images/reuse/io_reuse.gif}!
 
-#<{sh}{
-% curl http://revision-zero.org/graph_layout.gsd
-% chmod +x graph_layout.gsd
-% ./graph_layout.gsd mygraph.xml
-}
-
+Making so certainly restricts the software reuse techniques covered by this post: _software architectures_ for example are grey-boxes and may not easily be seen as functions. The same applies to certain _source code components_ (reusable libraries), if they are *intentionally not designed* (remark the wording) to be used as pure black-box functions.
