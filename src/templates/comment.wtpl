@@ -8,7 +8,7 @@ Comments are not automatically rendered below posts, but I would be happy
 to address interesting questions/issues. Simply leave me a contact address 
 if you prefer a personal answer.</p>
 
-<form id="leave-a-comment" method="POST" enctype="multipart/form-data" action="/leave-a-comment">
+<form id="leave-a-comment" method="POST" enctype="multipart/form-data">
   <input type="hidden" name="writing" value="{writing.identifier}"/>
   <label for="nickname">Nickname</label> 
   <input type="text" name="nickname" value=""/>
@@ -16,27 +16,9 @@ if you prefer a personal answer.</p>
   <input type="text" name="mail" value=""/>
   <label for="comment">Comment</label>
   <textarea name="comment"></textarea>
-  <input type="button" onclick="javascript:leave_a_comment();" value="Submit" class="button"/>
+  <input type="submit" value="Submit" class="button"/>
   <div class="feedback"></div>
 </form>
-<script type="text/javascript"> 
-  function leave_a_comment() {
-    $.ajax({type: "POST", 
-            url: "/leave-a-comment", 
-            data: $("form#leave-a-comment").serialize(), 
-            dataType: "text/plain",
-      error: function(data, textStatus, XMLHttpRequest) {
-        $('form#leave-a-comment .feedback').html('<p class="ko">Sorry, an error occured. please try later!</p>');
-      },
-      success: function(data, textStatus, XMLHttpRequest) {
-        if (data == "ok") {
-          $('form#leave-a-comment .button').hide();
-          $('form#leave-a-comment .feedback').html('<p class="ok">Thank you for your comment!</p>');
-        } else {
-          $('form#leave-a-comment .feedback').html('<p class="ko">Please provide a nickname and a message!</p>');
-        }
-      }
-    });
-    return false;
-  };
+<script type="text/javascript">
+$(document).ready(function(){ $("form#leave-a-comment").submit(leave_a_comment); });
 </script> 

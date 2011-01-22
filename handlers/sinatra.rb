@@ -35,6 +35,22 @@ get '/:requested' do
     "ko: #{ex.message}"
   end
 end
-post '/leave-a-comment' do
-  [ 200, {'Content-Type' => "text/plain"}, [ "ok" ]]
+post '/leavecomment' do
+  # nick name
+  nick = params["nickname"] 
+  nick = nick.empty? ? nil : nick
+  
+  # comment
+  comment = params["comment"].strip
+  comment = comment.empty? ? nil : comment
+  
+  # from
+  sender = params["mail"].strip
+  sender = sender.empty? ? "info@revision-zero.org" : sender
+ 
+  if nick.nil? || comment.nil?
+    [200, {'Content-Type' => 'text/plain'}, [ "ko" ]]
+  else
+    [200, {'Content-Type' => 'text/plain'}, [ "ok" ]]
+  end
 end

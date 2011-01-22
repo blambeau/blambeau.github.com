@@ -10,6 +10,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
   <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
   <script type="text/javascript" src="js/jquery-1.4.1.min.js"></script>
+  <script type="text/javascript" src="js/revzero.js"></script>
 </head>
 
 <body>
