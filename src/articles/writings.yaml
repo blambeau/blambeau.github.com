@@ -102,12 +102,12 @@ writings:
   date: 2011/01/18 - 16:53
   category: Architecture
   keywords: [ "reuse", "software reuse", "architecture", "process communication" ]
-- identifier: complexity
-  title: Complexity, a counter example
-  short: Complexity
+- identifier: benchmarking
+  title: Ruby Benchmarking & Complexity, a counter example
+  short: Ruby Benchmarking
   date: 2011/01/25 - 09:42
   category: Ruby
-  keywords: [ "complexity", "performance", "benchmark", "ruby minitest" ]
+  keywords: [ "benchmarking", "complexity", "performance", "ruby", "minitest" ]
 others:
 - identifier: '404'
   title: Forward reference detected

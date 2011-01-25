@@ -11,7 +11,7 @@ h3. Benchmarking and asserting execution time
 
 The example below is given at slide 104, when Aaron introduces the "minitest/benchmark":https://github.com/seattlerb/minitest library (I must add that, at the time of writing, a very similar example is given in "minitest's README":https://github.com/seattlerb/minitest/blob/81fe0a56f5dd29036e3bec107cca48a136c42470/README.txt#L110-119). 
 
-#<{complexity/fib1.rb}
+#<{benchmarking/fib1.rb}
 
 The example is quite easy to understand:
 
@@ -21,7 +21,7 @@ The example is quite easy to understand:
 
 As you can see below, the test passes which is certainly good as well! 
 
-#<{complexity/fib1_result.sh}
+#<{benchmarking/fib1_result.sh}
 
 So I ask you: what's wrong in this example???
 
@@ -29,7 +29,7 @@ h3. Trivially true or just plain wrong?
 
 Here is what is wrong: the assertion is trivially true (but see later). Therefore the test is perfectly and completely useless (but see later):
 
-#<{complexity/fib2.rb}
+#<{benchmarking/fib2.rb}
 
 Here is why:
 
@@ -39,7 +39,7 @@ Here is why:
 
 In fact, the code given in the example is somewhat equivalent to (and the test passes, of course):
 
-#<{complexity/fib3.rb}
+#<{benchmarking/fib3.rb}
 
 To summarize: the assertion is trivially true and the test is wrong. No, because the test passes. Then, the assertion is trivially true as well as the test, and the benchmarking approach itself is wrong. Plain wrong?? Or something else?? Aaarrrrgghhh!!!
 
@@ -52,4 +52,4 @@ Unfortunately, things are a bit more complicated than expected ;-) The truth of 
 
 If you do not trust me, modify @fib@ as follows:
 
-#<{complexity/fib4.rb}
+#<{benchmarking/fib4.rb}
