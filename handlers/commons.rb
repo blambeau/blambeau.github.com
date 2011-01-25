@@ -47,6 +47,11 @@ WLang::dialect('revzero', '.r0') do
         end
       end
     end
+
+    rule "!!" do |parser,offset| 
+      text, reached = parser.parse(offset)
+      ["<p class=\"attention\">#{text}</p>", reached]
+    end
     
     rule "@?" do |parser,offset| 
       require 'uri'

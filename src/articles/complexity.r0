@@ -1,25 +1,29 @@
 Recently, I've seen the famous presentation "ZOMG WHY IS THIS CODE SO SLOW":http://www.slideshare.net/tenderlove/zomg-why-is-this-code-so-slow that Aaron Patterson (aka "tenderlove":http://tenderlovemaking.com/) gave at RubyConf2010. The talk is about benchmarking and performance. I must confess being a bit embarrassed about what I'm going to say here (Aaron is a really famous ruby hacker, member of both ruby-core and rails-core teams, developer of excellent ruby tools like "ARel":https://github.com/rails/arel, "mechanize":https://github.com/tenderlove/mechanize, and so on.) but...  I'm a bit... how to say?... hum.
 
-Before explaining why, I would like to be clear: I'm not arguing here that Aaron badly understands basic complexity theory. Neither do I argue that the way he conducted his benchmarking experience is wrong. Anyway, some examples in the slides seem wrong at worse and extremely confusing at best. So I dare ask: _Why having so great ruby speakers if they insufflate bad practices, even if unintentionally (see later)?_
+Before explaining why, I would like to be clear: I'm not arguing here that Aaron badly understands basic complexity theory. Neither do I argue that the way he conducted his benchmarking experience is wrong. 
+
+!!{Anyway, some examples in the slides seem wrong at worse and extremely confusing at best.}
+
+So I dare this writing.
 
 
 h3. Benchmarking and asserting execution time
 
-The example below is given at slide 104, when introducing the "minitest/benchmark":https://github.com/seattlerb/minitest library (I must add that, at the time of writing, a very similar example is given in "minitest's README":https://github.com/seattlerb/minitest/blob/81fe0a56f5dd29036e3bec107cca48a136c42470/README.txt#L110-119). The example is quite easy to understand:
-
-# The method @fib@ computes the n-th "fibonacci number":http://en.wikipedia.org/wiki/Fibonacci_number,
-# The method @bench_fib@ aims at benchmarking and asserting the performance of @fib@ implementation (up to a 0.99 precision). It relies on @assert_performance_linear@ (provided by minitest/benchmark) which will invoke the block with increasing values for @n@ (1, 10, 100, 1000, and 10000).
-
-I ask you: what's wrong in this example???
+The example below is given at slide 104, when Aaron introduces the "minitest/benchmark":https://github.com/seattlerb/minitest library (I must add that, at the time of writing, a very similar example is given in "minitest's README":https://github.com/seattlerb/minitest/blob/81fe0a56f5dd29036e3bec107cca48a136c42470/README.txt#L110-119). 
 
 #<{complexity/fib1.rb}
 
-Before answering the question, let me add that @assert_performance_linear@ itself is not wrong or buggy: it calls the block as expected, measure the execution time as expected and simply fails unless the execution time of the block is a linear function of @n@. As you can see below, the test passes which is certainly good as well! 
+The example is quite easy to understand:
+
+# The method @fib@ computes the n-th "fibonacci number":http://en.wikipedia.org/wiki/Fibonacci_number,
+# The method @bench_fib@ aims at benchmarking and asserting the performance of @fib@ implementation (up to a 0.99 precision). It relies on @assert_performance_linear@ (provided by minitest/benchmark) which will invoke the block with increasing values for @n@ (1, 10, 100, 1000, and 10000).
+# let me add that @assert_performance_linear@ itself is not wrong or buggy: it calls the block as expected, measure the execution time as expected and simply fails unless the execution time of the block is a linear function of @n@. 
+
+As you can see below, the test passes which is certainly good as well! 
 
 #<{complexity/fib1_result.sh}
 
-So, what's wrong???
-
+So I ask you: what's wrong in this example???
 
 h3. Trivially true or just plain wrong?
 
@@ -40,9 +44,12 @@ In fact, the code given in the example is somewhat equivalent to (and the test p
 To summarize: the assertion is trivially true and the test is wrong. No, because the test passes. Then, the assertion is trivially true as well as the test, and the benchmarking approach itself is wrong. Plain wrong?? Or something else?? Aaarrrrgghhh!!!
 
 
-h3. What do you benchmark??
+h3. What do you assert??
 
-Unfortunately, things are a bit more complicated than expected. The explanation and truth of all of this story relies and what you want to benchmark precisely. The example is amazing because:
+Unfortunately, things are a bit more complicated than expected ;-) The truth of all of this story is that all of this depends of what you want to benchmark, precisely (and I should be fair in adding that Aaron himself does precisely say so). Anyway, the example at hand is amazing because:
 
-it asserts a lot of things, but certainly not that @fib@ has a linear execution time (aka _O(n)_).
+!!{it asserts a lot of things, but *certainly not* that @fib@ has a linear execution time, i.e. that it executes in _O(n)_.}
 
+If you do not trust me, modify @fib@ as follows:
+
+#<{complexity/fib4.rb}
