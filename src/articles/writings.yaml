@@ -103,7 +103,7 @@ writings:
   category: Architecture
   keywords: [ "reuse", "software reuse", "architecture", "process communication" ]
 - identifier: benchmarking
-  title: Ruby Benchmarking & Complexity, a counter example
+  title: Ruby Benchmarking & Complexity, a (counter) example (?)
   short: Ruby Benchmarking
   date: 2011/01/25 - 09:42
   category: Ruby
