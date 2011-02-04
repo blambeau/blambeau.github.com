@@ -109,8 +109,8 @@ writings:
   category: Ruby
   keywords: [ "benchmarking", "complexity", "performance", "ruby", "minitest" ]
 - identifier: bundler_and_lifecycle
-  title: "Bundler in Software lifecycle"
-  short: "Bundler in lifecycle"
+  title: "Bundler in the Software lifecycle"
+  short: "Bundler and lifecycle"
   date: 2011/02/04 - 17:00
   category: Ruby
   keywords: [ "ruby", "bundler", "deployment", "releasing", "deploying", "lifecycle" ]

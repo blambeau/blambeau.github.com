@@ -1,4 +1,4 @@
-I've read "Bundler's documentation":http://gembundler.com/rationale.html (somewhat in depth) recently; I wanted to better understand how it is supposed to be used. My learning has been a bit difficult for a simple reason: there is a lot of text on Bundler's website, but no real concrete scenario explained with a good old image. So I've decided to share the one I've built during my learning:
+I've read "Bundler's documentation":http://gembundler.com/rationale.html recently because I wanted to better understand how it is supposed to be used. My learning has been a bit difficult for a simple reason: there is a lot of text on Bundler's website, but no real concrete scenario explained with a good old image. So I've decided to share the one I've built during my learning:
 
 <notextile>
 <p style="text-align:center;">
@@ -6,8 +6,6 @@ I've read "Bundler's documentation":http://gembundler.com/rationale.html (somewh
    target="_blank"><img src="images/bundler_and_lifecycle/bundler_and_lifecycle.gif"/></a>
 </p>
 </notextile>
-
-Just a few comments:
 
 * This cheatsheet is *not dedicated* to Rails, Sinatra, or whatever the technology you use. It is not even dedicated to web applications... I've tried to keep it somewhat abstract: developing, releasing, deploying is sufficiently general IMHO. 
 * However, it *is dedicated* to _applications_ (in contrast to _libraries_) because bundler is designed to handle such cases (and "is not intended to be used inside gems":http://goo.gl/RpV4a). The cheatsheet can still be used but must probably be adapted if you use bundler to _develop_ a gem.
