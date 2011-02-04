@@ -1,16 +1,7 @@
-begin
-  require 'wlang'
-  require 'wlang/ext/hash_methodize'
-rescue LoadError
-  require 'rubygems'
-  retry
-end
-begin
-  require "albino"
-rescue LoadError
-  require 'rubygems'
-  retry
-end
+require 'rubygems'
+require 'wlang'
+require 'wlang/ext/hash_methodize'
+require "albino"
 require 'yaml'
 require 'fileutils'
 

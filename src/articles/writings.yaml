@@ -108,6 +108,12 @@ writings:
   date: 2011/01/25 - 09:42
   category: Ruby
   keywords: [ "benchmarking", "complexity", "performance", "ruby", "minitest" ]
+- identifier: bundler_and_lifecycle
+  title: "Bundler in Software lifecycle"
+  short: "Bundler in lifecycle"
+  date: 2011/02/04 - 17:00
+  category: Ruby
+  keywords: [ "ruby", "bundler", "deployment", "releasing", "deploying", "lifecycle" ]
 others:
 - identifier: '404'
   title: Forward reference detected
