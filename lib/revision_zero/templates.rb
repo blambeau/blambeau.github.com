@@ -46,6 +46,10 @@ module RevisionZero
       go(_('rss.wtpl'), HTML.merge(context), false)
     end
     
+    def sitemap(context = {})
+      go(_('sitemap.wtpl'), HTML.merge(context), false)
+    end
+    
     def allinone(context = {})
       go(_('allinone.wtpl'), HTML.merge(context), false)
     end

@@ -68,5 +68,11 @@ module RevisionZero
       assert_match /xml/, last_response.content_type 
     end
     
+    def test_sitemap
+      get '/sitemap.xml'
+      assert last_response.ok?
+      assert_match /xml/, last_response.content_type 
+    end
+    
   end # class AppTest
 end # module RevisionZero

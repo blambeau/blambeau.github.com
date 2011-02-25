@@ -63,6 +63,11 @@ module RevisionZero
       Templates.rss(:info => info)
     end
     
+    get '/sitemap.xml' do
+      content_type "text/xml"
+      Templates.sitemap(:info => info)
+    end
+    
     get %r{/(\d+)$} do
       ith = writings[params[:captures].first.to_i]
       ith ? serve(ith.identifier) : not_found

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>http://revision-zero.org/</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  *{info.writings as w}{
+  <url>
+      <loc>http://revision-zero.org/${w.identifier}</loc>
+      <changefreq>monthly</changefreq>
+  </url>
+  }
+</urlset> 

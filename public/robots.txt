@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /no_analytics.html
+Sitemap: http://revision-zero.com/sitemap.xml
