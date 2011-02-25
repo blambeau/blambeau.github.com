@@ -1,6 +1,8 @@
 function book_toggle(identifier) {
-  $('#page_' + identifier).toggle();
-  $('#link_' + identifier).toggleClass("current");
+  var page = $('#page_' + identifier);
+  page.toggle();
+  var link = $('#link_' + identifier);
+  link.toggleClass("current");
 }
 function goto_page(url) {
   book_toggle(current);

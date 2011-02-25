@@ -3,7 +3,7 @@ I've read "Bundler's documentation":http://gembundler.com/rationale.html recentl
 <notextile>
 <p style="text-align:center;">
 <a href="images/bundler_and_lifecycle/bundler_and_lifecycle.pdf"
-   target="_blank"><img src="images/bundler_and_lifecycle/bundler_and_lifecycle.gif"/></a>
+   target="_blank"><img src="@{images/bundler_and_lifecycle/bundler_and_lifecycle.gif}"/></a>
 </p>
 </notextile>
 

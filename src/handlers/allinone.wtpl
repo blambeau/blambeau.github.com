@@ -10,7 +10,7 @@
         <<{../public/js/jquery-1.4.1.min.js}
   	  //--></script>
   	  <script type="text/javascript" language="JavaScript"><!--
-  	    var current = '{writing.identifier}'
+  	    var current = '{writing.identifier}';
         <<{../public/js/allinone.js}
   	  //--></script>
     </head>

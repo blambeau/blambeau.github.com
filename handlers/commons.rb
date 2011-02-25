@@ -24,7 +24,6 @@ WLang::dialect('revzero', '.r0') do
       if parser.has_block?(reached)
         lexer = uri.to_sym
         text, reached = parser.parse_block(reached)
-        puts "Parsed text is #{WLang::VERSION}: |#{text}|"
         highlighted = Albino.colorize(text, lexer)
         ["<notextile>#{highlighted}</notextile>", reached]
       else
