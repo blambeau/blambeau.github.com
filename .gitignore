@@ -4,5 +4,4 @@ pkg
 doc/api
 .yardoc
 .bundle
-lib/revision_zero/templates/cache/
 output
