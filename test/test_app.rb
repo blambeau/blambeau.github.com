@@ -62,5 +62,11 @@ module RevisionZero
       assert_match /keywords.*bundler/, last_response.body
     end
     
+    def test_rss
+      get '/rss'
+      assert last_response.ok?
+      assert_match /xml/, last_response.content_type 
+    end
+    
   end # class AppTest
 end # module RevisionZero

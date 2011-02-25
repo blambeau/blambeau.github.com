@@ -9,7 +9,7 @@
           <item>
               <title>${w.title}</title>
               <description>
-                &{<<+{../articles/+{w.identifier}.r0 share all}}
+                &{<<!{+{w.src_location}}}
               </description>
               <pubDate>${w.date}</pubDate>
               <link>http://www.revision-zero.org/${w.identifier}</link>

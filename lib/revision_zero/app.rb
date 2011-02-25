@@ -15,7 +15,13 @@ module RevisionZero
     ### Model
     
     def info
-      YAML::load File.read(_('src/articles/writings.yaml'))
+      @info ||= begin
+        inf = YAML::load File.read(_('src/articles/writings.yaml'))
+        inf.writings.each{|wr|
+          wr['src_location'] = _("src/articles/#{wr.identifier}.r0")
+        }
+        inf
+      end
     end
     
     def writings 
@@ -23,10 +29,11 @@ module RevisionZero
     end
     
     def writing(wid)
-      wr = writings.find{|w| w.identifier == wid}
-      not_found unless wr
-      wr['src_location'] = _("src/articles/#{wr.identifier}.r0")
-      wr
+      if wr = writings.find{|w| w.identifier == wid}
+        wr
+      else
+        not_found
+      end
     end
 
     ### Services
@@ -48,6 +55,11 @@ module RevisionZero
 
     get '/' do
       serve(writings.last.identifier)
+    end
+    
+    get '/rss' do
+      content_type "application/rss+xml"
+      Templates.rss(:info => info)
     end
     
     get %r{/(\d+)$} do
