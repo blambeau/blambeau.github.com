@@ -5,6 +5,9 @@ body{
 	color: #212122;
   margin: auto;  
 }
+a:hover {
+  cursor: pointer;
+}
 
 /* 260 + 830 = 1090 */
 #wrap  { width: 1090px; margin: 0 auto; }
