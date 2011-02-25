@@ -74,6 +74,7 @@ module RevisionZero
     
     post '/leave-comment' do
       begin
+        require 'logger'
         logger = Logger.new('app.log')
         logger.level = Logger::INFO
       
