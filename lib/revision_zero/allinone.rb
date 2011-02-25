@@ -1,10 +1,7 @@
 require 'base64'
 $root   = File.expand_path('../../../', __FILE__)
 $public = File.join($root, 'public')
-$info   = YAML::load File.read(File.join($root, 'src/articles/writings.yaml'))
-$info.writings.each{|w|
-  w['src_location'] = File.join($root, 'src/articles', "#{w.identifier}.r0")
-}
+$info   = RevisionZero.info
 
 def encode_image(imgfile)
   basename, ext, base64 = File.basename(imgfile), File.extname(imgfile), nil
@@ -13,9 +10,9 @@ def encode_image(imgfile)
 end
 
 def css_embed(cssfile)
-  File.read(cssfile).gsub(/url\(..\/(.*)\)/){|url| 
-    imgfile = $1 if (url =~ /url\(..\/(.*)\)/)
-    imgfile = File.join($public, imgfile)
+  File.read(cssfile).gsub(/url\((.*)\)/){|url| 
+    imgfile = $1 if (url =~ /url\((.*)\)/)
+    imgfile = File.join($public, 'css', imgfile)
     "url(#{encode_image(imgfile)})"
   }
 end
@@ -27,7 +24,6 @@ class String
   # Renders a link tag <a href="url">label</a> for the 
   # static version of the website
   def to_xhtml_link(url, label)
-    puts "Managing #{url}"
     "<a onclick=\"#{to_xhtml_href(url)}\">#{label}</a>"
   end
   
@@ -38,7 +34,6 @@ class String
     case url.strip
       when /\.(gif|jpg|png)$/
         imgfile = File.join($public, url)
-        puts "Embedding #{imgfile}"
         encode_image(imgfile)
       when /\.(css|js|pdf|zip|html)$/
         url

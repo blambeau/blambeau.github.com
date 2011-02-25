@@ -33,7 +33,7 @@ Reaching @{independence}{source independence} is important.
 <div class="highlight"><pre><span class="nt">&lt;h1&gt;</span>Hello reader<span class="nt">&lt;/h1&gt;</span>
 <span class="nt">&lt;p&gt;</span>Reaching <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;independence&quot;</span><span class="nt">&gt;</span>source independence<span class="nt">&lt;/a&gt;</span> is important.<span class="nt">&lt;/p&gt;</span>
 </pre></div>
-<p>Have a look on the different versions now: <a href="book#how">here</a>, on <a href="http://www.revision-zero.org/book#how">revision-zero.org</a> and <a href="http://www.revision-zero.org/downloads/revision-zero.html">the book</a>&#8230; WLang adapts itself to the environment. This is made possible because the blog source code is sufficiently abstracts (what needs to be done for links is not explicitely described). Abstraction is the true nature of quality computer science.</p>
+<p>Have a look on the different versions now: here, on <a href="http://www.revision-zero.org/book#how">revision-zero.org</a> and <a href="http://www.revision-zero.org/downloads/revision-zero.html">the book</a>&#8230; WLang adapts itself to the environment. This is made possible because the blog source code is sufficiently abstracts (what needs to be done for links is not explicitely described). Abstraction is the true nature of quality computer science.</p>
 <h3 id="further">Going further&#8230;</h3>
 <p>WLang can do a lot more&#8230; For example, the two code exerpts above are generated using the following wlang source codes:</p>
 <div class="highlight"><pre>^{xhtml/coderay/html}{ &lt;&lt;{hello_reader.r0} }

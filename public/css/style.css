@@ -36,7 +36,7 @@ a:hover {
 .left { 
   width: 230px;
   padding: 15px;
-  padding-top: 115px;
+  padding-top: 15px;
   font-size: 14px;
   position: fixed;
 }
@@ -51,6 +51,27 @@ a:hover {
   color: #A30600;
   font-weight: bold;
 }
+
+#navigation {
+  margin-left: 15px;
+}
+.left .nav {
+  display: block;
+  width: 80px;
+  height: 100px;
+  background-repeat: no-repeat; }
+#leftnav {
+  float: left;
+  background-image: url(leftnav_bw.png);
+  left: 50px; }
+#leftnav.enabled:hover {
+  background-image: url(leftnav.png); }
+#rightnav {
+  float: left;
+  background-image: url(rightnav_bw.png);
+  right: 50px; }
+#rightnav.enabled:hover {
+  background-image: url(rightnav.png); }
 
 /** 800 + 2*15 = 830 */
 .middle { 

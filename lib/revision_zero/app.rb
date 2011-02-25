@@ -15,13 +15,7 @@ module RevisionZero
     ### Model
     
     def info
-      @info ||= begin
-        inf = YAML::load File.read(_('src/articles/writings.yaml'))
-        inf.writings.each{|wr|
-          wr['src_location'] = _("src/articles/#{wr.identifier}.r0")
-        }
-        inf
-      end
+      RevisionZero.info
     end
     
     def writings 
