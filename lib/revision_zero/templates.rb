@@ -26,7 +26,7 @@ module RevisionZero
     end
     
     def go(file, context, use_cache)
-      if use_cache
+      if (ENV['REVZERO_CACHE'].to_s == 'true') && use_cache
         cached = cache_get(file)
         unless cached
           inst = WLang::file_instantiate(file, context)

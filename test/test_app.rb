@@ -1,6 +1,7 @@
 require 'test/unit'
 require 'rack/test'
 ENV['RACK_ENV'] = 'test'
+ENV['REVZERO_CACHE'] = 'true'
 require 'revision_zero'
 module RevisionZero
   class AppTest < Test::Unit::TestCase

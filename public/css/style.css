@@ -94,7 +94,12 @@ body{
 .middle table {padding-left: 20px;}
 .middle table tr td {padding: 3px 10px 3px 0px;}
 .middle table tr td { vertical-align: top; text-align: justify;}
-
+.middle .attention {
+  text-align: center;
+  padding-left: 60px;
+  padding-right: 60px;
+  font-style: italic;
+}
 
 .middle .highlight pre {
 	padding: 10px;
