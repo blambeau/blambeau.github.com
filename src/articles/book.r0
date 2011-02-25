@@ -12,7 +12,7 @@ A bit of CSS:
 
 A bit of javascript (many thanks to "jquery":http://www.query.com/ for their job):
 
-#<{../public/js/allinone.js}
+#<{book/allinone.js}
 
 And, for images we embed them as base64 (more information and tools about this technique "on this site":http://www.greywyvern.com/code/php/binary2base64):
 

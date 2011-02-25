@@ -3,6 +3,4 @@
   <div class="date">${writing.date}</div>
   <div style="clear:both"></div>
 </div>
-
-<<+{../articles/+{writing.identifier}.r0 share all}
-
+<<!{+{writing.src_location}}

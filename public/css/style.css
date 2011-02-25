@@ -14,8 +14,9 @@ body{
   background: white; 
   padding: 15px; 
   border: 1px solid #212122; 
+  border-bottom: none;
+  opacity: 0.90;
   bottom: 0px;
-  opacity: 0.95;
 } 
 #header .header-left {float: left;}
 #header .header-right {float: right;}

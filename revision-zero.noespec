@@ -1,0 +1,36 @@
+# Noe template for ruby gem libraries (https://github.com/blambeau/noe) - short version
+# Run 'noe show-spec' and 'noe help show-spec' for additional details.
+template-info:
+  name: "ruby"
+  version: 1.3.0
+
+# Update to match your own configuration.
+variables:
+  lower: 
+    revision_zero
+  upper:
+    RevisionZero
+  version:
+    1.0.0
+  summary: |-
+    This is my blog implementation
+  description: |-
+    Revision-Zero is a blog about computer science written by Bernard Lambeau
+  # Authors of the project (- {name: Bob, email: bob@gmail.com}, ...) 
+  authors: 
+    - name: Bernard Lambeau
+      email: blambeau@gmail.com
+  links: 
+    - http://revision-zero.org
+  dependencies: 
+    - {name: rake,      version: "~> 0.8.7", groups: [development]}
+    - {name: bundler,   version: "~> 1.0",   groups: [development]}
+    - {name: rspec,     version: "~> 2.4.0", groups: [development]}
+    - {name: yard,      version: "~> 0.6.4", groups: [development]}
+    - {name: bluecloth, version: "~> 2.0.9", groups: [development]}
+    - {name: rack-test, version: "~> 0.5.7", groups: [development]}
+    ##
+    - {name: RedCloth, version: "~> 4.2.7",   groups: [development, runtime]}
+    - {name: wlang,    version: "~> 0.10.2",  groups: [development, runtime]}
+    - {name: sinatra,  version: "~> 1.1.2",   groups: [development, runtime]}
+    - {name: albino,   version: "~> 1.2.3",   groups: [development, runtime]}

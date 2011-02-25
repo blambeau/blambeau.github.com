@@ -1,0 +1,15 @@
+CHANGELOG.md
+config.ru
+Gemfile
+Gemfile.lock
+lib/**/*
+LICENCE.md
+Manifest.txt
+public/**/*
+Rakefile
+README.md
+revision-zero.noespec
+revision-zero.gemspec
+src/**/*
+tasks/**/*
+test/**/*

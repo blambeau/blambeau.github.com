@@ -1,2 +1,6 @@
-output
-.DS_Store
+coverage/*
+*.DS_Store
+pkg
+doc/api
+.yardoc
+.bundle
