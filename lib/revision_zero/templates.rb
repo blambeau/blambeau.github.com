@@ -42,6 +42,10 @@ module RevisionZero
       go(_('html.wtpl'), HTML.merge(context), false)
     end
     
+    def allinone(content = {})
+      go(_('allinone.wtpl'), HTML.merge(context), false)
+    end
+    
     extend Templates
   end # module Templates 
 end # module RevisionZero

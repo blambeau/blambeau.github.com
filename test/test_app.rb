@@ -56,5 +56,11 @@ module RevisionZero
       assert_equal 404, last_response.status
     end
     
+    def test_keywords_are_ok
+      get '/bundler_and_lifecycle'
+      assert last_response.ok?
+      assert_match /keywords.*bundler/, last_response.body
+    end
+    
   end # class AppTest
 end # module RevisionZero

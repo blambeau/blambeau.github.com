@@ -37,7 +37,8 @@ module RevisionZero
         :info      => info,
         :current   => w.identifier,
         :writing   => w,
-        :analytics => settings.analytics
+        :analytics => settings.analytics,
+        :keywords  => w.keywords
       )
     end
     
