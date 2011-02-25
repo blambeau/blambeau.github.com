@@ -1,6 +1,3 @@
-require 'rubygems'
-require 'wlang'
-require 'wlang/ext/hash_methodize'
 require File.expand_path('../commons', __FILE__)
 class String
   

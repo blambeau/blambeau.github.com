@@ -1,16 +1,8 @@
 This blog is about computer science, and tries to make the bridge between theoretical ideas (concepts and abstractions) and practical implementations of these ideas (from the concepts in practice to the actual source-code that makes them alive).
 
-h3. Using it
-
-|<code>sequentially</code>|Really first post of this blog is at @{0}{http://www.revision-zero.org/0}. The next one is at @{1}{http://www.revision-zero.org/1}, and so on. If you want to read all posts sequentially, that's a way to do it (you can also use the _previous_ and _next_ buttons to achieve the same goal).|
-|<code>by topic</code>|You can access a given topic by its name (if you know it) with an url like this: @{about}{http://www.revision-zero.org/about}. Short topic names always match the <code>[a-zA-Z-0-9_]+</code> regular expression. Moreover, you'll find (not so special) posts where I maintain a TODO list of the topics I would like to write about. The first
-topic post is at @{topics0}{http://www.revision-zero.org/topics0}, the next one will be at @{topics1}{http://www.revision-zero.org/topics1} and so on. For your ease, those topic pages are linked together: previous and next links <b>at bottom</b> of the topic pages implement a linked list of topic posts.|
-|<code>rss</code>|Probably the easiest way to stay in touch: http://www.revision-zero.org/rss. You can add this rss flux to your "iGoogle":http://www.google.com/ig home page, or read it with "Google Reader":http://www.google.com/reader/view.|
-|<code>by proposals</code>|You would like a topic to be addressed ? If it already exists in the topic pages but is not written yet, simply click on the topic name and I'll be informed of your interest. Otherwise, send me an email with your proposal and I'll see if I can do something!|
-
 h3. The author
 
-This blog is written by Bernard Lambeau, an active researcher of the "computer science departement":http://www.uclouvain.be/ingi.html of the "University of Louvain":http://www.uclouvain.be (Universite catholique de Louvain, Belgium). You can follow me "on twitter":http://twitter.com/blambeau, as a developer on "github":http://blambeau.github.com/. Of course, you can also join me about this blog or anything else by email at blambeau at 'the well-known google messaging service'.
+This blog is written by Bernard Lambeau, an active researcher of the "computer science departement":http://www.uclouvain.be/ingi.html of the "University of Louvain":http://www.uclouvain.be (Universite catholique de Louvain, Belgium). You can follow me "on twitter":http://twitter.com/blambeau and on "github":http://blambeau.github.com/ and on "linkedin":www.linkedin.com/in/blambeau. Of course, you can also join me about this blog or anything else by email at blambeau at 'the well-known google messaging service'.
 
 h3. The objectives
 
@@ -20,12 +12,11 @@ As will quickly appear, I'm a "never happy" guy and have the easy criticism. The
 
 h3. Credits
 
-I'm really grateful to the University of Louvain (for providing me such a nice job), and colleagues (for fruitful discussions about computer science in general and some of the ideas presented here in particular). I also would like to thank David Herreman  (the one I don't know) for the CSS template that I've downloaded for free from "free-css-templates.com":http://www.free-css-templates.com.
+I'm really grateful to the University of Louvain for providing me such a nice job, to my research advisor Axel van Lamsweerde for his guidance and to my colleagues (especially Christophe Damas, Jose Vander Meulen, Jean-Noel Monette and Antoine Cailliau) for fruitful discussions about computer science in general and some of the ideas presented here in particular. Some time ago, this blog used to use a CSS template written by David Herreman (the one I don't know) downloaded on "free-css-templates.com":http://www.free-css-templates.com.
 
 <em>Redde Caesari quae sunt Caesaris</em>: ideas here are naturally inspired from the work of other computer scientists. I always try to provide references in my writings (don't hesitate to send me an email if you think that a reference is clearly missing in a given article). I would like to mention two authors in particular, C.J. Date and Hugh Darwen, and their "third-manifesto":http://www.thethirdmanifesto.com which is one of my biggest inspiration sources.
 
-Special thanks go to my brother Louis for being so interested by my ideas, for his help in trying to implement them, for his administration of the hosting server of this blog and for maintaining "chefbe.net":http://www.chefbe.net development 
-tools.
+Special thanks go to my brother Louis for being so interested by my ideas, for his help in trying to implement them, for his administration of the hosting server of this blog and for maintaining "chefbe.net":http://www.chefbe.net development tools.
 
 h3. Licence
 

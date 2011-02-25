@@ -1,7 +1,7 @@
 <div id="wrap">
   <div id="header">
     <div class="header-left">
-      <h1><a href="#">Revision-Zero.org</a></h1>
+      <h1><a href="@{about}">Revision-Zero.org</a></h1>
       <h2>Talking about computer science</h2>
     </div>
     <div class="header-right">

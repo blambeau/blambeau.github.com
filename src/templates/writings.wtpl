@@ -1,4 +1,3 @@
-<h2>Writings</h2>
 <ul id="writings">
   *{info.writings.reverse as w}{
     <li class="?{w.identifier == current}{current}{normal}" id="link_${w.identifier}">

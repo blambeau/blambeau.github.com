@@ -2,9 +2,9 @@ Two hours ago, I said that this blog had a new implementation based on WLang. Mi
 
 h3. So, where is the book?
 
-Just <a href="@{downloads/revision-zero.html}" target="_blank">here</a>... What's surprising? Save the .html file on your disk and open it with a good browser (all but one... let's say). This file is strictly self contained: images are embedded, all writings are included, etc. *You can read it offline*... that's all!
+Just <a href="@{downloads/revision-zero.html}" target="_blank">here</a>... Save the .html file on your disk and open it with a good browser (all but one... let's say). This file is strictly self contained: images are embedded, all writings are included, etc. *You can read it offline*... that's all!
 
-h3. How does it work?
+How does it work?
 
 A bit of CSS:
 
