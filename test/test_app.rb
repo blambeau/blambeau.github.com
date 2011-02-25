@@ -33,6 +33,23 @@ module RevisionZero
       }
     end
     
+    def test_pages_are_also_indexable 
+      app.writings.each_with_index{|w, i|
+        puts "Visiting /#{i}"
+        
+        # get by index
+        get "/#{i}"
+        assert last_response.ok?
+        ith_body = last_response.body
+        
+        # get by name
+        get "/#{w.identifier}"
+        named_body = last_response.body
+        
+        assert_equal named_body, ith_body
+      }
+    end
+    
     def test_get_on_unexisting
       get '/not_a_writing'
       assert !last_response.ok?

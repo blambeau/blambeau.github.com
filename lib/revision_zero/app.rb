@@ -49,6 +49,11 @@ module RevisionZero
       serve(writings.last.identifier)
     end
     
+    get %r{/(\d+)$} do
+      ith = writings[params[:captures].first.to_i]
+      ith ? serve(ith.identifier) : not_found
+    end
+    
     get '/:which' do
       serve(params[:which])
     end
