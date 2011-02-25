@@ -32,7 +32,7 @@ On the version of the blog that you are currently reading, this code is transfor
 
 #<{html}{^{redcloth/xhtml}{<<+{book/hello_reader.r0}}}
 
-Have a look on the different versions now: "here":book#how, on "revision-zero.org":http://www.revision-zero.org/book#how and "the book":http://www.revision-zero.org/downloads/revision-zero.html... WLang adapts itself to the environment. This is made possible because the blog source code is sufficiently abstracts (what needs to be done for links is not explicitely described). Abstraction is the true nature of quality computer science.
+Have a look on the different versions now: here, on "revision-zero.org":http://www.revision-zero.org/book#how and "the book":http://www.revision-zero.org/downloads/revision-zero.html... WLang adapts itself to the environment. This is made possible because the blog source code is sufficiently abstracts (what needs to be done for links is not explicitely described). Abstraction is the true nature of quality computer science.
 
 h3(#further). Going further...
 
