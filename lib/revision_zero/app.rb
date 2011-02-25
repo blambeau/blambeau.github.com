@@ -107,10 +107,11 @@ module RevisionZero
           end
         end
       rescue Exception => ex
-        File.open('app.err'){|io| 
+        File.open('app.err', "w"){|io| 
           io << ex.message << "\n"
           io << ex.backtrace.join("\n")
         }
+        raise
       end
     end
 
