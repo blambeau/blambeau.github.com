@@ -4,6 +4,7 @@ PATH
     revision_zero (1.0.0)
       RedCloth (~> 4.2.7)
       albino (~> 1.2.3)
+      mail (~> 2.2.15)
       sinatra (~> 1.1.2)
       wlang (~> 0.10.2)
 
@@ -11,9 +12,18 @@ GEM
   remote: http://rubygems.org/
   specs:
     RedCloth (4.2.7)
+    activesupport (2.3.9)
     albino (1.2.3)
     bluecloth (2.0.11)
     diff-lcs (1.1.2)
+    i18n (0.5.0)
+    mail (2.2.15)
+      activesupport (>= 2.3.6)
+      i18n (>= 0.4.0)
+      mime-types (~> 1.16)
+      treetop (~> 1.4.8)
+    mime-types (1.16)
+    polyglot (0.3.1)
     rack (1.2.1)
     rack-test (0.5.7)
       rack (>= 1.0)
@@ -30,6 +40,8 @@ GEM
       rack (~> 1.1)
       tilt (~> 1.2)
     tilt (1.2.2)
+    treetop (1.4.9)
+      polyglot (>= 0.3.1)
     wlang (0.10.2)
     yard (0.6.4)
 
@@ -37,9 +49,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  RedCloth (~> 4.2.7)
   albino (~> 1.2.3)
   bluecloth (~> 2.0.9)
   bundler (~> 1.0)
+  mail (~> 2.2.15)
   rack-test (~> 0.5.7)
   rake (~> 0.8.7)
   revision_zero!

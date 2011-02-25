@@ -1,4 +1,5 @@
-require "wlang"
+require "mail"
 require "RedCloth"
+require "wlang"
 require "sinatra"
 require "albino"

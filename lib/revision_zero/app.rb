@@ -52,6 +52,7 @@ module RevisionZero
     ### Sinatra rules
     
     set :public, _('public')
+    set :analytics, Proc.new{ environment == :production }
 
     get '/' do
       serve(writings.last.identifier)
@@ -71,7 +72,40 @@ module RevisionZero
       serve(params[:which])
     end
     
-    set :analytics, Proc.new{ environment == :production }
-    
+    post '/leave-comment' do
+      logger = Logger.new('app.log')
+      logger.level = Logger::INFO
+      
+      # nick name
+      nick = params["nickname"] 
+      nick = nick.empty? ? nil : nick
+  
+      # comment
+      comment = params["comment"].strip
+      comment = comment.empty? ? nil : comment
+  
+      # from
+      sender = params["mail"].strip
+      sender = sender.empty? ? "info@revision-zero.org" : sender
+ 
+      if nick.nil? || comment.nil?
+        [200, {'Content-Type' => 'text/plain'}, [ "ko" ]]
+      else
+        begin
+          Mail.deliver do
+               from(sender)
+                 to("blambeau@gmail.com")
+            subject("[revision-zero.org] Comment from #{nick || 'anonymous'}")
+               body(comment)
+          end
+    	    logger.info("Mail from #{sender} (#{nick}) successfully delivered")
+          [200, {'Content-Type' => 'text/plain'}, [ "ok" ]]
+        rescue Exception => ex
+          logger.error "Unable to send mail from #{sender} (#{nick}): #{ex.message}\n#{comment}\n"
+          [500, {'Content-Type' => 'text/plain'}, [ "ko" ]]
+        end
+      end
+    end
+
   end # class App
 end # module RevisionZero

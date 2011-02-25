@@ -30,6 +30,7 @@ variables:
     - {name: bluecloth, version: "~> 2.0.9", groups: [development]}
     - {name: rack-test, version: "~> 0.5.7", groups: [development]}
     ##
+    - {name: mail,     version: "~> 2.2.15",  groups: [development, runtime]}
     - {name: RedCloth, version: "~> 4.2.7",   groups: [development, runtime]}
     - {name: wlang,    version: "~> 0.10.2",  groups: [development, runtime]}
     - {name: sinatra,  version: "~> 1.1.2",   groups: [development, runtime]}
