@@ -42,7 +42,7 @@ module RevisionZero
       go(_('html.wtpl'), HTML.merge(context), false)
     end
     
-    def allinone(content = {})
+    def allinone(context = {})
       go(_('allinone.wtpl'), HTML.merge(context), false)
     end
     

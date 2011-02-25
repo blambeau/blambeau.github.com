@@ -3,18 +3,19 @@
   <head>
     <title>Revision-Zero.org - The Book</title>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
+      <mate name="keywords" content="{keywords.join(', ')}"/>  
       <style type="text/css">
         +{css}
       </style>
   	  <script type="text/javascript" language="JavaScript"><!--
-        <<{../public/js/jquery-1.4.1.min.js}
+        <<{../../../public/js/jquery-1.4.1.min.js}
   	  //--></script>
   	  <script type="text/javascript" language="JavaScript"><!--
-  	    var current = '{writing.identifier}';
-        <<{../public/js/allinone.js}
+  	    var current = 'book';
+        <<{../../../public/js/allinone.js}
   	  //--></script>
     </head>
   <body>
-<<+{../templates/body.wtpl share all with middle_template:'../handlers/allinone_middle', allinone:true}
+<<+{body.wtpl share all with middle_template:'allinone_middle', allinone:true}
   </body>
 </html>

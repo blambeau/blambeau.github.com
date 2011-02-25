@@ -1,7 +1,7 @@
 <ul id="writings">
   *{info.writings.reverse as w}{
     <li class="?{w.identifier == current}{current}{normal}" id="link_${w.identifier}">
-      @{${w.identifier}}{?{w.identifier == current}{» }${w.short || w.title}}
+      @{${w.identifier}}{${w.short || w.title}}
     </li> 
   }
 </ul>

@@ -27,7 +27,7 @@
 begin
   require 'rake/testtask'
   desc "Run unit tests"
-  Rake::TestTask.new(:unit_test) do |t|
+  Rake::TestTask.new(:unit_test => :clean) do |t|
 
     # List of directories to added to $LOAD_PATH before running the
     # tests. (default is 'lib')

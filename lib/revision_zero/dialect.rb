@@ -15,7 +15,7 @@ WLang::dialect('revtpl', '.wtpl') do
         get = RevisionZero::Templates.go(file, ctx, true)
         [get, reached]
       else
-        parser.error(offset, "unable to apply cache rule <<!{#{uri}}, not a file or not readable (#{uri})")
+        parser.error(offset, "unable to apply cache rule <<!{#{file}}, not a file or not readable (#{file})")
       end
     end
     
@@ -54,7 +54,7 @@ WLang::dialect('revzero', '.r0') do
         end
       end
     end
-
+    
     rule "!!" do |parser,offset| 
       text, reached = parser.parse(offset)
       ["<p class=\"attention\">#{text}</p>", reached]

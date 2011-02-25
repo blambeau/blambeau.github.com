@@ -1,0 +1,5 @@
+*{info.writings as w}{
+<div id="page_${w.identifier}" style="display: ?{w.identifier == current}{block}{none}">
+<<+{article.wtpl share all with writing:w}
+</div>
+}
