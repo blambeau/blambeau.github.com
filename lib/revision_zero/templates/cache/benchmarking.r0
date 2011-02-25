@@ -1,0 +1,154 @@
+<p>I was recently looking at the presentation <a href="http://confreaks.net/videos/427-rubyconf2010-zomg-why-is-this-code-so-slow"><span class="caps">ZOMG</span> <span class="caps">WHY</span> IS <span class="caps">THIS</span> <span class="caps">CODE</span> SO <span class="caps">SLOW</span></a> given by Aaron Patterson (aka <a href="http://tenderlovemaking.com/">tenderlove</a>) at RubyConf 2010. His talk was about benchmarking, performance and optimization in ruby, examples being extracted from his recent work on <a href="http://ar.rubyonrails.org/">ActiveRecord</a> and <a href="https://github.com/rails/arel">ARel</a>. I must confess being a bit embarrassed about what I&#8217;m going to say here (Aaron is a really famous ruby hacker, member of both ruby-core and rails-core teams, developer of excellent ruby tools like <a href="https://github.com/rails/arel">ARel</a>, <a href="https://github.com/tenderlove/mechanize">mechanize</a>, and so on.) but&#8230;  I&#8217;m a bit&#8230; how to say?&#8230; hum, surprised!</p>
+<p>The reason is that some examples in the slides can be very misleading <span class="caps">IMHO</span>. Amazingly, Aaron himself writes &#8220;Don&#8217;t believe me&#8221; and &#8220;Think critically&#8221;. Let&#8217;s do that: I dare this writing.</p>
+<h3>Benchmarking and asserting execution time</h3>
+<p>The example below is given at slide 104 (<a href="http://www.slideshare.net/tenderlove/zomg-why-is-this-code-so-slow">click here for the slides</a>), when Aaron introduces the <a href="https://github.com/seattlerb/minitest">minitest/benchmark</a> library (I must add that, at the time of writing, a very similar example is given in <a href="https://github.com/seattlerb/minitest/blob/81fe0a56f5dd29036e3bec107cca48a136c42470/README.txt#L110-119">minitest&#8217;s own <span class="caps">README</span></a>).</p>
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;minitest/autorun&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;minitest/benchmark&#39;</span>
+
+<span class="k">class</span> <span class="nc">BenchFib</span> <span class="o">&lt;</span> <span class="no">MiniTest</span><span class="o">::</span><span class="no">Unit</span><span class="o">::</span><span class="no">TestCase</span>
+  
+  <span class="k">def</span> <span class="nf">fib</span> <span class="n">n</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="n">n</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> 
+      <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> 
+    <span class="k">end</span>
+    <span class="n">a</span>
+  <span class="k">end</span>
+  
+  <span class="k">def</span> <span class="nf">bench_fib</span>
+    <span class="n">assert_performance_linear</span> <span class="mi">0</span><span class="o">.</span><span class="mi">99</span> <span class="k">do</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span>
+      <span class="n">n</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> 
+        <span class="n">fib</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span> 
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+  
+<span class="k">end</span>
+</pre></div>
+<p>The example is quite easy to understand:</p>
+<ol>
+	<li>The method <code>fib</code> computes the n-th <a href="http://en.wikipedia.org/wiki/Fibonacci_number">fibonacci number</a>,</li>
+	<li>As its name suggests, the method <code>bench_fib</code> aims at benchmarking and asserting the performance of (the implementation of) <code>fib</code>.</li>
+	<li>It relies on <code>assert_performance_linear</code> (provided by minitest/benchmark) which will invoke the block with increasing values for <code>n</code> (1, 10, 100, 1000, and 10000).</li>
+	<li>By measuring the execution time of each of these invocations, minitest is able to check whether the execution time is a linear function of <code>n</code> or not.</li>
+</ol>
+<p>As you can see below, the test passes. The execution time exhibits a beautiful linear progression! Can we say therefore that <code>fib</code> is a linear function? Not at all!</p>
+<div class="highlight"><pre>blambeau@yemana % ruby fib1_test.rb
+
+<span class="c"># Running benchmarks:</span>
+
+BenchFib    1         10        100       1000      10000
+bench_fib   0.000612  0.006107  0.076857  0.750271  7.524193
+
+Finished benchmarks in 8.365573s, 0.1195 tests/s, 0.1195 assertions/s.
+
+1 tests, 1 assertions, 0 failures, 0 errors, 0 skips
+</pre></div>
+<h3>Trivially true or simply wrong?</h3>
+<p>Not at all, because the assertion is trivially true. Therefore the test is useless, if not simply wrong.</p>
+<div class="highlight"><pre><span class="n">assert_performance_linear</span> <span class="mi">0</span><span class="o">.</span><span class="mi">99</span> <span class="k">do</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span>
+  <span class="n">n</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
+    <span class="n">fib</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+<p>Here is why:</p>
+<ol>
+	<li>The call to <code>fib(1000)</code> itself has a <strong>constant</strong> execution time <em>T</em> (but see later),</li>
+	<li>One call to <code>fib(1000)</code> takes <em>T</em> ms., ten calls take <em>10*T</em> ms., &#8230;, ten thousand calls take <em>10000*T</em> ms.</li>
+	<li>Therefore, the linear progression is implied by <code>assert_performance_linear</code> only, and is absolutely independent of <code>fib</code></li>
+</ol>
+<p>In other words, from the points of view of the assertion at least (vs. the actual execution time, which differs) the code given in the example is somewhat equivalent to (and the test passes, of course):</p>
+<div class="highlight"><pre><span class="n">assert_performance_linear</span> <span class="mi">0</span><span class="o">.</span><span class="mi">99</span> <span class="k">do</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span>
+  <span class="n">n</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
+    <span class="c1"># everything with constant execution time</span>
+    <span class="c1"># nothing, for example</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+<p>The assertion is trivially true as well as the test, and the benchmarking approach itself is misleading, if not wrong.</p>
+<h3>Really?</h3>
+<p>Unfortunately if you want to go deeper in your understanding, things get more complicated. The truth is that answering whether the benchmarking is wrong or not depends on what you want to assert precisely. In this respect, the example at hand is amazing because:</p>
+<p class="attention">it proves (or at least asserts) a lot of things, but <strong>certainly not</strong> that <code>fib</code> has a linear execution time (even if it does)</p>
+<p>If you do not trust me, modify <code>fib</code> as below. The modified implementation (does not compute a fibonacci number anymore and) presents an exponential execution time with respect to <code>n</code>.</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">fib</span> <span class="n">n</span>
+  <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+  <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> 
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> 
+  <span class="k">end</span>
+  <span class="n">a</span>
+<span class="k">end</span>
+</pre></div>
+<p>Execute the test now (I&#8217;ve only replaced 1000 by 10 here to have something that ends in a reasonable amount of time. Sorry for the confusion it could introduce):</p>
+<div class="highlight"><pre><span class="n">assert_performance_linear</span> <span class="mi">0</span><span class="o">.</span><span class="mi">99</span> <span class="k">do</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span>
+  <span class="n">n</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
+    <span class="n">fib</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> 
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+<div class="highlight"><pre>blambeau@yemana % ruby fib2_test.rb
+
+<span class="c"># Running benchmarks:</span>
+
+BenchFib    1         10        100       1000      10000
+bench_fib   0.000646  0.006415  0.079595  0.775503  7.777460
+
+Finished benchmarks in 8.647361s, 0.1156 tests/s, 0.1156 assertions/s.
+
+1 tests, 1 assertions, 0 failures, 0 errors, 0 skips
+</pre></div>
+<p>The test passes and the performance is linear (the execution time is really similar to what we had before, but it is only because <code>10**2 == 1024 ~= 1000</code>). The problem is that such a test would pass and would assert a linear performance whatever the <code>fib</code> you choose, and whatever it&#8217;s internal complexity: constant, linear, polynomial, or even exponential!</p>
+<p>Contrarily to what is argued by Aaron (see the <a href="http://confreaks.net/videos/427-rubyconf2010-zomg-why-is-this-code-so-slow">video around 18:00</a>), this kind of test will never detect the fact that your mate have replaced your linear function by an exponential one.</p>
+<p>So what is asserted exactly? Is the assertion trivially true, really? No exactly. In fact, the test asserts that:</p>
+<ol>
+	<li>The method <code>Integer#times(n)</code> has a linear execution time with respect to <code>n</code> and</li>
+	<li>The call to <code>fib(1000)</code> has a constant execution time, which implies that&#8230;</li>
+	<li>&#8230; it does not (seem to) depend on the number of times the function has been called before and</li>
+	<li>&#8230; it does not (seem to) depend on another hidden parameter unless the latter is itself constant and</li>
+	<li>&#8230; so on.</li>
+</ol>
+<h3>What could /should it be?</h3>
+<p>At this step, you could argue that it is a typo on the slide and that the bench method was intended to be as shown below:</p>
+<div class="highlight"><pre><span class="n">assert_performance_linear</span> <span class="mi">0</span><span class="o">.</span><span class="mi">99</span> <span class="k">do</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span>
+  <span class="n">n</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
+    <span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> 
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+<p>But no way! The test even fails, and <strong>it has to fail</strong>: <code>Integer#times</code> is linear in <code>n</code> and calls <code>fib</code> at each iteration, which is linear in <code>n</code> as well. The correct computation is therefore <code>n*n</code>, which is quadratic, not linear. Moreover, a similar mistake would be repeated on many other slides (see slides 100-102, 104-106, 109-114, 165-166, &#8230;).</p>
+<p>What about the example below?</p>
+<div class="highlight"><pre><span class="n">assert_performance_linear</span> <span class="mi">0</span><span class="o">.</span><span class="mi">99</span> <span class="k">do</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span>
+  <span class="n">n</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+    <span class="n">fib</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> 
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+<p>Well, this time, the exact complexity formula is <code>n*(n+1)/2</code>, which is bounded by <code>n^2</code> and is therefore quadratic, not linear either. Contrast this with</p>
+<div class="highlight"><pre><span class="n">assert_performance_linear</span> <span class="mi">0</span><span class="o">.</span><span class="mi">99</span> <span class="k">do</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span>
+  <span class="mi">100</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
+    <span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> 
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+<p>Or simply:</p>
+<div class="highlight"><pre><span class="n">assert_performance_linear</span> <span class="mi">0</span><span class="o">.</span><span class="mi">99</span> <span class="k">do</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span>
+  <span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> 
+<span class="k">end</span>
+</pre></div>
+<p>The last two examples are right, and correctly assert that <code>fib</code> itself has a linear complexity. The first one repeats the computation 100 times, to have better statistical results. The latter point is extremely important, to avoid having tests that wrongly success or fail (see later).</p>
+<h3>So what?</h3>
+<p>So what? What happened? Is it important? For me, the main problem with Aaron&#8217;s talk is that it mixes two different concerns:  <em>benchmarking</em> and <em>asserting complexity</em>. And keeping these concerns separate is certainly important! Let&#8217;s have a quick look at the differences.</p>
+<h4>Benchmarking</h4>
+<p>What Aaron is actually interested in his talk is <em>benchmarking</em>. Benchmarking allows <strong>measuring and comparing execution times</strong>. In that case, executing the same constant code (e.g. <code>fib(1000)</code>) over and over again perfectly makes sense. It is what Aaron is actually doing on all slides showing linear curves (<a href="http://www.slideshare.net/tenderlove/zomg-why-is-this-code-so-slow">slides</a> 153, 163, 166, 174, 180, 183, 187, and so on.): it compares different implementations of similar specifications. The fact that the curves are linear is misleading: it does not say anything about the internal complexity of the different implementations. But it makes the job: the delta between the different curves (in mathematical words: the difference of the slope of the curves) is representative of the efficiency difference between these implementations!</p>
+<p>Even if it makes sense, remember that conducting a benchmarking experiment on one example only (e.g. <code>fib(1000)</code>) is extremely insignificant, statistically speaking. Varying parameters and computing the average execution time is certainly better that executing the code with the same parameter, even a billion times. I must confess that correctly designing such a benchmarking experiment is also a bit harder. Aaron showed you the easiest and the very pragmatic way, very arguable but working (as demonstrated)!</p>
+<h4>Asserting complexity</h4>
+<p>Asserting the internal complexity of an algorithm is another beast, and is probably much harder than benchmarking. Asserting complexity is asserting about the <strong>performance of an algorithm with respect to the size of the problem it solves</strong>. Well, it is (somewhat) obvious that asserting complexity is not Aaron&#8217;s motivation. Instead he mainly uses <code>assert_linear_performance</code> as a pragmatic way of measuring execution time and reporting it on a plot (see what he says at 18:15). All examples with <code>assert_linear_performance</code> are actually flawed, as I&#8217;ve discussed earlier.</p>
+<p>To reason about the complexity of your algorithm you <strong>have to</strong> design an experiment where the size of the problem varies. In the <code>fib</code> example, you have to measure the execution time for different (well chosen) values of <code>n</code>. Executing the algorithm many times (say 10 times) for each parameter value and computing the average allows obtaining better results with respect to statistical significance. If you report the measured time against the size of the problem in a graph, you obtain the complexity profile (see <a href="http://www.slideshare.net/tenderlove/zomg-why-is-this-code-so-slow">Aaron&#8217;s slides</a> 229-233 for typical profiles).</p>
+<p>Asserting the complexity of the algorithm from such measures is even harder than simply visualizing it (isn&#8217;t even undecidable??? please drop me an email if you know the answer). The idea (and what <a href="https://github.com/seattlerb/minitest">minitest/benchmark</a> does) is to fit the measures with a given mathematical profile (linear, polynomial, exponential), and to check whether the fitting error is under a given threshold. In my opinion, designing and conducting such an experiment rigorously is difficult and requires time (both for the design and the execution of the experiment) and a lot of experience. For this reason, I personally doubt about the pertinence of having such assertions in an automated test suite. Anyway, if you plan to use them, remember to also output graphs and to have a look at it! Human inspection is sometimes much more pragmatic and rigorous than flawed automations ;-)</p>
+<h3>Conclusion</h3>
+<p>I&#8217;ll conclude this post with Aaron&#8217;s own response to the mail I&#8217;ve sent to him about this:</p>
+<p class="attention">I think your post is accurate. The benchmark shows a constant amount of work in a linear progression. Did I say something else? If so, I apologize.</p>
+<p>And with my girlfriend&#8217;s:</p>
+<p class="attention">The benchmark shows that (unlike me) your computer is not tired of computing the 1000-th fibonacci number, even after a million times.</p>
+<p>She&#8217;s right!</p>

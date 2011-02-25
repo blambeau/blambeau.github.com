@@ -1,0 +1,73 @@
+<h3>Hi all!</h3>
+<p>I&#8217;ve spent a few hours on a new project recently: the Noe ruby library (the source code is <a href="https://github.com/blambeau/noe">available on github</a>). Noe is born because I&#8217;m tired of always replaying the same scenario every time I start a new ruby library / scientific paper / java program / static or dynamic web site / and so on. You probably know what I mean: our projects follow conventions, and in particular well-defined folder structures and file templates. One would like to have tools to instantiate these structures and files in one click! Noe is such a tool:</p>
+<div class="highlight"><pre>blambeau@yemana % noe prepare --template<span class="o">=</span>ruby hello_world
+Project successfully prepared ! 
+
+Coming Next?
+ * edit hello_world/hello_world.noespec
+ * noe go
+
+Thank you <span class="k">for </span>using Noe <span class="o">(</span>v1.1.0<span class="o">)</span>, enjoy!
+
+blambeau@yemana % <span class="nb">cd </span>hello_world 
+blambeau@yemana % noe go     
+blambeau@yemana % ls -lA
+-rw-r--r--  1 blambeau  staff    49 Jan 14 17:21 .gitignore
+-rw-r--r--  1 blambeau  staff    48 Jan 14 17:21 CHANGELOG.md
+-rw-r--r--  1 blambeau  staff    59 Jan 14 17:21 Gemfile
+-rw-r--r--  1 blambeau  staff  1133 Jan 14 17:21 LICENCE.md
+-rw-r--r--  1 blambeau  staff    96 Jan 14 17:21 README.md
+-rw-r--r--  1 blambeau  staff   542 Jan 14 17:21 Rakefile
+-rw-r--r--  1 blambeau  staff  5902 Jan 14 17:21 hello_world.gemspec
+-rw-r--r--  1 blambeau  staff  6860 Jan 14 17:21 hello_world.noespec
+drwxr-xr-x  4 blambeau  staff   136 Jan 14 17:21 lib
+drwxr-xr-x  4 blambeau  staff   136 Jan 14 17:21 spec
+drwxr-xr-x  6 blambeau  staff   204 Jan 14 17:21 tasks
+</pre></div>
+<p>Before going any further, here is how to install it. You&#8217;ll need a correct ruby installation to run it, see <a href="http://ruby-lang.org">ruby-lang.org</a>. After that, noe is a simply ruby gem:</p>
+<div class="highlight"><pre>blambeau@yemana % gem install noe
+blambeau@yemana % noe <span class="nb">help </span>install
+blambeau@yemana % noe install
+</pre></div>
+<h3>Why not using existing tools for ruby?</h3>
+<p>Why reinventing the wheel, once again? Similar generators already exists: <a href="http://seattlerb.rubyforge.org/hoe/">hoe</a> by Ryan Davis and Eric Hodel, <a href="https://github.com/fauna/echoe">echoe</a> by Evan Weaver, <a href="https://github.com/TwP/bones">bones</a> by Tim Pease and so on. They generate such a ruby structure from templates and do even better: they also (and somewhat magically) provide a lot of rake tasks to manage the lifecycle of your project (for those who might not know what a <em>rake task</em> is, let simply add that <a href="http://rake.rubyforge.org/"><em>rake</em></a> is the ruby maker, a tool that helps running code-related tasks like building, testing, packaging, or releasing the program/library you are developping)!</p>
+<p>Given my needs, I had two main reasons for not reusing/extending these tools:</p>
+<ul>
+	<li>First, they do not support generating skeletons for something else than ruby projects. Nothing in their architecture looked designed for such a need so that extending them appeared difficult.</li>
+	<li>Second, <span class="caps">IMHO</span> they violate some important principles: keep separation of concerns, achieve a strong level <a href="independence">independence</a>, <a href="document_at_earliest_point_of_usage">document at the earliest user point of usage</a>, provide magic only if it does not restrict features, and so on.</li>
+</ul>
+<p>I won&#8217;t argue here about such principles and their violation by the projects listed above. Drop me an email if you are interested in having details.</p>
+<h3>Template &#8594; Skeleton</h3>
+<p>Basic usage of Noe is really simple. First, you build (or reuse of course) a project template respecting a few conventions about <em>variables</em> (like using <code>__varname__</code> in file and folder names). Then you provide a .noespec file (actually a good old .yaml file) that assigns values to such variables. Noe makes the rest: it instantiates the whole project template as a fresh new project skeleton!</p>
+<p><img src="images/noe/workflow.gif" alt="" /></p>
+<h3>Maintaining your Skeleton</h3>
+<p>The generation of a project skeleton is a good start, but Noe comes with additional power! For example, it allows you to modify your .noespec file later while regenerating only parts of the project skeleton (to avoid overriding your own work). This regeneration feature comes with different variants.</p>
+<h4>Regenerating all files</h4>
+<p>When you start a new project you might want to write your .noespec file iteratively, generating the whole skeleton over and over again. Noe has a special mode for this:</p>
+<div class="highlight"><pre>blambeau@yemana % noe go --force
+blambeau@yemana % <span class="o">[</span>... modify .noespec ...<span class="o">]</span>
+blambeau@yemana % noe go --force
+blambeau@yemana % <span class="o">[</span>... modify .noespec ...<span class="o">]</span>
+</pre></div>
+<h4>Regenerating some files only</h4>
+<p>It often occurs that some files are constants, up to a project configuration (that you may encapsulate in your .noespec file). Examples of such files in the ruby community are the Rakefile, the Gemfile, the .gemspec and so on. If the configuration changes, you can simply remove the old version and ask Noe to resurect the files:</p>
+<div class="highlight"><pre>blambeau@yemana % rm Rakefile Gemfile
+blambeau@yemana % noe go --add-only
+</pre></div>
+<h4>Trusting the template creator&#8230;</h4>
+<p>The creator of the template you use (maybe yourself) might have a personal opinion about what files should be kept under Noe&#8217;s control (thanks to the configuration specified in the .noespec file) and which ones should not be overriden after the creation of the skeleton. Good templates come with full documentation about such assumptions. Noe provides a special mode for maintaining your skeleton safely, while respecting the creator conventions:</p>
+<div class="highlight"><pre>blambeau@yemana % noe go --safe-override
+</pre></div>
+<h4>&#8230; but keep control!</h4>
+<p>Even if you almost agree with the conventions of the template creator, you might want to maintain a file manually that would normally be kept under Noe&#8217;s control. That file will be overriden everytime you invoke the previous command, and of course you want to prevent this from occuring. Fortunately, Noe comes with a powerful mechanism to override template conventions. This is done inside your .noespec file, under the template-info/manifest section. In the example below, we explicitely specify that the Gemfile may be overriden when using <code>--safe-override</code> while the Rakefile will be maintained manually.</p>
+<p style="text-align:center;"><img src="images/noe/safe_override.png" alt="" /></p>
+<h3>Writing a template</h3>
+<p>At the time of writing, I&#8217;m still actively writing documentation for Noe, and a template maintainer guide in particular. I&#8217;ve imagined writing a Noe template for writing templates, but while perfectly possible, it quickly appeared that adding an additional level of meta-abstraction would lead to something less understandable than a good old explanation here.</p>
+<p>After having installed Noe (see &#8216;<code>noe help install</code>&#8217;) properly, you end up with a <code>~/.noerc</code> file with Noe&#8217;s basic configuration and a <code>~/.noe</code> folder with default templates bundled with noe (have a look at the default ruby template). A template is basically a subfolder in <code>~/.noe</code> with the structure shown below.</p>
+<p style="text-align:center;"><img src="images/noe/dotnoe.gif" alt="" /></p>
+<p>The specification file, namely <code>noespec.yaml</code> is used by &#8216;<code>noe prepare</code>&#8217; to generate the initial version of the project&#8217;s .noespec file. It is generally much longer than shown, as the template creator may also provide variables with default values, specify a default <a href="https://github.com/blambeau/wlang">wlang</a> dialect, provide a <code>template-info/manifest</code> to control the <code>--safe-override</code> option and override the default wlang dialect for specific files, and so on.</p>
+<p>The <code>src</code> folder contains the meta-structure of the project skeleton. <code>__varname__</code> may be used in file and directory names. They will be renamed thanks to the values provided in the .noespec file when the skeleton is generated by &#8216;<code>noe go</code>&#8217;.</p>
+<h3>Last but not least</h3>
+<p>I would not want closing this post without mentioning one of the greatest reason why I think that Noe could become a great and really friendly tool: files and instantiated by <a href="https://github.com/blambeau/wlang">wlang</a>! WLang is designed to help generating code, i.e. to help you maintaining clean templates even for complex tasks through the support of dialects. So, let me close this post with another not so simple example:</p>
+<p style="text-align:center;"><img src="images/noe/wlang_is_great.gif" alt="" /></p>
+<p>Enjoy <a href="https://github.com/blambeau/noe">Noe</a>!</p>

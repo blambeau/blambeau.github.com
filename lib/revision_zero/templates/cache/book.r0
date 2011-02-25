@@ -1,0 +1,61 @@
+<p>Two hours ago, I said that this blog had a new implementation based on WLang. Migrating to wlang also leads to new features&#8230; Here is a typical use of wlang: write your website once, compile it to different formats (self-contained html book, static website, small web server on your computer, deployment inside apache&#8230;)</p>
+<h3>So, where is the book?</h3>
+<p>Just <a href="http://revision-zero.org/downloads/revision-zero.html" target="_blank">here</a>&#8230; Save the .html file on your disk and open it with a good browser (all but one&#8230; let&#8217;s say). This file is strictly self contained: images are embedded, all writings are included, etc. <strong>You can read it offline</strong>&#8230; that&#8217;s all!</p>
+<p>How does it work?</p>
+<p>A bit of <span class="caps">CSS</span>:</p>
+<div class="highlight"><pre><span class="nt">ul</span><span class="nf">#writings</span> <span class="nt">li</span><span class="nc">.current</span> <span class="nt">a</span> <span class="p">{</span> <span class="k">text-decoration</span><span class="o">:</span> <span class="k">underline</span><span class="p">;</span> <span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span> <span class="p">}</span>
+</pre></div>
+<p>A bit of javascript (many thanks to <a href="http://www.query.com/">jquery</a> for their job):</p>
+<div class="highlight"><pre><span class="kd">function</span> <span class="nx">book_toggle</span><span class="p">(</span><span class="nx">identifier</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#page_&#39;</span> <span class="o">+</span> <span class="nx">identifier</span><span class="p">);</span>
+  <span class="nx">page</span><span class="p">.</span><span class="nx">toggle</span><span class="p">();</span>
+  <span class="kd">var</span> <span class="nx">link</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#link_&#39;</span> <span class="o">+</span> <span class="nx">identifier</span><span class="p">);</span>
+  <span class="nx">link</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span><span class="s2">&quot;current&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">goto_page</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">book_toggle</span><span class="p">(</span><span class="nx">current</span><span class="p">);</span>
+  <span class="nx">current</span> <span class="o">=</span> <span class="nx">url</span><span class="p">;</span>
+  <span class="nx">book_toggle</span><span class="p">(</span><span class="nx">current</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+<p>And, for images we embed them as base64 (more information and tools about this technique <a href="http://www.greywyvern.com/code/php/binary2base64">on this site</a>):</p>
+<div class="highlight"><pre><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">&quot;data:image/png;base64,...&quot;</span><span class="nt">&gt;&lt;/img&gt;</span>
+</pre></div>
+<h3 id="how">Where is wlang in here ??</h3>
+<p>The three basic (and probably well-known, except the last one maybe) techniques above have nothing to do with wlang. WLang helps me <a href="independence">reaching <em>independence</em></a> around them, probably the most important thing that I know about computer science.</p>
+<p>What does independence mean in this book context? It means that the blog sources (layouts, writings, css, javascript) are completely independent of their usage (static blog generated as .html distinct pages, book self-contained .html file, dynamic website that composes the pages on demand, and so on.). I can&#8217;t explain the whole architecture of the blog sources (see <a href="http://github.com/blambeau/blambeau.github.com/tree/revision-zero">github</a> if you want to read the sources), but here is an example of how it works:</p>
+<p>Here is a typical blog page, say <code>book/hello_reader.r0</code>, written in <a href="http://en.wikipedia.org/wiki/Textile_(markup_language)">textile markup language</a>, but containing wlang tags (<code>@{abstract_link}{label of the link}</code>, for instance).</p>
+<div class="highlight"><pre>h1. Hello reader
+
+Reaching @{independence}{source independence} is important.
+</pre></div>
+<p>On the version of the blog that you are currently reading, this code is transformed by wlang as:</p>
+<div class="highlight"><pre><span class="nt">&lt;h1&gt;</span>Hello reader<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;p&gt;</span>Reaching <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;independence&quot;</span><span class="nt">&gt;</span>source independence<span class="nt">&lt;/a&gt;</span> is important.<span class="nt">&lt;/p&gt;</span>
+</pre></div>
+<p>Have a look on the different versions now: <a href="book#how">here</a>, on <a href="http://www.revision-zero.org/book#how">revision-zero.org</a> and <a href="http://www.revision-zero.org/downloads/revision-zero.html">the book</a>&#8230; WLang adapts itself to the environment. This is made possible because the blog source code is sufficiently abstracts (what needs to be done for links is not explicitely described). Abstraction is the true nature of quality computer science.</p>
+<h3 id="further">Going further&#8230;</h3>
+<p>WLang can do a lot more&#8230; For example, the two code exerpts above are generated using the following wlang source codes:</p>
+<div class="highlight"><pre>^{xhtml/coderay/html}{ &lt;&lt;{hello_reader.r0} }
+</pre></div>
+<div class="highlight"><pre>^{xhtml/coderay/html}{ ^{redcloth/xhtml}{ &lt;&lt;+{hello_reader.r0} } }
+</pre></div>
+<p>No so difficult in fact, the code above use the following wlang tags (see <a href="http://blambeau.github.com/wlang/specification.html">wlang documentation</a> for details):</p>
+<table>
+<tr>
+    <td><code>@{url}{label}</code></td>
+    <td>renders a link, according to the environment (advanced topic, in fact)</td>
+</tr>
+<tr>
+    <td><code>&lt;&lt;{url}</code></td>
+    <td>includes the text content of the file denoted by <em>url</em></td>
+</tr>
+<tr>
+    <td><code>&lt;&lt;+{url}</code></td>
+    <td>instantiates the content of the file denoted by <em>url</em> as a wlang template</td>
+</tr>
+<tr>
+    <td><code>^{encoder}{source}</code></td>
+    <td>encodes <em>source</em> using a third party <em>encoder</em></td>
+</tr>
+</table>

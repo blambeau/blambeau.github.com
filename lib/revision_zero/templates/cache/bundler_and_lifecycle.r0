@@ -1,0 +1,11 @@
+<p>I&#8217;ve read <a href="http://gembundler.com/rationale.html">Bundler&#8217;s documentation</a> recently because I wanted to better understand how it is supposed to be used. My learning has been a bit difficult for a simple reason: there is a lot of text on Bundler&#8217;s website, but no real concrete scenario explained with a good old image. So I&#8217;ve decided to share the one I&#8217;ve built during my learning:</p>
+<p style="text-align:center;">
+<a href="images/bundler_and_lifecycle/bundler_and_lifecycle.pdf"
+   target="_blank"><img src="images/bundler_and_lifecycle/bundler_and_lifecycle.gif"/></a>
+</p>
+<ul>
+	<li>This cheatsheet is <strong>not dedicated</strong> to Rails, Sinatra, or whatever the technology you use. It is not even dedicated to web applications&#8230; I&#8217;ve tried to keep it somewhat abstract: developing, releasing, deploying is sufficiently general <span class="caps">IMHO</span>.</li>
+	<li>However, it <strong>is dedicated</strong> to <em>applications</em> (in contrast to <em>libraries</em>) because bundler is designed to handle such cases (and <a href="http://goo.gl/RpV4a">is not intended to be used inside gems</a>). The cheatsheet can still be used but must probably be adapted if you use bundler to <em>develop</em> a gem.</li>
+	<li>This is <strong>one typical, simplified use case</strong>. The lifecycle is certainly arguable. My aim is only to illustrate where bundler subcommands are typically used.</li>
+</ul>
+<p>I won&#8217;t explain this cheatsheet any further, not because I&#8217;m lazy, but because I would like it to be completely self-contained and self-explanatory. Don&#8217;t hesitate to ask questions or send comments with the form below and I&#8217;ll update the cheatsheet if needed!</p>

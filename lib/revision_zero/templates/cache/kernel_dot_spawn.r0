@@ -1,0 +1,30 @@
+<p>Ruby 1.9 comes with new methods to execute a (shell) command, namely <a href="http://www.ruby-doc.org/core/classes/Kernel.html#M001442"><code>Kernel.spawn</code></a> also available as <a href="http://ruby-doc.org/core-1.9/classes/Process.html#M002230"><code>Process.spawn</code></a>. In a few words, <code>Kernel.spawn</code> is the powerful tool hidden behind <a href="http://www.ruby-doc.org/core/classes/Kernel.html#M001408"><code>Kernel.`</code></a>, <a href="http://www.ruby-doc.org/core/classes/Kernel.html#M001438"><code>Kernel.exec</code></a>, and <a href="http://www.ruby-doc.org/core/classes/Kernel.html#M001441"><code>Kernel.system</code></a>. If your feeling is that the latter methods, as well as <a href="http://www.ruby-doc.org/core/classes/IO.html#M000880"><code>IO.popen</code></a> are sometimes too restrictive, <a href="http://www.ruby-doc.org/core/classes/Kernel.html#M001442"><code>Kernel.spawn</code></a> is probably for you.</p>
+<p>Note: these methods have <strong>not</strong> been backported in Ruby 1.8.x, but you can still use them thanks to the <a href="https://rubygems.org/gems/sfl">sfl gem</a> (source code available on <a href="https://github.com/ujihisa/spawn-for-legacy">github</a>). Note that the compatibility coverage of the latter gem is far from 100%. Anyway, all examples below are supported by the 2.0 version.</p>
+<h3>Quick overview</h3>
+<p>The new <code>spawn</code> method comes with a lot of options <strong>set environment variables</strong> for the subprocess, <strong>change the current directory</strong>, <strong>redirect file descriptors</strong> (i.e. standard input and output), and so on. In all cases it <strong>doesn‘t wait for end of the command</strong> but <strong>returns the pid</strong> of the subprocess. Therefore, you&#8217;ll have to use <a href="http://www.ruby-doc.org/core/classes/Process.html#M001287"><code>Process.wait</code></a> or <a href="http://www.ruby-doc.org/core/classes/Process.html#M001292"><code>Process.detach</code></a> on the resulting pid. Below are listed typical use cases.</p>
+<h4>Redirecting</h4>
+<p>By default, standard file descriptors (i.e. standard input, output and error) will be shared with the calling process. Redirecting them is really simple however, as illustrated below. Be warned however that <strong>the <code>IO</code> object must be a real <code>IO</code> object</strong>. In other words, retrieving the process output via a <code>StringIO</code> will not work properly&#8230;</p>
+<div class="highlight"><pre><span class="c1"># Use :in for standard input, :out for standard output,</span>
+<span class="c1"># and :err for standard error</span>
+<span class="n">pid</span> <span class="o">=</span> <span class="no">Kernel</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="s2">&quot;ls -lA&quot;</span><span class="p">,</span> <span class="p">{</span><span class="ss">:out</span> <span class="o">=&gt;</span> <span class="n">any_io_object</span><span class="p">})</span>
+
+<span class="c1"># You&#39;ll have to wait for the subprocess after that. Remember that </span>
+<span class="c1"># wait sets $? to a Process::Status object containing information </span>
+<span class="c1"># on that process, including the exit code.</span>
+<span class="no">Process</span><span class="o">.</span><span class="n">wait</span> <span class="n">pid</span>
+</pre></div>
+<p>Interestingly, you can also redirect to files directly:</p>
+<div class="highlight"><pre><span class="c1"># Same comment as in previous example</span>
+<span class="n">pid</span> <span class="o">=</span> <span class="no">Kernel</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="p">{</span><span class="ss">:in</span> <span class="o">=&gt;</span> <span class="s2">&quot;path_to_the_input_file&quot;</span><span class="p">})</span>
+</pre></div>
+<h4>Closing</h4>
+<p>It may happen that the subprocess is too verbose and interfers with the output of your own process, by printing debuging information on the standard output for example&#8230; In this case, you would like to simply close the subprocess output:</p>
+<div class="highlight"><pre><span class="c1"># Same comment as in previous example</span>
+<span class="n">pid</span> <span class="o">=</span> <span class="no">Kernel</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="s2">&quot;verbose_call&quot;</span><span class="p">,</span> <span class="p">{</span><span class="ss">:out</span> <span class="o">=&gt;</span> <span class="ss">:close</span><span class="p">})</span>
+</pre></div>
+<h4>Changing current directory of the callee</h4>
+<p>Another interesting use case: some sub processes may expect being located in a specific location. Not difficult either:</p>
+<div class="highlight"><pre><span class="n">pid</span> <span class="o">=</span> <span class="no">Kernel</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="s2">&quot;ls -lA&quot;</span><span class="p">,</span> <span class="p">{</span><span class="ss">:chdir</span> <span class="o">=&gt;</span> <span class="s2">&quot;/home/blambeau&quot;</span><span class="p">})</span>
+</pre></div>
+<h3>Going further</h3>
+<p>I&#8217;ve not seen many blog entries about <code>Kernel.spawn</code>, which is the reason I&#8217;ve written this post (more to bring that powerful method to your attention than to be exhaustive). I&#8217;ve covered only a few use cases and options, refer to the <a href="http://www.ruby-doc.org/core/classes/Kernel.html#M001442">official documentation</a> for details. Remember that the <a href="https://github.com/ujihisa/spawn-for-legacy">sfl gem</a> does not provide 100% coverage, even if examples listed above should work properly using its 2.0 release!</p>
