@@ -1,10 +1,10 @@
 <div id="navigation">
-  ?{writing.next}{
+  ?{knows?(:writing) && writing.next}{
     <a class="nav enabled" id="leftnav" href="@{+{writing.next}}"></a>
   }{
     <div class="nav disabled" id="leftnav"></div>
   }
-  ?{writing.previous}{
+  ?{knows?(:writing) && writing.previous}{
     <a class="nav enabled" id="rightnav" href="@{+{writing.previous}}"></a>
   }{
     <div class="nav disabled" id="rightnav"></div>
