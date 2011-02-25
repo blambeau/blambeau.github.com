@@ -1,0 +1,28 @@
+Today's writing is really short and is a poll. So please use the comment feature to answer it. Let consider the tables below for a relational schema about people owning pictures (I suppose that a BLOB column could hold the picture, but this is not important here):
+
+p=. !@{images/sql-poll/model.gif}!
+
+Now, consider the following SQL query that returns all columns of the <code>people</code> table as well as the number of <code>pictures</code> each people has in the database:
+
+#<{sql}{
+SELECT id, 
+       email,
+       name,
+       (SELECT count(*) 
+          FROM pictures
+          WHERE pictures.owner = people.id) as nb_picts
+  FROM people
+}
+
+Here is the poll. What do you think about this query?
+
+# Exactly what you'd have written
+# You prefer to use a GROUP BY
+# It's probably correct, but you're not sure 
+# You would never write such a query, it is certainly inefficient
+# The query is incorrect, we can't write this in SQL
+# Other (please explain)
+
+Post your response as a 1-6 number using the comment feature below (there is no particular trap). 
+
+Thanks!

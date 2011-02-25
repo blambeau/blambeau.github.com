@@ -114,6 +114,11 @@ writings:
   date: 2011/02/04 - 17:00
   category: Ruby
   keywords: [ "ruby", "bundler", "bundler cheatsheet", "deployment", "releasing", "deploying", "lifecycle" ]
+- identifier: sql-poll
+  title: "A quick SQL poll"
+  short: "Quick SQL poll"
+  date: 2011/02/25 - 19h59
+  category: Database
 others:
 - identifier: '404'
   title: Forward reference detected
