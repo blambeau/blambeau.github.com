@@ -5,3 +5,4 @@ doc/api
 .yardoc
 .bundle
 output
+vendor/bundle
