@@ -40,7 +40,7 @@ Reaching @{independence}{source independence} is important.
 </pre></div>
 <div class="highlight"><pre>^{xhtml/coderay/html}{ ^{redcloth/xhtml}{ &lt;&lt;+{hello_reader.r0} } }
 </pre></div>
-<p>No so difficult in fact, the code above use the following wlang tags (see <a href="http://blambeau.github.com/wlang/specification.html">wlang documentation</a> for details):</p>
+<p>No so difficult in fact, the code above use the following wlang tags (see <a target="_blank" href="http://blambeau.github.com/wlang/specification.html">wlang documentation</a> for details):</p>
 <table>
 <tr>
     <td><code>@{url}{label}</code></td>

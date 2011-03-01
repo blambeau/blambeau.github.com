@@ -119,6 +119,12 @@ writings:
   short: "Quick SQL poll"
   date: 2011/02/25 - 19h59
   category: Database
+- identifier: history-of-a-bug
+  title: "The Sad/Amazing History of a Ruby[Gems] bug"
+  short: "Ruby/Rubygems Bug"
+  date: 2011/03/01 - 14h07
+  keywords: [ ruby, bundler, rubygems, bug, RangeError, "bignum too big to convert into `long'"]
+  category: Ruby
 others:
 - identifier: '404'
   title: Forward reference detected

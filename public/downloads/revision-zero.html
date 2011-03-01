@@ -458,6 +458,10 @@ function goto_page(url) {
 </div>
 <ul id="writings">
   
+    <li class="normal" id="link_history-of-a-bug">
+      <a onclick="goto_page('history-of-a-bug')">Ruby/Rubygems Bug</a>
+    </li> 
+  
     <li class="normal" id="link_sql-poll">
       <a onclick="goto_page('sql-poll')">Quick SQL poll</a>
     </li> 
@@ -1409,6 +1413,79 @@ Finished benchmarks in 8.647361s, 0.1156 tests/s, 0.1156 assertions/s.
 </ol>
 <p>Post your response as a 1-6 number using the comment feature below (there is no particular trap).</p>
 <p>Thanks!</p>
+
+</div>
+
+<div id="page_history-of-a-bug" style="display: none">
+<div class="writing-title">
+  <h2>The Sad/Amazing History of a Ruby[Gems] bug</h2>
+  <div class="date">2011/03/01 - 14h07</div>
+  <div style="clear:both"></div>
+</div>
+<p>In software development bugs may sometimes live for a very long time before being really fixed. Even when you think that you&#8217;ve fixed them, it may happen that they suddenly re-appear somewhere else. Bugs are like viruses in a sense: they can appear, fall asleep, move, mutate, and so on. I&#8217;ve found such one in the ruby community recently. His story is amazing and his consequences somewhat relevant for the ruby community, so I&#8217;ve decided to spend a day tracking and documenting it.</p>
+<p>The signature of the bug is easy to recognize, you simply end up with a ruby error with the following message:</p>
+<div class="highlight"><pre>/usr/local/lib/site_ruby/1.8/rubygems/requirement.rb:109:
+  in <span class="sb">`</span><span class="nb">hash</span><span class="s1">&#39;: bignum too big to convert into `long&#39;</span> <span class="o">(</span>RangeError<span class="o">)</span>
+</pre></div>
+<p>If you have found this post recently (around March 2011), it&#8217;s very likely that you&#8217;ve encountered this bug in one of the following situations (if not the case, it could be the very same bug but with some mutation; read on, fixes are probably the same):</p>
+<ul>
+	<li>When running <code>bundler install [--deployment|--local]</code></li>
+	<li>When installing a few ruby gems at once via third party tools (capistrano, rails, &#8230;)</li>
+	<li>When phusion passenger attempts to start your rails/sinatra application</li>
+</ul>
+<h3>Temporal bug review</h3>
+<p>The pristine bug is already old (about 2 years) and is due to a Fixnum &#8594; Bignum overflow when computing a hash code, especially on arrays. It seems that it has been discovered in <span class="caps">REXML</span> and <a onclick="goto_page('http://redmine.ruby-lang.org/issues/show/1883')">first reported on the ruby-lang bug tracker</a> the 05 of August 2009. Then it has been quickly fixed. More precisely it was already fixed when the issued has been created.</p>
+<p>Anyway, similar bug reports rapidly appeared in rubygems bug tracker, namely the  <a onclick="goto_page('http://rubyforge.org/tracker/?func=detail&atid=575&aid=26958&group_id=126')">20 of August 2009</a> and <a onclick="goto_page('http://rubyforge.org/tracker/?func=detail&atid=575&aid=27154&group_id=126')">September 21, 2009</a>. Note that a first bug mutation occurs there. Indeed, <code>Gem::Specification.hash</code> is incriminated because it may return a Bignum in certain cases. The link with ruby&#8217;s pristine bug remains clear and fixes are suggested to fix the bug independently of ruby, that is, in rubygems itself. Unfortunately, root cause analysis has not been well applied, and the bug has not been fixed exactly as suggested.</p>
+<p>After that the bug seems to fall asleep and, according to Google search, <a onclick="goto_page('http://bit.ly/fvwMVp')">remains silent during about one year</a> at least if you consider the main bug trackers in the ecosystem. However, during this very same year the <a onclick="goto_page('http://gembundler.com/')">bundler project</a> becomes more and more mature. And the 29th August of 2010, the first stable 1.0.0 version is officially released together with <a onclick="goto_page('http://weblog.rubyonrails.org/2010/8/29/rails-3-0-it-s-done')">Rails 3.0</a>.</p>
+<p>The bug mutates and re-appears in only two days, with an new entry in <a onclick="goto_page('https://github.com/carlhuda/bundler/issues/637')">bundler issues</a> on September 1, 2010. Users quickly perform root cause analysis, re-discover the <a onclick="goto_page('http://rubyforge.org/tracker/index.php?func=detail&aid=27154&group_id=126&atid=575')">bug report on rubygems</a> then on ruby and close the issue on bundler itself.</p>
+<p>Since that time, the <a onclick="goto_page('http://rubyforge.org/tracker/index.php?func=detail&aid=27154&group_id=126&atid=575')">bug report on rubygems</a> gains a discussion from October to December 2010, a first request appears on <a onclick="goto_page('http://help.rubygems.org/discussions/problems/335-marshal48z-still-not-updating-completely-as-of-21-september')">rubygems help</a> (September 21, 2010) quickly followed by <a onclick="goto_page('http://help.rubygems.org/discussions/problems/418-rangeerror-when-running-gem-generate_index')">a second one</a> (November 20, 2010), a <a onclick="goto_page('http://stackoverflow.com/questions/4295033/error-in-installing-bundle-in-rails-application')">rails-related question is asked on stackoverflow</a> (November 28, 2010), as well as a <a onclick="goto_page('http://groups.google.com/group/ruby-bundler/browse_thread/thread/8307e5ffa4fc1cce')">mail on bundler&#8217;s mailing list</a> (December 14, 2010) and <a onclick="goto_page('http://stackoverflow.com/questions/4989618/error-while-installing-rspec-gem-bignum-too-big-to-convert-into-long')">another question when installing rspec 2.5.0 on stackoverflow</a> (February 14, 2010).</p>
+<p>The <a onclick="goto_page('http://rubyforge.org/tracker/index.php?func=detail&aid=27154&group_id=126&atid=575')">most recent bug report on rubygems</a> has been closed the 1th of February 2010 with a message &#8220;This is fixed.&#8221; and no particular patch applied.</p>
+<h3>Affected ruby[gems] versions</h3>
+<p>The issue has been fixed in ruby 1.8.7 in <a onclick="goto_page('https://redmine.ruby-lang.org/projects/ruby-18/repository/revisions/25661')">Revision 25661</a> on November 5, 2009 by merging changeset r22308. Strangely, the <a onclick="goto_page('http://svn.ruby-lang.org/repos/ruby/tags/v1_8_7_334/ChangeLog')">Changelog file of ruby&#8217;s 1.8.7</a> does not contain any information about changesets applied between the 08 of April and the 26 of May. Therefore no trace of this fix has been officially kept. However, a quick bisection (thanks to <a onclick="goto_page('http://rvm.beginrescueend.com/')">rvm</a> in passing) shows the following:</p>
+<ul>
+	<li><span style="color:red">ruby-1.8.7-p160 [ i386 ], KO, April 18, 2009</span></li>
+	<li><span style="color:red">ruby-1.8.7-p174 [ i386 ], KO, (no official announcement)</span></li>
+	<li><span style="color:green">ruby-1.8.7-p248 [ i386 ], OK, December 25, 2009</span></li>
+	<li><span style="color:green">ree-1.8.7-2011.03 [ i386 ], OK, March 01, 2011</span></li>
+	<li><span style="color:green">ruby-1.9.2-p136 [ i386 ], OK, December 25, 2010</span></li>
+</ul>
+<p>In spite of bug reports and patches introduced in rubygems bug tracker, no patch has been officially applied to rubygems itself so far, probably due to a lack of material to reproduce the bug and write a regression test. Therefore, unless your ruby version is greater or equal to ruby-1.8.7-p248, you are affected by the bug. In other words:</p>
+<ul>
+	<li><span style="color:red">ruby 1.8.7-p174 + rubygems 1.5.3, KO</span></li>
+</ul>
+<h3>How to fix it?</h3>
+<p>At the time of writing, the only clean way to fix this bug is to upgrade your ruby version. As you probably know, if you are under Debian/Ubuntu and would like to rely on an official ruby package (at least for ruby itself), then &#8230; hum &#8230; you&#8217;ll probably have to wait.</p>
+<p>Now that a dissection of this bug has been made, I personally hope that a fix will be available in rubygems itself for users relying on Debian packages on production servers. Alternatively you can patch your rubygems version as follows (see <a onclick="goto_page('http://rubyforge.org/tracker/index.php?func=detail&aid=27154&group_id=126&atid=575')">rubygems bug tracker</a> for details):</p>
+<div class="highlight"><pre>blambeau@aello <span class="nv">$ </span><span class="nb">pwd</span>
+/usr/local/lib/site_ruby/1.8/rubygems
+
+blambeau@aello <span class="nv">$ </span>diff -u requirement.rb.orig requirement.rb
+--- requirement.rb.orig	2011-03-01 19:03:20.000000000 +0100
++++ requirement.rb	2011-03-01 19:03:41.000000000 +0100
+@@ -106,7 +106,7 @@
+   end
+ 
+   def <span class="nb">hash</span> <span class="c"># :nodoc:</span>
+-     requirements.hash
++     requirements.inject<span class="o">(</span>0<span class="o">)</span> <span class="o">{</span> |h, r| h ^ r.first.hash ^ r.last.hash<span class="o">}</span>
+   end
+ 
+   def marshal_dump <span class="c"># :nodoc:</span>
+</pre></div>
+<h3>Conclusion</h3>
+<p>I won&#8217;t spend too much time concluding about all of this. Bugs happen are sometimes hard to understand and fix. However, I can&#8217;t resist having a personal lecture of all of this in the light of somewhat recent discussions about <a onclick="goto_page('http://www.lucas-nussbaum.net/blog/?p=617')">ruby packaging</a> and <a onclick="goto_page('http://redmine.ruby-lang.org/issues/show/4239')">compatibility issues</a>.</p>
+<p>The fact that old bugs suddenly resurrect certainly means that users rely on ruby versions that important committers in the ecosystem already consider as &#8216;oldies&#8217;&#8230; If OPs should certainly migrate (but need support to do so), committers should take care.</p>
+<h3>Links</h3>
+<ul>
+	<li>August 05 2009, on <a onclick="goto_page('http://redmine.ruby-lang.org/issues/show/1883')">ruby-lang bug tracker</a>, someone reports the bug in <span class="caps">REXML</span></li>
+	<li>August 08 2009, first appearance of the bug on <a onclick="goto_page('http://rubyforge.org/tracker/?func=detail&atid=575&aid=26958&group_id=126')">rubygems bug tracker</a></li>
+	<li>September 21 2009, a similar issue appears on the <a onclick="goto_page('http://rubyforge.org/tracker/?func=detail&atid=575&aid=27154&group_id=126')">rubygems bug tracker</a></li>
+	<li>September 1 2010, the bug reappears in <a onclick="goto_page('https://github.com/carlhuda/bundler/issues/637')">bundler issues on github</a></li>
+	<li>November 20 2010, a request on rubygems help, at <a onclick="goto_page('http://help.rubygems.org/discussions/problems/418-rangeerror-when-running-gem-generate_index')">help.rubygems.org</a></li>
+	<li>November 28 2010, a rails-related question, on <a onclick="goto_page('http://stackoverflow.com/questions/4295033/error-in-installing-bundle-in-rails-application')">stackoverflow.com</a></li>
+	<li>December 14 2010, when deploying rails with capistrano, on <a onclick="goto_page('http://groups.google.com/group/ruby-bundler/browse_thread/thread/8307e5ffa4fc1cce')">bundler&#8217;s mailing list</a></li>
+	<li>February 14 2011, another related issue when installing rspec 2.5.0, reported on <a onclick="goto_page('http://stackoverflow.com/questions/4989618/error-while-installing-rspec-gem-bignum-too-big-to-convert-into-long')">stackoverflow</a></li>
+</ul>
 
 </div>
 
