@@ -76,3 +76,19 @@ WLang::dialect('revzero', '.r0') do
     
   end
 end
+
+# We reopen the String class to tune some WLang 
+# extension points
+class String
+  
+  # Renders a link tag <a href="url">label</a> for the 
+  # static version of the website
+  def to_xhtml_link(url, label)
+    if url =~ /^(http|ftp)/
+      "<a target=\"_blank\" href=\"#{url}\">#{label}</a>"
+    else
+      "<a href=\"#{url}\">#{label}</a>"
+    end
+  end
+  
+end
