@@ -125,6 +125,12 @@ writings:
   date: 2011/03/01 - 14h07
   keywords: [ ruby, bundler, rubygems, bug, RangeError, "bignum too big to convert into `long'"]
   category: Ruby
+- identifier: logical_data_independence_2
+  title: About Logical Data Independence (2/3)
+  short: Logical Data Independence II
+  date: 2011/03/03 - 17:03
+  category: Databases
+  keywords: [ "database", "logical data independence", "independence", "views" ]
 others:
 - identifier: '404'
   title: Forward reference detected

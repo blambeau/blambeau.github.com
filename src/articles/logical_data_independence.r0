@@ -44,7 +44,11 @@ The first kind of independence is related to a change to the internal implementa
 
 p=. !@{images/logical_data_independence/empdept.gif}!
 
-With the introduction of the Relational model (and SQL databases, which are the best (non-)relational implementation we have today), things have changed. The report's code is some variation around "<code>SELECT * FROM employees WHERE dept_id=...</code>". The most important thing is not that this query is declarative (it's probably required for independence, but not important <i>per se</i>) but the fact that the query is independent of the way the data is physically stored: flat files, B-trees, hash indexes can all be chosen as physical storage and indexing of employee and department records as well as their 'connection' through DEPT_id. This means that:
+With the introduction of the Relational model (and SQL databases, which are the best (non-)relational implementation we have today), things have changed. The report's code is now some variation around the following:
+
+p=. <code>SELECT * FROM employees WHERE dept_id=...</code> 
+
+Observe this query a moment. The most important thing is not that it is declarative (it's probably required for independence, but not important <i>per se</i>). The important fact is that the query is independent of the way the data is physically stored: flat files, B-trees, hash indexes can all be chosen as physical storage and indexing of employee and department records as well as their 'connection' through <code>dept_id</code>. This means that:
 
 !!{*The source code of the report must NOT change even if you change the way the data is organized on disk.*} 
 
