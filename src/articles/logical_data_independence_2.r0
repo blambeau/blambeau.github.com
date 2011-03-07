@@ -1,4 +1,4 @@
-My @{logical_data_independence}{first post about logical data independence} if the most read on this blog. So I bet that writing the next part would be appreciated. Let's start by summarizing the first paper:
+My @{logical_data_independence}{first post about logical data independence} is by far the most popular on this blog. So I bet that writing the next part would be appreciated. Let's start by summarizing the first paper:
 
 !!{Data independence means *"avoiding changes made to the data module of a software to propagate and hurt its other parts"*.}
 
@@ -20,7 +20,7 @@ I would like to stress the fact that I'm not exclusively talking about _relation
 
 I'll try to discuss this in more details in a later post (there would be a lot to say about this, but it is not my aim in this particular post). In the meantime and to repeat, I strongly invite you to do it yourself. Please drop me an email if you write something about data independence and NoSQL on your own blog. I would certainly like to read it. Thanks!
 
-h3. An real-world example of logical change
+h3. A real-world example of logical change
 
 In contrast to physical independence, few books give convincing examples of changes applied to the logical layer. Moreover, none that I know gives any tip or pattern for preventing such changes to propagate and hurt the rest of the software code. This is very strange in a sense because logical changes are often a consequence of software success: new features and/or enhancements of existing ones will certainly require changes to the logical database schema. Without pretending that it is a killer example, I've recently encountered a real interesting use case that initially triggered my motivation in writing these posts. I'd like to spend some time presenting that example here.
 
@@ -57,10 +57,10 @@ p=. !@{images/logical_data_independence/solution1.gif}!
 
 * Replace the old <code>appointments</code> table by a new one, <code>appointments_v2</code>, that do not have the <code>status</code> attribute anymore.
 * Add a new table <code>appointment_history</code> that captures the historical evolution of the <code>status</code> attribute.
-* Restore the previous logical schema by building a <code>appointments</code> view, that computes the current temporal snapshot via a projection-join of the two previous tables (it is even possible to avoid a costly join, if you're concerned with efficiency).
+* Restore the previous logical schema by building a <code>appointments</code> view, that computes the current temporal snapshot via a projection-join of the two previous tables (it is even possible to avoid a -- so called -- costly join, if you're concerned with efficiency).
 * Add rules on that view to restore the semantics of inserts, deletes and updates on the previous schema in terms of the semantics of the new one (capturing this precisely requires a short analysis in practice).
 
-This first solution is only achievable if the DBMS provides either <code>INSTEAD OF</code> rules or triggers on views, or something semantically equivalent (what PostgreSQL provides, for example). Except for the initial data migration that consists in splitting the <code>appointments</code> table, implementing the requested feature takes about 25 lines of SQL and maybe 30 minutes, does not require any other change, no re-compilation nor re-deployment of any legacy application. This is what logical data independence is about.
+This first solution is only achievable if the DBMS provides either <code>INSTEAD OF</code> rules or triggers on views (that PostgreSQL provides, for example) or something semantically equivalent. Except for the initial data migration that consists in splitting the <code>appointments</code> table, implementing the requested feature takes about 25 lines of SQL and maybe 30 minutes of your time, does not require any other change, no re-compilation nor re-deployment of any legacy application. This is what logical data independence is about.
 
 h4. An alternative way
 
@@ -68,13 +68,19 @@ An alternative way is worth considering if the DBMS does not provide rules and/o
 
 p=. !@{images/logical_data_independence/solution2.gif}!
 
-From a theoretical point of view I'm a bit less in favor of this second solution, mainly because it involves explicit data redundancy of the appointment <code>status</code> and, as such, does not support appointment deletion without loss of data (the previous solution does). One can overcome this deletion weakness either at the cost of more complexity, more redundancy and more de-normalization (variations around duplicating the whole appointments table). In contrast, this solution avoids the data migration cost required with the previous solution. In any case, this solution equally provides logical data independence!
+From a theoretical point of view I'm a bit less in favor of this second solution, mainly because it involves explicit data redundancy of the appointment <code>status</code> and, as such, does not support appointment deletion without loss of data (the previous solution does). One can overcome this weakness at the cost of more complexity, more redundancy and/or more de-normalization (variations around duplicating the whole appointments table). In contrast, this solution avoids the data migration cost that would be required if the previous solution was chosen. In any case, this solution equally provides logical data independence!
 
 h3. Conclusion
 
-In this post, I've summarized what is theoretically meant by _logical data independence_ and discussed a real-world example together with possible solutions. The relevance of these solutions can be argued in practice, maybe for efficiency reasons (which I bet would be the main counter-argument). However, when considering alternative solutions remember the requirements implied by logical data independence:
+In this post, I've summarized what is theoretically meant by _logical data independence_ and discussed a real-world example together with possible solutions. As shown, those solutions require support from the DBMS in terms of rules, triggers or something equivalent. More generally, 
+
+!!{*Logical data independence is related to the database ability to present different logical schemas at different times while providing consistency rules between them in terms of data semantics.*} 
+
+Doing so allows the logical database schema to evolve in a backward compatible manner, providing truly logical independence in practice (different software modules may even see different versions of the database schema at the same time). Support for views (updatable views or something equivalent, like declarative rules, in practice), looks like a _must have_ to really achieve this. This is why I stated (in my first post) that a database that does not provide support for views could hardly provide logical data independence.
+
+Now, the applicability of proposed solutions could be argued in practice, maybe for efficiency reasons (which I bet would be the main counter-argument). Therefore I'm certainly interested in discussing or comparing with other ideas you might have (also with other database technologies that pure RM/SQL). However, when considering alternative solutions, remember the requirements implied by logical data independence:
 
 * The solution has to provide an unified view of data,
 * The solution may not require changing any line code of legacy applications that use the database
 
-Given that such functional requirements are met (otherwise, it is difficult to argue that the solution provides logical data independence in the first place), we can start discussing non functional requirements: easiness, efficiency, maintainability, and so on. I'm looking forward to other solutions one could propose!
+If these functional requirements are met it is also important to evaluate non functional requirements: easiness of the solution, applicability in practice, efficiency, maintainability, and so on. If they are not, it seems difficult to argue that the solution provides logical data independence in the first place. Of course, one might argue that sacrificing logical data independence is sometimes necessary in presence of other requirements (something similar currently happens with the NoSQL trend that tend to sacrifice consistency for scalability, for instance). This would lead to another discussion, though.
