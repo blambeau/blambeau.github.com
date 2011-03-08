@@ -69,7 +69,7 @@ WLang::dialect('revzero', '.r0') do
         term = link
       end
       link = <<-LINK.strip
-        <a href="http://lmgtfy.com/?q=#{URI.escape(link)}" target="_blank">#{term}</a>
+        <a href="http://www.google.com/search?q=#{URI.escape(link)}" target="_blank">#{term}</a>
       LINK
       [ link, reached ]
     end
