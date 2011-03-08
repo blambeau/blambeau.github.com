@@ -10,7 +10,7 @@ Before going any further, here is how to install it. You'll need a correct ruby 
 
 h3. Why not using existing tools for ruby?
 
-Why reinventing the wheel, once again? Similar generators already exists: "hoe":http://seattlerb.rubyforge.org/hoe/ by Ryan Davis and Eric Hodel, "echoe":https://github.com/fauna/echoe by Evan Weaver, "bones":https://github.com/TwP/bones by Tim Pease and so on. They generate such a ruby structure from templates and do even better: they also (and somewhat magically) provide a lot of rake tasks to manage the lifecycle of your project (for those who might not know what a _rake task_ is, let simply add that "_rake_":http://rake.rubyforge.org/ is the ruby maker, a tool that helps running code-related tasks like building, testing, packaging, or releasing the program/library you are developping)!
+Why reinventing the wheel, once again? Similar generators already exists: "hoe":http://seattlerb.rubyforge.org/hoe/ by Ryan Davis and Eric Hodel, "echoe":https://github.com/fauna/echoe by Evan Weaver, "bones":https://github.com/TwP/bones by Tim Pease and so on. They generate such a ruby structure from templates and do even better: they also (and somewhat magically) provide a lot of rake tasks to manage the lifecycle of your project (for those who might not know what a _rake task_ is, let simply add that "_rake_":http://rake.rubyforge.org/ is the ruby maker, a tool that helps running code-related tasks like building, testing, packaging, or releasing the program/library you are developing)!
 
 Given my needs, I had two main reasons for not reusing/extending these tools:
 

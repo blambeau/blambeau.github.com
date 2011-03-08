@@ -39,7 +39,7 @@
 <table>
 	<tr>
 		<td><code>Conclusion</code></td>
-		<td>As encoding is left to their responsibility, dramatic consequences of such attacks are due to developper&#8217;s errors. At least, it seems to be the conclusion of the recent <a href="http://www.sans.org/top25errors/">Experts Announce Agreement on the 25 Most Dangerous Programming Errors</a>.</td>
+		<td>As encoding is left to their responsibility, dramatic consequences of such attacks are due to developer&#8217;s errors. At least, it seems to be the conclusion of the recent <a href="http://www.sans.org/top25errors/">Experts Announce Agreement on the 25 Most Dangerous Programming Errors</a>.</td>
 	</tr>
 </table>
 <h3>When SQL&#8217;s <em>select</em> performs a <em>delete</em></h3>
@@ -83,7 +83,7 @@
 <table>
 	<tr>
 		<td><code>Conclusion?</code></td>
-		<td>As backquoting is left to their responsibility, dramatic consequences of such attacks are due to developper&#8217;s errors. At least, it seems to be the conclusion of the recent <a href="http://www.sans.org/top25errors/">Experts Announce Agreement on the 25 Most Dangerous Programming Errors</a>.</td>
+		<td>As backquoting is left to their responsibility, dramatic consequences of such attacks are due to developer&#8217;s errors. At least, it seems to be the conclusion of the recent <a href="http://www.sans.org/top25errors/">Experts Announce Agreement on the 25 Most Dangerous Programming Errors</a>.</td>
 	</tr>
 </table>
 <h3>Where are we moving now?</h3>
@@ -95,4 +95,4 @@
 	<li>they depend on the injection semantics you want: does the injection participates to the <span class="caps">HTML</span> tree structure or not?</li>
 	<li>they can change dynamically during generation: what if you generate an <span class="caps">HTML</span> page that also contains generated javascript or <span class="caps">CSS</span>? Or you could generate Ruby code that embed generated <span class="caps">SQL</span> queries, &#8230;</li>
 </ol>
-<p>I agree with the experts: developpers make mistakes. But I also claim: there is a lack tool support for such tasks, even the simpler ones like generating an <span class="caps">HTML</span> page &#8230; WLang is an attempt to provide such a tool support: it is sufficiently abstract to have implementations in different languages, and sufficiently powerful to provide a robust and elegant solution (at least, I hope so!). The <a href="wlang2">second part</a> of this paper introduces its foundations, the <a href="wlang3">third one</a> builds on these foundations and shows how a powerful <span class="caps">HTML</span> templating engine can be created using wlang.</p>
+<p>I agree with the experts: developers make mistakes. But I also claim: there is a lack tool support for such tasks, even the simpler ones like generating an <span class="caps">HTML</span> page &#8230; WLang is an attempt to provide such a tool support: it is sufficiently abstract to have implementations in different languages, and sufficiently powerful to provide a robust and elegant solution (at least, I hope so!). The <a href="wlang2">second part</a> of this paper introduces its foundations, the <a href="wlang3">third one</a> builds on these foundations and shows how a powerful <span class="caps">HTML</span> templating engine can be created using wlang.</p>

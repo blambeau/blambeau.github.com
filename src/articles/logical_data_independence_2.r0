@@ -24,7 +24,7 @@ h3. A real-world example of logical change
 
 In contrast to physical independence, few books give convincing examples of changes applied to the logical layer. Moreover, none that I know gives any tip or pattern for preventing such changes to propagate and hurt the rest of the software code. This is very strange in a sense because logical changes are often a consequence of software success: new features and/or enhancements of existing ones will certainly require changes to the logical database schema. Without pretending that I've found THE killer example, I've recently encountered an interesting use case on a real case study. As it is that example that initially triggered my motivation in writing this series of posts, I'd like to spend some time summarizing it here.
 
-I've been recently involved in a IT project in a Belgian Hospital. The aim was to help introducing @?{clinical pathways}, a patient-centric organization of medical cares. During this project, we observed that an important legacy feature was the management of appointments. In short, patients are taken in charge by specialized physicians for specific analyses (consultation, scanner, blood test and so on.). The time of an appointment is often agreed in advance -- expect maybe when the patient is treated in emergency -- generally during a previous appointment, or by phone.
+I've been recently involved in a IT project in a Belgian Hospital. The aim was to help introducing @?{clinical pathways}, a patient-centric organization of medical cares. During this project, we observed that an important legacy feature was the management of appointments. In short, patients are taken in charge by specialized physicians for specific analyses (consultation, scanner, blood test and so on.). The time of an appointment is often agreed in advance -- except maybe when the patient is treated in emergency -- generally during a previous appointment, or by phone.
 
 p=. !@{images/logical_data_independence/hospital_appointments.gif}!
 
@@ -38,7 +38,7 @@ One of the main objectives of clinical pathways is precisely to help better unde
 
 * What do appointment statecharts look like? Are they strongly dependent of the kind of medical analysis (consultation, blood test, scanner, and so on)?
 * Are appointments often cancelled? What proportion and for what reasons?
-* Are all appointments planned in advance? How many time before?
+* Are all appointments planned in advance? How much time before?
 * And so on
 
 The fact is that, whatever the technical solution you would choose, answering such questions requires considering the full history of appointment statuses instead of a temporal snapshot. In other words, you cannot answer such questions if you only have the data given by the database schema above. Instead, you have to first collect data about appointment's state transitions and then hope that querying the collected data (or applying machine learning techniques, for specific questions) will reveal the answers you are looking for... 
@@ -61,7 +61,7 @@ p=. !@{images/logical_data_independence/solution1.gif}!
 
 * Replace the old <code>appointments</code> table by a new one, <code>appointments_v2</code>, that does not have the <code>status</code> attribute anymore,
 * Add a new table, <code>appointment_history</code>, that captures the evolution of the <code>status</code> attribute over time (observe the <code>since</code> temporal attribute, which is part of the primary key),
-* Restore the previous logical schema via an <code>appointments</code> view. The latter computes the temporal snapshot of the previous logical schema via a projection-join of the two tables just mentionned (it is even possible to avoid a -- so called -- costly join, if you're concerned with efficiency),
+* Restore the previous logical schema via an <code>appointments</code> view. The latter computes the temporal snapshot of the previous logical schema via a projection-join of the two tables just mentioned (it is even possible to avoid a -- so called -- costly join, if you're concerned with efficiency),
 * Add rules on that view to restore the semantics of inserts, deletes and updates on the previous schema in terms of the semantics of the new one (capturing this precisely requires a short analysis in practice).
 
 This first solution is only achievable if the DBMS provides either <code>INSTEAD OF</code> rules or <code>ON INSERT/UPDATE/DELETE</code> triggers on views (that PostgreSQL provides, for example) or something semantically equivalent. Except for the initial data migration that consists in splitting the <code>appointments</code> table, implementing the requested feature takes about 25 lines of SQL and is implemented in approximately 30 minutes. Above all, it does not require any other change, nor re-compilation or re-deployment of legacy software. This is what logical data independence is about.
@@ -92,6 +92,10 @@ Now, the applicability of proposed solutions on the problem at hand are arguable
 * The solution may not require changing any line code of legacy applications that use the database
 
 If these functional requirements are met it is also important to evaluate non functional requirements: easiness of the solution, applicability in practice, efficiency, maintainability, and so on. If they are not, it seems difficult to argue that the solution provides logical data independence in the first place. Of course, one might argue that sacrificing logical data independence is sometimes necessary in presence of other requirements (something similar currently happens with the NoSQL trend that tend to sacrifice consistency for scalability, for instance). This would lead to another discussion, though.
+
+h3. Credits
+
+Many thanks to Jonathan Leffler and my brother Fabre for their careful reading, friendly comments and english corrections of these posts on logical data independence. This is greatly appreciated!
 
 h3. References
 

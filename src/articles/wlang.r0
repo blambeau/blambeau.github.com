@@ -23,7 +23,7 @@ You probably know the solution to the problem here: enclosing <b><code>$_POST['n
 
 Forgetting to encode data properly like in the example leads to the well known XSS attack (XSS stands for Cross-Side Scripting) which can have much more dramatic consequences than insulting you (or worse, your client). Using a templating engine is not enough: few of them perform automatic encoding and those who do often fall into the kind of trivial solutions which will be described later. Moreover, let me insist on one fact: <b>it is not a problem specific to PHP and you can introduce security holes of this kind with almost all of the best web frameworks; also, AJAX-based technologies do not solve the problem!</b>
 
-|<code>Conclusion</code>|As encoding is left to their responsibility, dramatic consequences of such attacks are due to developper's errors. At least, it seems to be the conclusion of the recent "Experts Announce Agreement on the 25 Most Dangerous Programming Errors":http://www.sans.org/top25errors/.|
+|<code>Conclusion</code>|As encoding is left to their responsibility, dramatic consequences of such attacks are due to developer's errors. At least, it seems to be the conclusion of the recent "Experts Announce Agreement on the 25 Most Dangerous Programming Errors":http://www.sans.org/top25errors/.|
 
 h3. When SQL's _select_ performs a _delete_
 
@@ -81,7 +81,7 @@ buyerName = ...
 sql = "SELECT * FROM buying WHERE buyerName='#{buyerName}'" 
 }
 
-|<code>Conclusion?</code>|As backquoting is left to their responsibility, dramatic consequences of such attacks are due to developper's errors. At least, it seems to be the conclusion of the recent "Experts Announce Agreement on the 25 Most Dangerous Programming Errors":http://www.sans.org/top25errors/.|
+|<code>Conclusion?</code>|As backquoting is left to their responsibility, dramatic consequences of such attacks are due to developer's errors. At least, it seems to be the conclusion of the recent "Experts Announce Agreement on the 25 Most Dangerous Programming Errors":http://www.sans.org/top25errors/.|
 
 h3. Where are we moving now?
 
@@ -93,5 +93,5 @@ This first article about _wlang_ were an introduction to the problem it solves. 
 # they depend on the injection semantics you want: does the injection participates to the HTML tree structure or not?  
 # they can change dynamically during generation: what if you generate an HTML page that also contains generated javascript or CSS? Or you could generate Ruby code that embed generated SQL queries, ...    
 
-I agree with the experts: developpers make mistakes. But I also claim: there is a lack tool support for such tasks, even the simpler ones like generating an HTML page ... WLang is an attempt to provide such a tool support: it is sufficiently abstract to have implementations in different languages, and sufficiently powerful to provide a robust and elegant solution (at least, I hope so!). The @{wlang2}{second part} of this paper introduces its foundations, the @{wlang3}{third one} builds on these foundations and shows how a powerful HTML templating engine can be created using wlang.  
+I agree with the experts: developers make mistakes. But I also claim: there is a lack tool support for such tasks, even the simpler ones like generating an HTML page ... WLang is an attempt to provide such a tool support: it is sufficiently abstract to have implementations in different languages, and sufficiently powerful to provide a robust and elegant solution (at least, I hope so!). The @{wlang2}{second part} of this paper introduces its foundations, the @{wlang3}{third one} builds on these foundations and shows how a powerful HTML templating engine can be created using wlang.  
  
