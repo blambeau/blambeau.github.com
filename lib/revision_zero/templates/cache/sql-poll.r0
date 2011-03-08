@@ -1,6 +1,6 @@
 <p>Today&#8217;s writing is really short and is a poll. So please use the comment feature to answer it. Let consider the tables below for a relational schema about people owning pictures (I suppose that a <span class="caps">BLOB</span> column could hold the picture, but this is not important here):</p>
 <p style="text-align:center;"><img src="images/sql-poll/model.gif" alt="" /></p>
-<p>Now, consider the following <span class="caps">SQL</span> query that returns all columns of the <code>people</code> table as well as the number of <code>pictures</code> each people has in the database:</p>
+<p>Now, consider the following <span class="caps">SQL</span> query that returns the whole <code>people</code> info as well as the number of <code>pictures</code> each of them has in the database:</p>
 <div class="highlight"><pre><span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> 
        <span class="n">email</span><span class="p">,</span>
        <span class="n">name</span><span class="p">,</span>
@@ -9,13 +9,13 @@
           <span class="k">WHERE</span> <span class="n">pictures</span><span class="p">.</span><span class="k">owner</span> <span class="o">=</span> <span class="n">people</span><span class="p">.</span><span class="n">id</span><span class="p">)</span> <span class="k">as</span> <span class="n">nb_picts</span>
   <span class="k">FROM</span> <span class="n">people</span>
 </pre></div>
-<p>Here is the poll. What do you think about this query?</p>
+<p>Here is the poll. How do you feel?</p>
 <ol>
 	<li>Exactly what you&#8217;d have written</li>
 	<li>You prefer to use a <span class="caps">GROUP</span> BY</li>
 	<li>It&#8217;s probably correct, but you&#8217;re not sure</li>
-	<li>You would never write such a query, it is certainly inefficient</li>
-	<li>The query is incorrect, we can&#8217;t write this in <span class="caps">SQL</span></li>
+	<li>You would never write such a query, it&#8217;s certainly inefficient</li>
+	<li>The query is incorrect, not allowed in <span class="caps">SQL</span></li>
 	<li>Other (please explain)</li>
 </ol>
 <p>Post your response as a 1-6 number using the comment feature below (there is no particular trap).</p>
