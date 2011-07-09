@@ -1,5 +1,6 @@
 require "mail"
 require "RedCloth"
 require "wlang"
+require "rack"
 require "sinatra"
 require "albino"

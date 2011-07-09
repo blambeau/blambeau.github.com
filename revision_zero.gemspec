@@ -131,11 +131,13 @@ Gem::Specification.new do |s|
   s.add_development_dependency("mail", "~> 2.2.15")
   s.add_development_dependency("RedCloth", "~> 4.2.7")
   s.add_development_dependency("wlang", "~> 0.10.2")
+  s.add_development_dependency("rack", "= 1.2.1")
   s.add_development_dependency("sinatra", "~> 1.1.2")
   s.add_development_dependency("albino", "~> 1.2.3")
   s.add_dependency("mail", "~> 2.2.15")
   s.add_dependency("RedCloth", "~> 4.2.7")
   s.add_dependency("wlang", "~> 0.10.2")
+  s.add_dependency("rack", "= 1.2.1")
   s.add_dependency("sinatra", "~> 1.1.2")
   s.add_dependency("albino", "~> 1.2.3")
 

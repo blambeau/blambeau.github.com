@@ -33,5 +33,6 @@ variables:
     - {name: mail,     version: "~> 2.2.15",  groups: [development, runtime]}
     - {name: RedCloth, version: "~> 4.2.7",   groups: [development, runtime]}
     - {name: wlang,    version: "~> 0.10.2",  groups: [development, runtime]}
+    - {name: rack,     version: "= 1.2.1",    groups: [development, runtime]}
     - {name: sinatra,  version: "~> 1.1.2",   groups: [development, runtime]}
     - {name: albino,   version: "~> 1.2.3",   groups: [development, runtime]}
