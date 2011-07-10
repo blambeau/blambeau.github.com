@@ -1,0 +1,65 @@
+I've been reading @{http://marciovm.com/i-want-a-github-of-science}{Marcio von Muhlen's call for a github of science} a few weeks ago. Roughly, Marcio would like a platform 'ala @{http://github.com}{github}' for publishing and reviewing scientific papers, an idea I partly agree with. Today, I'm going to talk about a much simpler (yet related) idea, that works the other way around.
+
+!!{We should always add a "Related work"
+section to our code's README. 
+In essence, everybody wins!}
+
+h3. Why?
+
+Finding the good tool for the good job is not an easy task. By "tool", I mean
+* the third party library (e.g. a ruby gem) to ...
+* the adequate web service to ...
+* the 'apt-get install ...' providing the powerful xxx command for...
+* and so on.
+
+Google? Excellent entry point. And then?
+
+Suppose that you want a ruby gem for doing xxx. You've found one but it doesn't exactly fit your needs. What are _related_ tools? Back to google is a search regression; finding alternatives thanks to a "Related work" section is not.
+
+Very simple idea. In the sequel, the objectives of a "Related work" section in scientific publications and in source code's readme are discussed and compared.
+
+h3. Navigation in research publications
+
+There is a huge amount of research publications. It is very difficult to navigate the library, even with a very specific topic or "research problem" in mind. However, a few entry points and navigation heuristics are well known:
+
+| KEYWORD  | First google search about a given problem, using keywords. I've put google, but this bullet covers any keyword-driven search. Dedicate tools like Google scholar are of great help. |
+| PEOPLE   | Most researchers have a personal web page, list of publications, entry in publication catalogues like @{http://www.informatik.uni-trier.de/~ley/db/}{DBLP}. Reading publications "by author" is not uncommon, especially when the author is famous.|
+| OVERVIEW | Proceeding, journals and conferences provide an overview of (and entry points in) specific areas. Browsing proceedings is a good way to discover interesting papers, for example. |
+| CONTEXT  | In research papers, most of the problem is contextualized in the introduction. References allow jumping to publications that describe the research problem and related concerns. If you need to better understand the problem, in contrast to its solution, there are the links to follow.|
+| RELATED  | When you understand the problem you generally want to explore alternative solutions, other approaches, similar research problems, and so on. The related work gives pointers for those. |
+| NAVEL-GAZING | Who cites me? People that cite your work probably work themselves on similar problems. Here also, tools such as Google scholar and DBLP are of great help for answering such requests. |
+
+When you find a solution or answer to a very specific problem, not all heuristics above have the same power. Navel-gazing works very well, but is somewhat limited. Keyword, people, and overview provide too wide coverage. Context and related work are, in my opinion, the most effective way to navigate in research papers. This is because they are the most _precise_ and the most _focussed_.
+
+Let's have a quick look at the related work section in particular.
+
+h4. "Related work" in publications
+
+| WHAT ELSE | Related work aims at discussing existing approaches to the problem you are trying to solve. The boundaries may sometimes be a bit fuzzy. The problem can be exactly the same in both approaches, or they can be related but different.|
+| WHERE     | The discussion also provides pointers to other approaches, through bibliography references. This mostly covers references to other research papers, but also to web sites, and so on.|
+| WHO       | The related work section is a central place to show that you know and appreciate your domain co-researchers and/or their work. Citing good work made by others is always appreciated. |
+| SO WHY?  | When needed, you also have a place to convince your reviewers and reader that 1) you read the literature of your domain, 2) you've checked existing approaches 3) they don't already solve your problem and you can even explain why.|
+
+h3. What about code?
+
+There is a huge amount of code libraries (see github). It is very difficult to navigate the (open-source) library, even with a very specific topic or "implementation problem" in mind. However, a few entry points and navigation heuristics are well known (the list below is not exhaustive). 
+
+| KEYWORD  | Similar to above: Google search, Github search, Rubygems search, and so on. |
+| PEOPLE   | With the social web, everything is people-centric. You can follow/watch developers on github, on twitter, on their blog, and so on. Navigating the social graph tend to be much easier here than with research publications. |
+| OVERVIEW | Code conferences exists; they provide an overview of hot topics. Github's featured and trend repos as well as similar features also provide a kind of "overview navigation". |
+| CONTEXT  | Read-me files generaly provide some context, with a few references. This tend to be solution-centric not problem-centric, which seems natural. Source code lies in the solution world. |
+| RELATED  | Very few read-me files provide a related work section. |
+| NAVEL-GAZING | Who follows me? Who watch my project? Who has a fork? No problem here. |
+
+The two most effective ways of navigating with a precise focus, Context and Related, have received very few support so far. 
+
+h4. "Related work" in source code's README
+
+The objective is the same as with publications; discuss "what else?",  "where?", "who?" and "so why?". Everyone wins! Focused research is easier; projects and their authors gain visibility; everyone learns about projects related to each other; collaboration and networking is helped.
+
+A few rules, however.
+
+* Relate to and discuss differences with very similar projects within the same community and programming language. Project duplicates and variants occur and it is great! Just let people know which ones are similar to yours, and what are the main differences. 'Very similar' above also covers 'very similar in size and in success'.
+* Relate to implementations of the very same idea in different programming languages. Maybe we've found your project by 'google accident' and just want the same in python/ruby/clojure/java/.net or whatever.
+* Relate to approaches that implement a 'similar yet not exactly same' idea, in a few words only.
+* Pull requests are fine, provided that they meet the previous rules. Don't hesitate to send them; please accept them if they seem reasonable.

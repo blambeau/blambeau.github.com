@@ -131,6 +131,12 @@ writings:
   date: 2011/03/03 - 17:03
   category: Databases
   keywords: [ "database", "logical data independence", "independence", "views" ]
+- identifier: code-related-work
+  title: "Source Code's Related Work"
+  short: "Code Related Work"
+  date: 2011/07/09 - 10:00
+  category: Ruby, Science, Github
+  keywords: [ "related work", "github", "ruby", "rubygems", "open source" ]
 others:
 - identifier: '404'
   title: Forward reference detected

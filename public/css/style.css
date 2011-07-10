@@ -125,6 +125,10 @@ a:hover {
   font-style: italic;
 }
 
+.middle blockquote {
+padding: 0px 25px;
+}
+
 .middle .highlight pre {
 	padding: 10px;
 	margin: 20px;

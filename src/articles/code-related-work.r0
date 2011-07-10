@@ -1,0 +1,28 @@
+I've been reading @{http://marciovm.com/i-want-a-github-of-science}{Marcio von Muhlen's call for a github of science} a few weeks ago. Roughly, Marcio would like a platform 'ala @{http://github.com}{github}' for publishing and reviewing scientific papers, an idea I partly agree with. Today, I'm going to talk about a much simpler (yet related) idea, that works the other way around.
+
+!!{We should always add a "Related work"
+section to our code's README. 
+In essence, everybody wins!}
+
+h3. Why?
+
+Finding the good tool for the good job is not an easy task. By "tool", I mean
+* the third party library (e.g. a ruby gem) to ...
+* the adequate web service to ...
+* the 'apt-get install ...' providing the powerful xxx command for...
+* and so on.
+
+Google? Excellent entry point. And then?
+
+Suppose that you want a ruby gem for doing xxx. You've found one but it doesn't exactly fit your needs. What are _related_ tools? Back to google is a search regression; finding alternatives thanks to a "Related work" section is not.
+
+h4. How?
+
+The objective is the same as with research papers; discuss "what else?",  "where?", "who?" and "so why?".
+
+A few rules, however.
+
+* Relate to and discuss differences with very similar projects within the same community and programming language. Project duplicates and variants occur and it is great! Just let people know which ones are similar to yours, and what are the main differences. 'Very similar' above also covers 'very similar in size and in success'.
+* Relate to implementations of the very same idea in different programming languages. Maybe we've found your project by 'google accident' and just want the same in python/ruby/clojure/java/.net or whatever.
+* Relate to approaches that implement a 'similar yet not exactly same' idea, in a few words only.
+* Pull requests are fine, provided that they meet the previous rules. Don't hesitate to send them; please accept them if they seem reasonable.
