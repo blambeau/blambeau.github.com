@@ -6,3 +6,5 @@ doc/api
 .bundle
 output
 vendor/bundle
+tmp
+*.log
