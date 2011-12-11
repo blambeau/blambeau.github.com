@@ -1,0 +1,24 @@
+I'd like to write some database related posts in the next weeks, such as discussing migrations from a logical point of view or presenting some relational operators implemented in @{http://blambeau.github.com/alf/overview/index.html}{Alf} and borrowed from @{http://en.wikipedia.org/wiki/D_(data_language_specification)}{TUTORIAL D}. In order to make those posts self-contained and precise enough, I first need some material. This is the purpose of the present essay, that could be summarized as:
+ 
+!!{What every computer scientist should know about relational databases}
+
+Let me add that the material covered here is not new and mostly borrowed from @{http://www.thethirdmanifesto.com/}{the third manifesto}, by Hugh Darwen and Chris Date.
+
+h3. The three layers of relational theory
+
+When I ask my colleagues or students how they would describe relational databases, I often get an answer around the following lines:
+
+!!{Well, hum... Relational databases are made of tables that contain records. Tables may also refer to each other through foreign keys. The SQL language allows querying that data, such as selecting records based on the primary key or joining tables along foreign keys.}
+
+This is a pity. Not because it is not true; I mean, it actually corresponds to a developer reality with most of available SQL products. No, it is a pity because with such a poor vision of database theory, there is absolutely no chance that the database stuff will evolve in a good direction in the next decades. You certainly know this maxim _"those who cannot remember the past are condemned to repeat it"_, don't you? Well, it has an interresting  corollary, namely _"those who made important breakthroughs knew how stuff worked"_.
+
+Let me now share a personal answer to my question above _"how would you describe relational databases?"_. Facing this question, I would probably say something along the following lines:
+
+!!{Well, hum. Relational databases provide a rather opinionated way of organizing and managing data. I must immediately add that, strictly speaking, the relational theory only prescribes how data should be managed from a *logical* point of view. (By this, I mean that it prescribes how *users* should organize and manipulate their data, in contrast to how that data is *physically* organized and indexed on disks, or even distributed among different *computers*.)
+
+Now, I've said "rather opinionated" above but it should not be ill-interpreted. The relational stuff can actually be decomposed in three layers: a theory of data types (including the notion of relation), the relational algebra, and relational databases. 
+
+The first two, type theory and algebra, could hardly be controversial as they actually define formal material. I mean, it does not really make sense of criticizing arithmetic, graph theory, or classical algebra. For example, it may make sense to criticize a specific set of equations as an accurate model for economic laws, but it does not make sense of rejecting the notion of an equation itself. 
+
+The same is true for the relational theory.}
+

@@ -131,6 +131,12 @@ writings:
   date: 2011/03/03 - 17:03
   category: Databases
   keywords: [ "database", "logical data independence", "independence", "views" ]
+- identifier: relational-basics
+  title: Relational Basics
+  short: Relational Basics
+  date: 2011/12/11 - 20:32
+  category: Databases
+  keywords: [ "database", "relational theory", "relational model", "relational algebra", "types", "ruby" ]
 others:
 - identifier: '404'
   title: Forward reference detected
