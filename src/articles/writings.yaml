@@ -132,8 +132,8 @@ writings:
   category: Databases
   keywords: [ "database", "logical data independence", "independence", "views" ]
 - identifier: relational-basics
-  title: Relational Basics
-  short: Relational Basics
+  title: Relational Basics I
+  short: Relational Basics I
   date: 2011/12/11 - 20:32
   category: Databases
   keywords: [ "database", "relational theory", "relational model", "relational algebra", "types", "ruby" ]
