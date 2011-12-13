@@ -1,11 +1,91 @@
-<p>After this <a href="relational-basics">phisolophical essay</a>, let now turn to something a bit more concrete by discussing the logical level of relational databases. Do you remember the information principle?</p>
+<p>After my <a href="relational-basics">previous phisolophical essay</a>, let now turn to something a bit more concrete by discussing the logical level of relational databases. Do you remember the information principle?</p>
 <p class="attention">All information in a relational database should be represented at the logical level in only one way, namely, <strong>relations</strong>.</p>
 <p>In other words,</p>
 <p class="attention">From a logical point of view (that is the one of the database user) a database defines a collection of typed variables (≃ <span class="caps">SQL</span> tables). These variables contain relations as values (≃ their records).</p>
 <p>The definitions above make use of specific terms that I would like to discuss now.</p>
-<h3>Types, Values, and Variables</h3>
+<h3>Types and Values</h3>
 <p>Managing data certainly means being able to reason in terms of types, values, and (to a lesser extent) variables. Those concepts may seem obvious to you&#8230; great! However, it does not seem that obvious in object-oriented programming languages such as ruby, so I&#8217;d like to discuss them in more details.</p>
-<p class="attention">A <strong>type</strong> is a set of elements, called values. We say that a value belongs to a type, if it&#8217;s one of its elements. <br />
+<p class="attention">A <strong>type</strong> is a set of elements, called values. We say that a value <br />
+belongs to a type, if it is one of its elements.<br />
 <br />
-Values are immutable (you can&#8217;t update the integer value &#8216;3&#8217;, in any way). They can be of any complexity (sounds and videos can be seen as values, for instance). Values also have no location in space or in time, unlike their physical representations.</p>
-<p>Obvious, don&#8217;t you think? Booleans and Integers are common types. So are Reals, Tuples, Graphs, Relations, URIs, Sounds, Videos, Email addresses, Colors, &#8230;</p>
+Values are immutable (you can&#8217;t modify the integer value &#8216;3&#8217;, in any way). <br />
+They can be of any complexity (sounds and videos can be seen as values, for instance). <br />
+Values also have no location in space or in time (unlike their physical representations).</p>
+<p>Obvious, don&#8217;t you think? Booleans and Integers are common types. So are Reals, Lengths, Sizes, Temperatures, Colors, URIs, Sounds, Videos, Email addresses, Graphs, etc. Values are simply elements of those sets: true, 12, 1227.4521, 12 cm, small, 25°C, Blue, http://www.google.com/, &#8230;, &#8230;, blabla@rtbf.be, &#8230;, etc.</p>
+<p>It seems obvious to me. I hope it is obvious for you too. Then, wouldn&#8217;t you expect a systematic treatment in programming languages? At least in data-driven programming languages? Let have a look at ruby for example:</p>
+<div class="highlight"><pre><span class="mi">1</span><span class="o">.</span><span class="n">is_a?</span> <span class="nb">Integer</span>                <span class="c1"># true</span>
+<span class="kp">true</span><span class="o">.</span><span class="n">is_a?</span> <span class="no">Boolean</span>             <span class="c1"># NameError: uninitialized constant Object::Boolean</span>
+
+<span class="nb">String</span><span class="o">.</span><span class="n">new</span> <span class="s2">&quot;hello&quot;</span>             <span class="c1"># &quot;hello&quot;</span>
+<span class="nb">Integer</span><span class="o">.</span><span class="n">new</span> <span class="mi">1</span>                  <span class="c1"># NoMethodError: undefined method `new&#39; for Integer</span>
+<span class="no">URI</span><span class="o">.</span><span class="n">new</span> <span class="s2">&quot;http://google.com/&quot;</span>   <span class="c1"># NoMethodError: undefined method `new&#39; for URI:Module</span>
+
+<span class="no">URI</span><span class="o">.</span><span class="n">parse</span> <span class="s2">&quot;http://google.com/&quot;</span> <span class="c1"># &lt;URI::HTTP:0x87b3c04 URL:http://google.com/&gt;</span>
+<span class="nb">Integer</span><span class="o">.</span><span class="n">parse</span> <span class="s2">&quot;1&quot;</span>              <span class="c1"># NoMethodError: undefined method `parse&#39; for Integer:Class</span>
+</pre></div>
+<p>Data manipulation is definitely not written in ruby&#8217;s genes. Does the principle of least surprise really apply here? Now, I don&#8217;t want this to be misinterpreted. I <strong>love</strong> ruby, really; it changed my life. I&#8217;ve chosen ruby for this example only because it is the language I mostly use today. Things are much worse in languages such as C or Java. And even worse in <span class="caps">SQL</span>, which is a shame. The point is that data-manipulation (and therefore databases and database-oriented languages) requires a systematic treatment of types and values. Work remains to be done here, definitely.</p>
+<p>Maybe you think here: <em>&#8220;Is this really important?&#8221;</em>. If you&#8217;re not convinced by the ruby example above, consider the following data-manipulation exercise:</p>
+<p class="attention">Build a program in ruby that takes as input 1) a <span class="caps">CSV</span> file and 2) the type of each of its columns; the program must return true if every line is consistent with announced types, false otherwise.</p>
+<p>For this program to be written, you&#8217;ll necessarily need to bring some order in the data types proposed in ruby, and their coercion methods from strings. You&#8217;ll quickly discover that ruby does not have a Boolean class, while some of the <span class="caps">CSV</span> columns will be announced as being booleans. You&#8217;ll quickly discover that your ability to <em>reason</em> in terms of data-types has been sacrificed in the name of the holy duck typing. Sound data manipulation is definitely not written in ruby&#8217;s genes.</p>
+<p class="attention">Current languages tend to think that &#8220;to be&#8221; is the same as &#8220;to behave&#8221;, which is wrong.</p>
+<h3>Tuples and Relations</h3>
+<p>The information principle requires all information in a relational database to be represented through relations. Let now make this a bit more precise:</p>
+<p class="attention">A relation is a set of tuples. A tuple is a set of (name, value) pairs, called attributes</p>
+<p>So, an example of relation might be:</p>
+<div class="highlight"><pre><span class="p">(</span><span class="no">Relation</span> 
+  <span class="p">(</span><span class="no">Tuple</span> <span class="n">address</span><span class="p">:</span> <span class="p">(</span><span class="no">Uri</span> <span class="s2">&quot;http://kernel.org/&quot;</span><span class="p">),</span> <span class="n">since</span><span class="p">:</span> <span class="p">(</span><span class="no">Year</span> <span class="mi">1997</span><span class="p">)),</span>
+  <span class="p">(</span><span class="no">Tuple</span> <span class="n">address</span><span class="p">:</span> <span class="p">(</span><span class="no">Uri</span> <span class="s2">&quot;http://google.com/&quot;</span><span class="p">),</span> <span class="n">since</span><span class="p">:</span> <span class="p">(</span><span class="no">Year</span> <span class="mi">1997</span><span class="p">)),</span>
+  <span class="p">(</span><span class="no">Tuple</span> <span class="n">address</span><span class="p">:</span> <span class="p">(</span><span class="no">Uri</span> <span class="s2">&quot;http://amazon.com/&quot;</span><span class="p">),</span> <span class="n">since</span><span class="p">:</span> <span class="p">(</span><span class="no">Year</span> <span class="mi">1994</span><span class="p">)))</span>
+</pre></div>
+<p>I&#8217;ve chosen a particular functional syntax here, which is compatible with ruby. This is not crucial, even if I have made it on purpose (see below). The example shows a relation that relates (sic) URIs and years with the following intended semantics:</p>
+<p class="attention">(According to whois,) the domain name of the website <code>:address</code> <br/>has been registered in year <code>:since</code></p>
+<p>The following observations can be made on this example:</p>
+<ul>
+	<li>The information captured through tuple attributes makes explicit uses of specific types. A web <code>:address</code> is an <span class="caps">URI</span> whereas <code>:since</code> is a Year.</li>
+	<li>A tuple relates names to values of those types. A tuple itself is a value, namely a set. This is the reason why I&#8217;ve chosen the same kind of syntax for <code>(Tuple ...)</code> than for <code>(Year ...)</code>. Systematic treatment of values, I said. We also forbid tuples to have two attributes sharing the same name (which would otherwise be allowed by the definition of a set of pairs).</li>
+	<li>A relation is a value, which is the reason why I&#8217;ve chosen the syntax <code>(Relation ...)</code>. A relation is a value because it is defined as a set of tuples. Being a set, a relation does never contain two tuples capturing exactly the same information, two &#8220;equal&#8221; tuples.</li>
+</ul>
+<p>In our example above, the relation contains tuples that have all the same &#8220;structure&#8221;. This is not incidental, as I explain now.</p>
+<h3>Tuple and relation types</h3>
+<p>If values are elements of a type and if tuples and relations are values, then they must also have a type. Otherwise, our mathematical framework would not be sound. To bring some soundness here, consider the following notion of <em>heading</em>:</p>
+<p class="attention">A heading is a set of (name, type name) pairs</p>
+<p>For example, in our example, the following heading might be considered:</p>
+<div class="highlight"><pre><span class="p">(</span><span class="no">Heading</span> <span class="n">address</span><span class="p">:</span> <span class="no">Uri</span><span class="p">,</span> <span class="n">since</span><span class="p">:</span> <span class="no">Year</span><span class="p">)</span>
+</pre></div>
+<p>We say that a tuple is of type <code>TUPLE{H}</code> if its attributes agree with the heading <code>H</code>. We then say that a relation is of type <code>RELATION{H}</code> if all its tuples are of type <code>TUPLE{H}</code>. To keep a consistent syntax however, we will write tuple and relation types as follows:</p>
+<div class="highlight"><pre><span class="p">(</span><span class="no">TupleType</span>    <span class="n">address</span><span class="p">:</span> <span class="no">Uri</span><span class="p">,</span> <span class="n">since</span><span class="p">:</span> <span class="no">Year</span><span class="p">)</span>
+<span class="p">(</span><span class="no">RelationType</span> <span class="n">address</span><span class="p">:</span> <span class="no">Uri</span><span class="p">,</span> <span class="n">since</span><span class="p">:</span> <span class="no">Year</span><span class="p">)</span>
+</pre></div>
+<p>As you can see, these definitions imply that a relation must have all tuples with the same structure, precisely the same heading. In other words, the following candidate is not considered a valid relation:</p>
+<div class="highlight"><pre><span class="p">(</span><span class="no">Relation</span> 
+  <span class="p">(</span><span class="no">Tuple</span> <span class="n">foo</span><span class="p">:</span> <span class="s2">&quot;hello world&quot;</span><span class="p">),</span>
+  <span class="p">(</span><span class="no">Tuple</span> <span class="n">bar</span><span class="p">:</span>            <span class="mi">17</span><span class="p">))</span>
+</pre></div>
+<p>It might be argued that such a mathematical framework is very restrictive, i.e. that strong typing is not a good choice and that the latter relation makes perfect sense. Well, in my opinion data-management often means bringing order to data and strong typing helps achieving this task. Beyond that, alternative frameworks might of course be considered. Keep in mind, however, that we need <em>sound</em> frameworks allowing formal reasoning. Formal reasoning, is what allows the definition of a query language such as relational algebra, and optimizations when evaluating query expressions. I&#8217;ll stick here with this mathematical framework which is a good trade-off between flexibility and rigor.</p>
+<h3>Variables and relational databases</h3>
+<p>We now have sound notions for (rich) data types, values and relations. What is a relational database then? A collection of relations. Most precisely, a collection of relation variables.</p>
+<p class="attention">A variable is a placeholder for a value. Unlike values, variables have a location in time and space. Variables actually contain different values at different times.</p>
+<p>The information principle requires a relational database to capture all information through relations only. This can be seen as restricting the kind of variables manipulated by the database. In other words, we will consider only typed variables, where types are <em>relation types</em> exclusively.</p>
+<p>In its simplest form, a database <em>schema</em> can thus be seen as definitions of relation variables:</p>
+<div class="highlight"><pre><span class="o">.</span><span class="n">.</span><span class="o">.</span>
+<span class="p">(</span><span class="no">RelationType</span> <span class="n">address</span><span class="p">:</span> <span class="no">Uri</span><span class="p">,</span> <span class="n">since</span><span class="p">:</span> <span class="no">Year</span><span class="p">)</span> <span class="no">WEBSITES</span><span class="p">;</span>
+<span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</pre></div>
+<p>A database <em>value</em> is then defined as relation values assigned to those relation variables:</p>
+<div class="highlight"><pre><span class="no">WEBSITES</span> <span class="o">=</span> <span class="p">(</span><span class="no">Relation</span> 
+  <span class="p">(</span><span class="no">Tuple</span> <span class="n">address</span><span class="p">:</span> <span class="p">(</span><span class="no">Uri</span> <span class="s2">&quot;http://kernel.org/&quot;</span><span class="p">),</span> <span class="n">since</span><span class="p">:</span> <span class="p">(</span><span class="no">Year</span> <span class="mi">1997</span><span class="p">)),</span>
+  <span class="p">(</span><span class="no">Tuple</span> <span class="n">address</span><span class="p">:</span> <span class="p">(</span><span class="no">Uri</span> <span class="s2">&quot;http://google.com/&quot;</span><span class="p">),</span> <span class="n">since</span><span class="p">:</span> <span class="p">(</span><span class="no">Year</span> <span class="mi">1997</span><span class="p">)),</span>
+  <span class="p">(</span><span class="no">Tuple</span> <span class="n">address</span><span class="p">:</span> <span class="p">(</span><span class="no">Uri</span> <span class="s2">&quot;http://amazon.com/&quot;</span><span class="p">),</span> <span class="n">since</span><span class="p">:</span> <span class="p">(</span><span class="no">Year</span> <span class="mi">1994</span><span class="p">)))</span>
+</pre></div>
+<p>No, we have said that variables contain different values at different times. So how do we update a relational database? By affecting new values to relation variables, that&#8217;s all. What about SQL&#8217;s <span class="caps">INSERT</span> and <span class="caps">DELETE</span>? Semantically, just shortcuts for the affectation of a newly computed value:</p>
+<div class="highlight"><pre><span class="p">(</span><span class="no">INSERT</span> <span class="n">t</span> <span class="no">INTO</span> <span class="no">RELVAR</span><span class="p">)</span>  <span class="n">means</span> <span class="p">(</span><span class="no">RELVAR</span> <span class="o">=</span> <span class="no">PREV_VALUE</span> <span class="no">UNION</span> <span class="p">(</span><span class="no">RELATION</span> <span class="n">t</span><span class="p">))</span>
+<span class="p">(</span><span class="no">DELETE</span> <span class="no">RELVAR</span> <span class="no">WHERE</span> <span class="n">x</span><span class="p">)</span> <span class="n">means</span> <span class="p">(</span><span class="no">RELVAR</span> <span class="o">=</span> <span class="no">PREV_VALUE</span> <span class="no">MINUS</span> <span class="p">(</span><span class="no">PREV_VALUE</span> <span class="no">WHERE</span> <span class="n">x</span><span class="p">))</span>
+</pre></div>
+<h3>A few consequences as thought provoking conclusion</h3>
+<p>So far so good. Isn&#8217;t it a beautiful way of defining relational databases? A collection of variables that contain relation values. <em>Inefficient</em>, I hear you. Beeeeeeepp!</p>
+<p>You felt the trap of not distinguishing between the logical level and the physical one. The relational theory is mostly about the logical level, about the interface that we want to give to users to manipulate their data. Isn&#8217;t the affectation operator above part of an awesome interface?</p>
+<p class="attention">At the logical level, database migrations should be reduced to the<br />
+assignment of relation values to relation variables.</p>
+<p>If the clojure functional programming language is <a target="_blank" href="http://blog.8thlight.com/uncle-bob/2011/12/11/The-Barbarians-are-at-the-Gates.html">perceived by some as a good bet for the future</a>, isn&#8217;t it because it defines a <a target="_blank" href="http://www.infoq.com/presentations/Simple-Made-Easy">simple <em>logical</em> interface to computation</a>? Clojure requires efficient algorithms and techniques at a lower level of abstraction, such as <a target="_blank" href="http://en.wikipedia.org/wiki/Persistent_data_structure">persistent data structures</a>. Isn&#8217;t it similar to what I&#8217;m talking about here? So, why don&#8217;t we have a nice logical interface to relational databases?</p>
+<p>A much better interface than <span class="caps">SQL</span> is possible. Such interface is not Object Relational Mapping (<span class="caps">ORM</span>), because ORMs do not provide systematic treatment of types and values. In contrast, such interface will support rich, user-defined datatypes; it will allow relations to contain any kind of values, including values of user-defined types as well as sub-relations; it will support the affectation of relation values to relation variables.</p>
+<p>After 40 years, much of the relational dream has still to be built, any volunteer?</p>
