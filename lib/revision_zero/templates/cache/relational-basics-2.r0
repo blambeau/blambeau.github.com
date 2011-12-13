@@ -1,0 +1,11 @@
+<p>After this <a href="relational-basics">phisolophical essay</a>, let now turn to something a bit more concrete by discussing the logical level of relational databases. Do you remember the information principle?</p>
+<p class="attention">All information in a relational database should be represented at the logical level in only one way, namely, <strong>relations</strong>.</p>
+<p>In other words,</p>
+<p class="attention">From a logical point of view (that is the one of the database user) a database defines a collection of typed variables (≃ <span class="caps">SQL</span> tables). These variables contain relations as values (≃ their records).</p>
+<p>The definitions above make use of specific terms that I would like to discuss now.</p>
+<h3>Types, Values, and Variables</h3>
+<p>Managing data certainly means being able to reason in terms of types, values, and (to a lesser extent) variables. Those concepts may seem obvious to you&#8230; great! However, it does not seem that obvious in object-oriented programming languages such as ruby, so I&#8217;d like to discuss them in more details.</p>
+<p class="attention">A <strong>type</strong> is a set of elements, called values. We say that a value belongs to a type, if it&#8217;s one of its elements. <br />
+<br />
+Values are immutable (you can&#8217;t update the integer value &#8216;3&#8217;, in any way). They can be of any complexity (sounds and videos can be seen as values, for instance). Values also have no location in space or in time, unlike their physical representations.</p>
+<p>Obvious, don&#8217;t you think? Booleans and Integers are common types. So are Reals, Tuples, Graphs, Relations, URIs, Sounds, Videos, Email addresses, Colors, &#8230;</p>

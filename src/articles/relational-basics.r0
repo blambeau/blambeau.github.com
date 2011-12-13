@@ -30,6 +30,7 @@ I confess that it is a very abstract answer, probably representative of the huge
 
 Let me close the first part of this essay with a claim.
 
-!!{At the logical level, database migrations should be reduced to simple assignments of relation values to relation variables. That's all.}
+!!{At the logical level, database migrations should be reduced to the
+assignment of relation values to relation variables.}
 
 In order to explain the meaning of this claim, I'll have to complement this essay with something a bit more concrete. It will be the purpose of the next post.

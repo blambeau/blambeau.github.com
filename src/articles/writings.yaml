@@ -136,7 +136,15 @@ writings:
   short: Relational Basics I
   date: 2011/12/11 - 20:32
   category: Databases
-  keywords: [ "database", "relational theory", "relational model", "relational algebra", "types", "ruby" ]
+  keywords: [ "database", "relational theory", "relational model", "information principle", 
+              "relational algebra", "types", "ruby" ]
+- identifier: relational-basics-2
+  title: Relational Basics II
+  short: Relational Basics II
+  date: 2011/12/11 - 20:32
+  category: Databases
+  keywords: [ "relational theory", "relational model", "database", "information principle", 
+              "relational algebra", "types", "ruby" ]
 others:
 - identifier: '404'
   title: Forward reference detected
